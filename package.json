@@ -1,0 +1,32 @@
+{
+    "name": "wrkin-front",
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@types/react-router": "^5.1.17",
+        "@types/react-router-dom": "^5.3.2",
+        "history": "^5.2.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-router-dom": "^6.2.1"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.33",
+        "@types/react-dom": "^17.0.10",
+        "@vitejs/plugin-react": "^1.0.7",
+        "autoprefixer": "^10.4.0",
+        "postcss": "^8.4.5",
+        "postcss-cli": "^9.1.0",
+        "postcss-font-magician": "^3.0.0",
+        "postcss-import": "^14.0.2",
+        "postcss-nested": "^5.0.6",
+        "postcss-purgecss": "^2.0.3",
+        "postcss-sorting": "^7.0.1",
+        "typescript": "^4.4.4",
+        "vite": "^2.7.2"
+    }
+}
