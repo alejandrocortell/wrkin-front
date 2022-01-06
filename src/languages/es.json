@@ -1,6 +1,4 @@
 {
-    "select_language": "Elige idioma",
-    "hello_welcome_to_react": "Hola, bienvenido a react",
-    "this_is_an_example": "Esto es un ejemplo",
-    "please_enter_name": "Por favor, introduce tu nombre"
+    "FORM_USER": "Usuario",
+    "FORM_PASSWORD": "Contraseña"
 }
