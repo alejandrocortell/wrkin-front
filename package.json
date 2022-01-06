@@ -35,6 +35,7 @@
         "postcss-import": "^14.0.2",
         "postcss-nested": "^5.0.6",
         "postcss-purgecss": "^2.0.3",
+        "postcss-simple-vars": "^6.0.3",
         "postcss-sorting": "^7.0.1",
         "typescript": "^4.4.4",
         "vite": "^2.7.2"
