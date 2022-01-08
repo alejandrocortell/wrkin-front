@@ -32,14 +32,19 @@ export const InputField: FC<Props> = (props) => {
     }
     return (
         <label className='input-field'>
-            <span>{props.label}</span>
+            <span>
+                {props.label}
+                {props.required && '*'}
+            </span>
             <input
                 type={props.type}
                 value={props.value}
                 onChange={handleChange}
                 required={props.required}
                 disabled={props.disabled}
+                className={`${props.error && 'error'}`}
             />
+            <span className='error-text'>{props.error && props.errorText}</span>
         </label>
     )
 }

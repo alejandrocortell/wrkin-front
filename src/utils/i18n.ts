@@ -13,7 +13,7 @@ const resources = {
 }
 i18n.use(initReactI18next).init({
     resources,
-    fallbackLng: 'es',
+    fallbackLng: 'en',
     debug: true,
 
     interpolation: {
