@@ -18,6 +18,7 @@ export const FormLogin: FC = () => {
 
     const debouncedUser = useDebounce(user, 400)
     useEffect(() => {
+        if (user === '') return
         setUserError(false)
         const test = isString(user)
         setUserError(test.error)
@@ -27,6 +28,7 @@ export const FormLogin: FC = () => {
     const debouncedPass = useDebounce(pass, 400)
     useEffect(() => {
         setPassError(false)
+        if (pass === '') return
         const test = isPassword(pass)
         setPassError(test.error)
         setPassErrorText(test.errorText)

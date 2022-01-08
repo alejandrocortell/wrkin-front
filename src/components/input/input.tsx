@@ -1,4 +1,6 @@
-import React, { ChangeEvent, FC } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react'
+import visibility from '../../assets/img/visibility.svg'
+import visibilityOff from '../../assets/img/visibility_off.svg'
 
 interface Props {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -19,11 +21,17 @@ interface Props {
 }
 
 export const InputField: FC<Props> = (props) => {
+    const [type, setType] = useState(props.type)
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         props.onChange(e)
     }
 
-    if (props.type === 'textarea') {
+    const toggleVisibility = () => {
+        type === 'text' ? setType('password') : setType('text')
+    }
+
+    if (type === 'textarea') {
         return (
             <div>
                 <textarea name='' id='' cols={30} rows={10}></textarea>
@@ -31,13 +39,25 @@ export const InputField: FC<Props> = (props) => {
         )
     }
     return (
-        <label className='input-field'>
-            <span>
+        <div className='input-field'>
+            <label>
                 {props.label}
                 {props.required && '*'}
-            </span>
+            </label>
+            {props.type === 'password' && (
+                <div
+                    className='container-visibility'
+                    onClick={toggleVisibility}
+                >
+                    <img
+                        src={type === 'password' ? visibility : visibilityOff}
+                        alt='toggle visibility password'
+                        className='toggle-visibility'
+                    />
+                </div>
+            )}
             <input
-                type={props.type}
+                type={type}
                 value={props.value}
                 onChange={handleChange}
                 required={props.required}
@@ -45,6 +65,6 @@ export const InputField: FC<Props> = (props) => {
                 className={`${props.error && 'error'}`}
             />
             <span className='error-text'>{props.error && props.errorText}</span>
-        </label>
+        </div>
     )
 }

@@ -4,9 +4,10 @@
     width: 100%;
     margin-bottom: 20px;
 
-    span {
+    label {
         display: block;
-        font: normal normal 600 14px Montserrat;
+        @include semi-bold;
+        font-size: 0.9rem;
         color: $blue;
         margin-bottom: 4px;
     }
@@ -27,7 +28,8 @@
         border: 1px solid $grey;
         border-radius: 5px;
 
-        font: normal normal 600 18px Montserrat;
+        @include semi-bold;
+        font-size: 1.1rem;
         color: $blue;
 
         &:focus-visible {
@@ -41,14 +43,33 @@
         }
     }
 
+    .container-visibility {
+        position: absolute;
+        top: 23px;
+        right: 2px;
+        background-color: $white;
+        padding: 5px 5px 2px 5px;
+        border-radius: 5px;
+
+        .toggle-visibility {
+            opacity: 0.4;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
     .error-text {
         display: inline-block;
         position: absolute;
         font-size: 12px;
-        bottom: -10px;
+        bottom: -5px;
         left: 6px;
         background-color: $white;
         padding: 0px 4px;
+        @include semi-bold;
+        font-size: 0.7rem;
         color: $red;
     }
 }
