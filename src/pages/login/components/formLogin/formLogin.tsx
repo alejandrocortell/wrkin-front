@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Button } from '../../../../components/button/button'
 import { InputField } from '../../../../components/input/input'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import { isPassword, isString } from '../../../../utils/validators'
@@ -26,14 +27,15 @@ export const FormLogin: FC = () => {
     const debouncedPass = useDebounce(pass, 400)
     useEffect(() => {
         setPassError(false)
-        console.log(isPassword(pass))
         const test = isPassword(pass)
         setPassError(test.error)
         setPassErrorText(test.errorText)
     }, [debouncedPass])
 
+    const handleSubmit = () => {}
+
     return (
-        <div className='form-login'>
+        <form className='form-login' onSubmit={handleSubmit}>
             <InputField
                 value={user}
                 label={t('FORM_USER')}
@@ -56,6 +58,11 @@ export const FormLogin: FC = () => {
                     setPass(e.target.value)
                 }
             />
-        </div>
+            <Button
+                onClick={handleSubmit}
+                label={t('FORM_LOGIN')}
+                style={'primary'}
+            />
+        </form>
     )
 }

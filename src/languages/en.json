@@ -1,6 +1,7 @@
 {
     "FORM_USER": "User",
     "FORM_PASSWORD": "Password",
+    "FORM_LOGIN": "Login",
 
     "ERROR_STRING": "Invalid text",
     "ERROR_PASSWORD_LENGHT": "Must be longer than 8 characters",
