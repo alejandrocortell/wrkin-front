@@ -10,26 +10,26 @@
     -moz-osx-font-smoothing: inherit;
     -webkit-appearance: none;
 
+    position: relative;
     width: 100%;
     height: 40px;
+    border-radius: 6px;
+    font: normal normal 600 18px Montserrat;
+    z-index: 1;
+    background-size: 100%;
 
     &.primary {
-        background-size: 100%;
+        color: $white;
         background-image: linear-gradient(
-            97deg,
+            115deg,
             $primary 0%,
             $transition-gradient 70%,
             $secondary 100%
         );
-        position: relative;
-        z-index: 100;
-        border-radius: 6px;
-        color: $white;
-        font: normal normal 600 18px Montserrat;
 
         &:before {
             background-image: linear-gradient(
-                97deg,
+                115deg,
                 $primary 0%,
                 $transition-gradient 10%,
                 $secondary 100%
@@ -43,12 +43,10 @@
             border-radius: 6px;
             opacity: 0;
             width: 100%;
-            z-index: -100;
+            z-index: -1;
             transition: opacity 0.4s;
         }
         &:hover {
-            cursor: pointer;
-
             &:before {
                 opacity: 1;
             }
@@ -57,5 +55,45 @@
         &:focus-visible {
             outline: 2px solid $secondary;
         }
+    }
+
+    &.secondary {
+        color: $blue;
+        border: 2px solid $blue;
+
+        &:before {
+            background-image: linear-gradient(
+                115deg,
+                $primary 0%,
+                $transition-gradient 90%,
+                $secondary 100%
+            );
+            content: '';
+            display: block;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 4px;
+            opacity: 0;
+            width: 100%;
+            z-index: -1;
+            transition: opacity 0.4s;
+        }
+
+        &:hover {
+            transition: 0.4s;
+            &:before {
+                opacity: 0.5;
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid $secondary;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
     }
 }
