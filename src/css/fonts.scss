@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('../assets/fonts/Montserrat-Regular.woff2') format('woff2'),
+        url('../assets/fonts/Montserrat-Regular.woff') format('woff'),
+        url('../assets/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('../assets/fonts/Montserrat-Medium.woff2') format('woff2'),
+        url('../assets/fonts/Montserrat-Medium.woff') format('woff'),
+        url('../assets/fonts/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat-SemiBold';
+    src: url('../assets/fonts/Montserrat-SemiBold.woff2') format('woff2'),
+        url('../assets/fonts/Montserrat-SemiBold.woff') format('woff'),
+        url('../assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('../assets/fonts/Montserrat-ExtraBold.woff2') format('woff2'),
+        url('../assets/fonts/Montserrat-ExtraBold.woff') format('woff'),
+        url('../assets/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@mixin regular {
+    font-family: 'Montserrat-Regular', Arial, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+@mixin medium {
+    font-family: 'Montserrat-Medium', Arial, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+@mixin semi-bold {
+    font-family: 'Montserrat-Semibold', Arial, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+@mixin extra-bold {
+    font-family: 'Montserrat-ExtraBold', Arial, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}

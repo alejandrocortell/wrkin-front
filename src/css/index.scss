@@ -1,5 +1,7 @@
 @import 'reset';
 @import 'colors';
+@import 'fonts';
+@import 'main';
 
 @import '../pages/login/login';
 @import '../pages/login/components/columnLogin/columnLogin';
@@ -8,9 +10,3 @@
 @import '../components/logo/logo';
 @import '../components/input/input';
 @import '../components/button/button';
-
-/* 
-@import 'main.css';
-
-@import '../pages/home/home.css';
-*/
