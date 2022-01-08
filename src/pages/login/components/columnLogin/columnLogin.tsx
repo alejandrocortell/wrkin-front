@@ -10,7 +10,9 @@ export const ColumnLogin: FC = () => {
     return (
         <div className='column-login'>
             <div className='container-column'>
-                <Logo />
+                <div className='container-logo'>
+                    <Logo />
+                </div>
                 <FormLogin />
             </div>
             <div className='container-links'>Liinks</div>

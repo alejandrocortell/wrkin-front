@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../components/button/button'
+import { Checkbox } from '../../../../components/checkbox/checkbox'
 import { InputField } from '../../../../components/input/input'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import { isPassword, isString } from '../../../../utils/validators'
@@ -15,6 +16,8 @@ export const FormLogin: FC = () => {
     const [pass, setPass] = useState('')
     const [passError, setPassError] = useState(false)
     const [passErrorText, setPassErrorText] = useState('Error text')
+
+    const [remember, setRemember] = useState(true)
 
     const debouncedUser = useDebounce(user, 400)
     useEffect(() => {
@@ -60,6 +63,13 @@ export const FormLogin: FC = () => {
                     setPass(e.target.value)
                 }
             />
+            <div>
+                <Checkbox
+                    onChange={() => setRemember(!remember)}
+                    checked={remember}
+                    label={t('FORM_REMEMBER')}
+                />
+            </div>
             <Button
                 onClick={handleSubmit}
                 label={t('FORM_LOGIN')}
