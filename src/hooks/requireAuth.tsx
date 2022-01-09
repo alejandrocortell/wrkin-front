@@ -1,18 +1,13 @@
-import { Navigate, Route, RouteProps } from 'react-router'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
+import { useAppSelector } from '../context/hooks'
 
-export type ProtectedRouteProps = {
-    isAuthenticated: boolean
-    authenticationPath: string
-} & RouteProps
+export function RequireAuth() {
+    const auth = useAppSelector((state) => state.auth)
+    let location = useLocation()
 
-export default function ProtectedRoute({
-    isAuthenticated,
-    authenticationPath,
-    ...routeProps
-}: ProtectedRouteProps) {
-    if (isAuthenticated) {
-        return <Route {...routeProps} />
-    } else {
-        return <Navigate to={{ pathname: authenticationPath }} />
+    if (!auth.logged) {
+        return <Navigate to='/login' state={{ from: location }} />
     }
+
+    return <Outlet />
 }

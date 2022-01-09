@@ -1,29 +1,31 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { useAppSelector } from '../context/hooks'
-import ProtectedRoute, { ProtectedRouteProps } from '../hooks/requireAuth'
+import Cookie from '../utils/cookies'
+import { useAppDispatch } from '../context/hooks'
+import { login } from '../context/authSlice'
+import { RequireAuth } from '../hooks/requireAuth'
 import { FourOFour } from '../pages/404/404'
 import { Home } from '../pages/home/home'
 import { Login } from '../pages/login/login'
 
-export const App: FC = () => {
-    const auth = useAppSelector((state) => state.auth)
+const cookie = new Cookie()
 
-    const defaultProtectedRouteProps: ProtectedRouteProps = {
-        isAuthenticated: auth.logged,
-        authenticationPath: '/login',
-    }
+export const App: FC = () => {
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        const token = cookie.getCookie('token')
+        if (token) {
+            dispatch(login(token))
+        }
+    }, [])
 
     return (
         <Routes>
-            <Route
-                path='/'
-                element={
-                    <ProtectedRoute {...defaultProtectedRouteProps} path='/'>
-                        <Home />
-                    </ProtectedRoute>
-                }
-            />
+            <Route element={<RequireAuth />}>
+                <Route path='/' element={<Home />} />
+                {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+            </Route>
             <Route path='/login' element={<Login />} />
             <Route path='*' element={<FourOFour />} />
         </Routes>

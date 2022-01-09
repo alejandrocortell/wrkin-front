@@ -7,18 +7,23 @@ import { LinkButton } from '../../../../components/linkButton/linkButton'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import Validator from '../../../../utils/validators'
 import Api from '../../../../services/api'
+import { useAppDispatch } from '../../../../context/hooks'
+import { login } from '../../../../context/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const val = new Validator()
 const apiManager = new Api()
 
 export const FormLogin: FC = () => {
     const { t } = useTranslation()
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState('alejandro')
     const [userError, setUserError] = useState(false)
     const [userErrorText, setUserErrorText] = useState('Error text')
 
-    const [pass, setPass] = useState('')
+    const [pass, setPass] = useState('123456aA?')
     const [passError, setPassError] = useState(false)
     const [passErrorText, setPassErrorText] = useState('Error text')
 
@@ -64,6 +69,7 @@ export const FormLogin: FC = () => {
         }
 
         doLogin()
+        navigate('/')
     }
 
     const doLogin = async () => {
@@ -77,12 +83,16 @@ export const FormLogin: FC = () => {
                 if (res.status !== 200) {
                     setErrorForm(true)
                     setTextErrorForm(t('ERROR_FORM'))
+                    return
                 }
 
                 if (res.data.status === 204) {
                     setErrorForm(true)
                     setTextErrorForm(t('ERROR_USER_NOT_FOUND'))
+                    return
                 }
+
+                dispatch(login(res.data.token))
             })
             .catch((err) => console.log(err))
     }

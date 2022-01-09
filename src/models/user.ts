@@ -3,13 +3,13 @@ export interface User {
     user: String
     firstName: String
     lastName: String
-    birthday: Date
+    birthday: String
     address: String
     zipcode: String
     city: String
     hoursToWork: number
-    createdAt: Date
-    updatedAt: Date
+    createdAt: String
+    updatedAt: String
     roleId: number
     managerId: number
 }
@@ -19,13 +19,13 @@ export const initialUser: User = {
     user: '',
     firstName: '',
     lastName: '',
-    birthday: new Date(),
+    birthday: new Date().toDateString(),
     address: '',
     zipcode: '',
     city: '',
     hoursToWork: 0,
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: new Date().toDateString(),
+    updatedAt: new Date().toDateString(),
     roleId: 0,
     managerId: 0,
 }
