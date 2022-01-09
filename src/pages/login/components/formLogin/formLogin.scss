@@ -4,5 +4,15 @@
     .container-remember {
         display: flex;
         justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .error-form {
+        position: absolute;
+        margin-top: 10px;
+        @include medium;
+        color: $red;
+        font-size: 0.8rem;
     }
 }

@@ -6,8 +6,10 @@ import { InputField } from '../../../../components/input/input'
 import { LinkButton } from '../../../../components/linkButton/linkButton'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import Validator from '../../../../utils/validators'
+import Api from '../../../../services/api'
 
 const val = new Validator()
+const apiManager = new Api()
 
 export const FormLogin: FC = () => {
     const { t } = useTranslation()
@@ -21,6 +23,9 @@ export const FormLogin: FC = () => {
     const [passErrorText, setPassErrorText] = useState('Error text')
 
     const [remember, setRemember] = useState(true)
+    const [buttonLoader, setButtonLoader] = useState(false)
+    const [errorForm, setErrorForm] = useState(false)
+    const [textErrorForm, setTextErrorForm] = useState('')
 
     const debouncedUser = useDebounce(user, 400)
     useEffect(() => {
@@ -40,7 +45,47 @@ export const FormLogin: FC = () => {
         setPassErrorText(test.errorText)
     }, [debouncedPass])
 
-    const handleSubmit = () => {}
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+        setUserError(false)
+        const testUser = val.isString(user)
+        if (testUser.error) {
+            setUserError(testUser.error)
+            setUserErrorText(testUser.errorText)
+            return
+        }
+
+        setPassError(false)
+        const testPass = val.isPassword(pass)
+        if (testPass.error) {
+            setPassError(testPass.error)
+            setPassErrorText(testPass.errorText)
+            return
+        }
+
+        doLogin()
+    }
+
+    const doLogin = async () => {
+        setErrorForm(false)
+        setButtonLoader(true)
+
+        await apiManager
+            .login(user, pass)
+            .then((res: any) => {
+                setButtonLoader(false)
+                if (res.status !== 200) {
+                    setErrorForm(true)
+                    setTextErrorForm(t('ERROR_FORM'))
+                }
+
+                if (res.data.status === 204) {
+                    setErrorForm(true)
+                    setTextErrorForm(t('ERROR_USER_NOT_FOUND'))
+                }
+            })
+            .catch((err) => console.log(err))
+    }
 
     return (
         <form className='form-login' onSubmit={handleSubmit}>
@@ -78,7 +123,9 @@ export const FormLogin: FC = () => {
                 onClick={handleSubmit}
                 label={t('FORM_LOGIN')}
                 style={'primary'}
+                loading={buttonLoader}
             />
+            {errorForm && <div className='error-form'>{textErrorForm}</div>}
         </form>
     )
 }
