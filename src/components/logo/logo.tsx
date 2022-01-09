@@ -1,5 +1,6 @@
 import { FC } from 'react'
+import WRKIN from '../../assets/img/WRKIN.svg'
 
 export const Logo: FC = () => {
-    return <div className='logo'>WRKIN</div>
+    return <img src={WRKIN} alt='WRKIN' className='logo' />
 }
