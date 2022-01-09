@@ -4,7 +4,9 @@ import { Button } from '../../../../components/button/button'
 import { Checkbox } from '../../../../components/checkbox/checkbox'
 import { InputField } from '../../../../components/input/input'
 import { useDebounce } from '../../../../hooks/useDebounce'
-import { isPassword, isString } from '../../../../utils/validators'
+import Validator from '../../../../utils/validators'
+
+const val = new Validator()
 
 export const FormLogin: FC = () => {
     const { t } = useTranslation()
@@ -23,7 +25,7 @@ export const FormLogin: FC = () => {
     useEffect(() => {
         if (user === '') return
         setUserError(false)
-        const test = isString(user)
+        const test = val.isString(user)
         setUserError(test.error)
         setUserErrorText(test.errorText)
     }, [debouncedUser])
@@ -32,7 +34,7 @@ export const FormLogin: FC = () => {
     useEffect(() => {
         setPassError(false)
         if (pass === '') return
-        const test = isPassword(pass)
+        const test = val.isPassword(pass)
         setPassError(test.error)
         setPassErrorText(test.errorText)
     }, [debouncedPass])
