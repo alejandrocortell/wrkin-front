@@ -1,0 +1,8 @@
+.link-button {
+    font-size: 0.8rem;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}

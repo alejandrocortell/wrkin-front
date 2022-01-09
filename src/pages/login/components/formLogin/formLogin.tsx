@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../components/button/button'
 import { Checkbox } from '../../../../components/checkbox/checkbox'
 import { InputField } from '../../../../components/input/input'
+import { LinkButton } from '../../../../components/linkButton/linkButton'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import Validator from '../../../../utils/validators'
 
@@ -65,12 +66,13 @@ export const FormLogin: FC = () => {
                     setPass(e.target.value)
                 }
             />
-            <div>
+            <div className='container-remember'>
                 <Checkbox
                     onChange={() => setRemember(!remember)}
                     checked={remember}
                     label={t('FORM_REMEMBER')}
                 />
+                <LinkButton label={t('FORM_FORGOT_PASSWORD')} path={'/'} />
             </div>
             <Button
                 onClick={handleSubmit}
