@@ -1,15 +1,16 @@
 import React, { ChangeEvent, FC } from 'react'
 
 interface Props {
-    onClick: () => void
+    onClick: (event: React.MouseEvent<HTMLElement>) => void
     label: string
     style: 'primary' | 'secondary'
     disabled?: boolean
+    loading?: boolean
 }
 
 export const Button: FC<Props> = (props) => {
-    const handleClick = () => {
-        props.onClick()
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+        props.onClick(e)
     }
 
     return (
@@ -18,7 +19,11 @@ export const Button: FC<Props> = (props) => {
             onClick={handleClick}
             disabled={props.disabled}
         >
-            {props.label}
+            {props.loading ? (
+                <div className='loader-button'></div>
+            ) : (
+                props.label
+            )}
         </button>
     )
 }

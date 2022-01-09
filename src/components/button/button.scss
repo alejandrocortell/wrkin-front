@@ -18,6 +18,9 @@
     font-size: 1.1rem;
     z-index: 1;
     background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &.primary {
         color: $white;
@@ -96,5 +99,25 @@
 
     &:hover {
         cursor: pointer;
+    }
+
+    .loader-button {
+        border: 3px solid rgba($white, 0.4);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border-left-color: $white;
+
+        animation: spin 1s ease infinite;
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     }
 }
