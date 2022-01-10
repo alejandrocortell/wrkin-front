@@ -3,6 +3,7 @@ import { decrement, increment } from '../../context/userSlice'
 import { useAppDispatch, useAppSelector } from '../../context/hooks'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
+import { Wrapper } from '../../components/wrapper/wrapper'
 
 export const Home: FC = () => {
     const { t } = useTranslation()
@@ -18,17 +19,8 @@ export const Home: FC = () => {
     }
 
     return (
-        <aside>
-            <h2>Homee</h2>
-            <button onClick={upId}>up</button>
-            <button onClick={downId}>down</button>
-            {user.id}
-            {user.user}
-            {t('hello_welcome_to_react')}
-            {t('this_is_an_example')}
-            {t('please_enter_name')}
-            <button onClick={() => i18next.changeLanguage('en')}>EN</button>
-            <button onClick={() => i18next.changeLanguage('es')}>ES</button>
-        </aside>
+        <Wrapper>
+            <div>Home page</div>
+        </Wrapper>
     )
 }
