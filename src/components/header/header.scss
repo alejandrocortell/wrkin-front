@@ -30,12 +30,73 @@
                 }
 
                 &.container-user {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    position: relative;
 
                     img {
                         height: 25px;
+                        margin-right: 5px;
+                    }
+
+                    .arrow-expand {
+                        margin: 0;
+                        margin-left: 5px;
+                        height: 7px;
+                        transition: 0.2s;
+                    }
+
+                    .dropdown-user {
+                        position: relative;
+                        z-index: 2;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        @include medium;
+                    }
+
+                    .submenu {
+                        display: flex;
+                        position: absolute;
+                        justify-content: center;
+                        align-items: flex-end;
+                        flex-direction: column;
+                        background-color: $white;
+                        bottom: 0px;
+                        right: -11px;
+                        padding: 20px 15px 35px 15px;
+                        width: 102%;
+                        z-index: 1;
+                        top: 0;
+                        height: 0px;
+                        opacity: 0;
+                        transition: height 0.4s ease;
+
+                        li {
+                            margin: 8px 15px;
+
+                            .link-button {
+                                @include medium;
+
+                                &::after {
+                                    height: 2px;
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+
+                        .arrow-expand {
+                            transform: rotate(180deg);
+                            transition: 0.2s;
+                        }
+
+                        .submenu {
+                            top: 30px;
+                            height: 100%;
+                            opacity: 1;
+                            transition: height 0.4s ease;
+                        }
                     }
                 }
             }

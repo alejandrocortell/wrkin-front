@@ -2,6 +2,8 @@
     "NAV_PUNCHINS": "Punch ins",
     "NAV_CALENDAR": "Calendar",
     "NAV_DOCUMENTS": "Documents",
+    "NAV_MY_ACCOUNT": "My account",
+    "NAV_LOGOUT": "Logout",
 
     "FORM_USER": "User",
     "FORM_PASSWORD": "Password",
