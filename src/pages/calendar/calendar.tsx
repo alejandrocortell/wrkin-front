@@ -4,22 +4,14 @@ import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { Wrapper } from '../../components/wrapper/wrapper'
 
-export const Home: FC = () => {
+export const Calendar: FC = () => {
     const { t } = useTranslation()
     const user = useAppSelector((state) => state.user)
     const dispatch = useAppDispatch()
 
-    // const upId = () => {
-    //     dispatch(increment())
-    // }
-
-    // const downId = () => {
-    //     dispatch(decrement())
-    // }
-
     return (
         <Wrapper>
-            <div>Home page</div>
+            <div>Calendar page</div>
         </Wrapper>
     )
 }

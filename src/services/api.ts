@@ -11,6 +11,23 @@ const api = axios.create()
 api.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'
 api.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
+api.interceptors.request.use(
+    (config) => {
+        const token = cookie.getCookie('token')
+
+        if (config !== undefined) {
+            if (token !== null) {
+                config.headers = {
+                    Authorization: `Bearer ${token}`,
+                }
+            }
+        }
+        return config
+    },
+    (error) => {
+        return Promise.reject(error)
+    }
+)
 export default class Api {
     static instance: Api = new Api()
 
@@ -22,6 +39,14 @@ export default class Api {
 
         return new Promise((resolve) => {
             api.post(`${apiUrl}/auth`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    getUserInfo = async () => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users/me`)
                 .then((res) => resolve(res))
                 .catch((err) => resolve(err))
         })
