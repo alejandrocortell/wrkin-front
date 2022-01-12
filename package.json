@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "dev": "vite",
+        "back": "cd ../wrkin-back && npm run dev",
         "build": "tsc && vite build",
         "preview": "vite preview"
     },

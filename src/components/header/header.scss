@@ -3,4 +3,42 @@
     height: 50px;
     background-color: $white;
     box-shadow: 0px 3px 6px $box-shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .container-logo {
+            max-width: 100px;
+        }
+
+        .nav-header ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            li {
+                margin: 0px 10px;
+
+                .link-button {
+                    font-size: 1rem;
+                    @include medium;
+                }
+
+                &.container-user {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        height: 25px;
+                    }
+                }
+            }
+        }
+    }
 }

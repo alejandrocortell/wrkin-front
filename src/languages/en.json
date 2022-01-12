@@ -1,4 +1,8 @@
 {
+    "NAV_PUNCHINS": "Punch ins",
+    "NAV_CALENDAR": "Calendar",
+    "NAV_DOCUMENTS": "Documents",
+
     "FORM_USER": "User",
     "FORM_PASSWORD": "Password",
     "FORM_REMEMBER": "Remember me",
