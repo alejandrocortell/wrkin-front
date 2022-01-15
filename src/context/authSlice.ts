@@ -7,6 +7,7 @@ const initialState = {
     logged: false,
     token: '',
 }
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState: initialState,
@@ -17,6 +18,7 @@ export const authSlice = createSlice({
             state.token = action.payload
         },
         logout: (state) => {
+            cookie.deleteCookie('token')
             state.logged = false
             state.token = ''
         },

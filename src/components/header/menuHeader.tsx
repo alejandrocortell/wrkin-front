@@ -1,15 +1,23 @@
 import React, { FC } from 'react'
-import { useAppSelector } from '../../context/hooks'
+import { useAppDispatch, useAppSelector } from '../../context/hooks'
 import { useTranslation } from 'react-i18next'
 import { LinkButton } from '../linkButton/linkButton'
 import circle from '../../assets/img/account_circle.svg'
 import arrow from '../../assets/img/arrow.svg'
+import { logout } from '../../context/authSlice'
+import { logoutUser } from '../../context/userSlice'
 
 interface Props {}
 
 export const MenuHeader: FC<Props> = (props) => {
     const { t } = useTranslation()
+    const dispatch = useAppDispatch()
     const user = useAppSelector((state) => state.user)
+
+    const handleLogout = () => {
+        dispatch(logoutUser())
+        dispatch(logout())
+    }
 
     return (
         <nav className='nav-header'>
@@ -26,7 +34,7 @@ export const MenuHeader: FC<Props> = (props) => {
                 <li className='container-user'>
                     <div className='dropdown-user'>
                         <img src={circle} alt='User account' />
-                        {user.user}
+                        {user.user.user}
                         <img
                             src={arrow}
                             alt='expand menu'
@@ -40,7 +48,7 @@ export const MenuHeader: FC<Props> = (props) => {
                         <li>
                             <LinkButton
                                 label={t('NAV_LOGOUT')}
-                                onClick={() => console.log('logout')}
+                                onClick={handleLogout}
                             />
                         </li>
                     </ul>
