@@ -8,6 +8,10 @@
 @import '../pages/login/components/columnLogin/columnLogin';
 @import '../pages/login/components/formLogin/formLogin';
 @import '../pages/home/home';
+@import '../pages/home/components/dayPunchIn/dayPunchIn';
+@import '../pages/home/components/dayPunchIn/components/linePunchIn/linePunchIn';
+@import '../pages/home/components/dayPunchIn/components/totalDay/totalDay';
+@import '../pages/home/components/historicPunchIn/historicPunchIn';
 
 @import '../components/wrapper/wrapper';
 @import '../components/header/header';

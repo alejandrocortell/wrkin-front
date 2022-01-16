@@ -1,0 +1,20 @@
+.line-punchIn {
+    @include medium;
+    display: grid;
+    grid-template-columns: 0.8fr auto 0.8fr 1fr;
+    gap: 5px;
+    margin-bottom: 10px;
+
+    div {
+        display: inline;
+    }
+
+    .end {
+        justify-self: end;
+    }
+
+    .space-between {
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -37,7 +37,7 @@ export const Load: FC<props> = (props) => {
     }, [])
 
     useEffect(() => {
-        if (user.user !== '') {
+        if (user.user.user !== '') {
             navigate('/')
         }
     }, [user])

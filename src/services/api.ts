@@ -51,4 +51,12 @@ export default class Api {
                 .catch((err) => resolve(err))
         })
     }
+
+    getUserPunchIns = async (id: number) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users/${id}/punchins`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }

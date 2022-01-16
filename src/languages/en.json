@@ -18,5 +18,12 @@
     "ERROR_PASSWORD_UPPER": "Must contain one uppercase",
     "ERROR_PASSWORD_NUMBER": "Must contain one number",
     "ERROR_PASSWORD_SPECIAL": "Must contain one special character",
-    "ERROR_USER_NOT_FOUND": "User or password do not match"
+    "ERROR_USER_NOT_FOUND": "User or password do not match",
+
+    "COMMON_START": "Start",
+    "COMMON_STOP": "Stop",
+    "COMMON_TOTAL": "Total",
+
+    "HOME_RESUME_DAY": "Resume of your day",
+    "HOME_TOTAL_DAY": "Total day"
 }
