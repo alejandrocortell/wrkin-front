@@ -13,7 +13,7 @@ export const MenuHeader: FC<Props> = (props) => {
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
     const user = useAppSelector((state) => state.user)
-    const [visibleSubMenu, setVisibleSubMenu] = useState(true)
+    const [visibleSubMenu, setVisibleSubMenu] = useState(false)
 
     const handleLogout = () => {
         dispatch(logoutUser())
