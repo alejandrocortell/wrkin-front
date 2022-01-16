@@ -6,8 +6,9 @@ import { HistoricPunchIn } from './components/historicPunchIn/historicPunchIn'
 import { useAppSelector } from '../../context/hooks'
 import Api from '../../services/api'
 import { PunchIn } from '../../models/punchIn'
-import moment from 'moment'
+import DateUtilities from '../../utils/date'
 
+const dateUtilities = new DateUtilities()
 const apiManager = new Api()
 
 export const Home: FC = () => {
@@ -23,10 +24,10 @@ export const Home: FC = () => {
                     const data = res.data.punchIns.map((punchIn: PunchIn) => {
                         return {
                             ...punchIn,
-                            createdAt: moment(punchIn.createdAt).toDate(),
-                            updatedAt: moment(punchIn.updatedAt).toDate(),
-                            end: moment(punchIn.end).toDate(),
-                            start: moment(punchIn.start).toDate(),
+                            createdAt: new Date(punchIn.createdAt),
+                            updatedAt: new Date(punchIn.updatedAt),
+                            end: new Date(punchIn.end),
+                            start: new Date(punchIn.start),
                         }
                     })
                     setPunchIns(data)
@@ -38,11 +39,9 @@ export const Home: FC = () => {
     }, [])
 
     const punchInsToday = (punchIns: Array<PunchIn>) => {
-        const filter = punchIns.filter((p) => {
-            const start = moment(p.start)
-            return start.isSame(new Date(), 'day') ? true : false
+        return punchIns.filter((p) => {
+            return dateUtilities.isToday(p.start)
         })
-        return filter
     }
 
     return (

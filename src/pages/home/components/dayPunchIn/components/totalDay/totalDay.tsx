@@ -1,7 +1,8 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PunchIn } from '../../../../../../models/punchIn'
-import moment from 'moment'
+import DateUtilities from '../../../../../../utils/date'
+const dateUtilities = new DateUtilities()
 
 interface props {
     punchIns: Array<PunchIn>
@@ -10,23 +11,21 @@ interface props {
 export const TotalDay: FC<props> = (props) => {
     const { t } = useTranslation()
 
-    const formatHour = (date: Date) => {
-        const d = moment(date)
-        return d.format('HH:mm')
-    }
-
-    const elapsedTime = (punchIn: PunchIn) => {
-        const start = moment(punchIn.start)
-        const end = moment(punchIn.end)
-
-        const diff = end.diff(start)
-        return moment(diff).format('HH:mm')
+    const totalDay = () => {
+        const elapsed = props.punchIns.map((p) =>
+            dateUtilities.diference(p.start, p.end)
+        )
+        if (elapsed.length === 0) return
+        const milliseconds = elapsed.reduce(
+            (accumulator, curr) => accumulator + curr
+        )
+        return dateUtilities.parseMillisecondsToHHmm(milliseconds)
     }
 
     return (
         <div className='total-day'>
             <span>
-                {t('HOME_TOTAL_DAY')} {}
+                {t('HOME_TOTAL_DAY')} {totalDay()}h
             </span>
         </div>
     )

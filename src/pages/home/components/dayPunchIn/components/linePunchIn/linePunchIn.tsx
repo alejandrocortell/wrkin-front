@@ -1,7 +1,9 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PunchIn } from '../../../../../../models/punchIn'
-import moment from 'moment'
+import DateUtilities from '../../../../../../utils/date'
+
+const dateUtilities = new DateUtilities()
 
 interface props {
     punchIn: PunchIn
@@ -10,29 +12,23 @@ interface props {
 export const LinePunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
 
-    const formatHour = (date: Date) => {
-        const d = moment(date)
-        return d.format('HH:mm')
-    }
-
     const elapsedTime = (punchIn: PunchIn) => {
-        const start = moment(punchIn.start)
-        const end = moment(punchIn.end)
-
-        const diff = end.diff(start)
-        return moment(diff).format('HH:mm')
+        const milliseconds = dateUtilities.diference(punchIn.start, punchIn.end)
+        return dateUtilities.parseMillisecondsToHHmm(milliseconds)
     }
 
     return (
         <div key={props.punchIn.id} className='line-punchIn'>
             <div className='space-between'>
                 <span>{t('COMMON_START')} </span>
-                <span>{formatHour(props.punchIn.start)}h</span>
+                <span>
+                    {dateUtilities.format(props.punchIn.start, 'HH:mm')}h
+                </span>
             </div>
             <span>-</span>
             <div className='space-between'>
                 <span>{t('COMMON_STOP')} </span>
-                <span>{formatHour(props.punchIn.end)}h</span>
+                <span>{dateUtilities.format(props.punchIn.end, 'HH:mm')}h</span>
             </div>
             <div className='end'>
                 <span>{t('COMMON_TOTAL')} </span>
