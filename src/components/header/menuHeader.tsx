@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../context/hooks'
 import { useTranslation } from 'react-i18next'
 import { LinkButton } from '../linkButton/linkButton'
@@ -13,6 +13,7 @@ export const MenuHeader: FC<Props> = (props) => {
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
     const user = useAppSelector((state) => state.user)
+    const [visibleSubMenu, setVisibleSubMenu] = useState(true)
 
     const handleLogout = () => {
         dispatch(logoutUser())
@@ -31,7 +32,12 @@ export const MenuHeader: FC<Props> = (props) => {
                 <li>
                     <LinkButton label={t('NAV_DOCUMENTS')} path={''} />
                 </li>
-                <li className='container-user'>
+                <li
+                    className={`container-user ${visibleSubMenu && 'visible'}`}
+                    onMouseEnter={() => setVisibleSubMenu(true)}
+                    onMouseLeave={() => setVisibleSubMenu(false)}
+                    onClick={() => setVisibleSubMenu(!visibleSubMenu)}
+                >
                     <div className='dropdown-user'>
                         <img src={circle} alt='User account' />
                         {user.user.user}
@@ -41,17 +47,22 @@ export const MenuHeader: FC<Props> = (props) => {
                             className='arrow-expand'
                         />
                     </div>
-                    <ul className='submenu'>
-                        <li>
-                            <LinkButton label={t('NAV_MY_ACCOUNT')} path={''} />
-                        </li>
-                        <li>
-                            <LinkButton
-                                label={t('NAV_LOGOUT')}
-                                onClick={handleLogout}
-                            />
-                        </li>
-                    </ul>
+                    <div className={'submenu'}>
+                        <ul>
+                            <li>
+                                <LinkButton
+                                    label={t('NAV_MY_ACCOUNT')}
+                                    path={''}
+                                />
+                            </li>
+                            <li>
+                                <LinkButton
+                                    label={t('NAV_LOGOUT')}
+                                    onClick={handleLogout}
+                                />
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </nav>

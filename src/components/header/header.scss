@@ -54,30 +54,34 @@
                     }
 
                     .submenu {
-                        display: flex;
                         position: absolute;
-                        justify-content: center;
-                        align-items: flex-end;
-                        flex-direction: column;
+                        width: 120%;
+                        top: 0px;
+                        right: -10px;
+                        padding: 30px 10px 20px;
                         background-color: $white;
-                        bottom: 0px;
-                        right: -11px;
-                        padding: 20px 15px 35px 15px;
-                        width: 102%;
-                        z-index: 1;
-                        top: 0;
-                        height: 0px;
-                        opacity: 0;
-                        transition: height 0.4s ease;
+                        box-shadow: 0px 10px 30px -15px $box-shadow;
+                        transform: scaleY(0);
+                        transform-origin: top;
+                        transition: transform 0.26s ease;
 
-                        li {
-                            margin: 8px 15px;
+                        ul {
+                            display: flex;
+                            justify-content: center;
+                            align-items: flex-end;
+                            flex-direction: column;
 
-                            .link-button {
-                                @include medium;
+                            li {
+                                margin: 8px 15px;
+                                width: 100%;
+                                text-align: right;
 
-                                &::after {
-                                    height: 2px;
+                                .link-button {
+                                    @include medium;
+
+                                    &::after {
+                                        height: 1.5px;
+                                    }
                                 }
                             }
                         }
@@ -85,17 +89,17 @@
 
                     &:hover {
                         cursor: pointer;
+                    }
 
+                    &:hover,
+                    &.visible {
                         .arrow-expand {
                             transform: rotate(180deg);
                             transition: 0.2s;
                         }
 
                         .submenu {
-                            top: 30px;
-                            height: 100%;
-                            opacity: 1;
-                            transition: height 0.4s ease;
+                            transform: scaleY(1);
                         }
                     }
                 }
