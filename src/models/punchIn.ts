@@ -3,7 +3,7 @@ export interface PunchIn {
     userId: number
     createdAt: Date
     updatedAt: Date
-    end: Date
+    end: Date | null
     start: Date
 }
 

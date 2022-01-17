@@ -26,7 +26,7 @@ export const Home: FC = () => {
                             ...punchIn,
                             createdAt: new Date(punchIn.createdAt),
                             updatedAt: new Date(punchIn.updatedAt),
-                            end: new Date(punchIn.end),
+                            end: punchIn.end === null ? null : new Date(punchIn.end),
                             start: new Date(punchIn.start),
                         }
                     })
