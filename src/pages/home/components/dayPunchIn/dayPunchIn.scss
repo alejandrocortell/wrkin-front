@@ -1,4 +1,9 @@
 .day-punchin {
+    h2 {
+        @include bold;
+        margin-bottom: 15px;
+    }
+
     .divider {
         margin: 10px 0px;
         width: 100%;

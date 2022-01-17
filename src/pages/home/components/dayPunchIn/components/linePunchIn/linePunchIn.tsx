@@ -18,7 +18,7 @@ export const LinePunchIn: FC<props> = (props) => {
     }
 
     return (
-        <div key={props.punchIn.id} className='line-punchIn'>
+        <div className='line-punchIn'>
             <div className='space-between'>
                 <span>{t('COMMON_START')} </span>
                 <span>

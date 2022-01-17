@@ -14,9 +14,9 @@ export const DayPunchIn: FC<props> = (props) => {
 
     return (
         <div className='day-punchin'>
-            {t('HOME_RESUME_DAY')}
+            <h2>{t('HOME_RESUME_DAY')}</h2>
             {props.punchIns.map((p) => (
-                <LinePunchIn punchIn={p} />
+                <LinePunchIn punchIn={p} key={p.id} />
             ))}
             <div className='divider'></div>
             <TotalDay punchIns={props.punchIns} />
