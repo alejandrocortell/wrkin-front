@@ -1,4 +1,7 @@
 .day-punchin {
+    width: 100%;
+    max-width: 400px;
+
     h2 {
         @include bold;
         margin-bottom: 15px;
