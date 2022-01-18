@@ -14,8 +14,20 @@ const apiManager = new Api()
 export const Home: FC = () => {
     const user = useAppSelector((state) => state.user)
     const [punchIns, setPunchIns] = useState<Array<PunchIn>>([])
+    const [punchInsToday, setPunchInsToday] = useState<Array<PunchIn>>([])
 
     useEffect(() => {
+        getPunchIns()
+    }, [])
+
+    useEffect(() => {
+        const filter = punchIns.filter((p) => {
+            return dateUtilities.isToday(p.start)
+        })
+        setPunchInsToday(filter)
+    }, [punchIns])
+
+    const getPunchIns = () => {
         apiManager
             .getUserPunchIns(user.user.id)
             .then((res: any) => {
@@ -26,7 +38,10 @@ export const Home: FC = () => {
                             ...punchIn,
                             createdAt: new Date(punchIn.createdAt),
                             updatedAt: new Date(punchIn.updatedAt),
-                            end: punchIn.end === null ? null : new Date(punchIn.end),
+                            end:
+                                punchIn.end === null
+                                    ? null
+                                    : new Date(punchIn.end),
                             start: new Date(punchIn.start),
                         }
                     })
@@ -36,19 +51,16 @@ export const Home: FC = () => {
             .catch((err) => {
                 console.log(err)
             })
-    }, [])
-
-    const punchInsToday = (punchIns: Array<PunchIn>) => {
-        return punchIns.filter((p) => {
-            return dateUtilities.isToday(p.start)
-        })
     }
 
     return (
         <Wrapper>
             <section className='home container'>
                 <ContainerWhite>
-                    <DayPunchIn punchIns={punchInsToday(punchIns)} />
+                    <DayPunchIn
+                        punchIns={punchInsToday}
+                        getPunchIns={() => getPunchIns()}
+                    />
                 </ContainerWhite>
                 <ContainerWhite>
                     <HistoricPunchIn />

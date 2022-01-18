@@ -59,4 +59,28 @@ export default class Api {
                 .catch((err) => resolve(err))
         })
     }
+
+    createPunchIn = async (start: Date, end?: Date) => {
+        const params = {
+            start: start,
+            ...(end && { end: end }),
+        }
+        return new Promise((resolve) => {
+            api.post(`${apiUrl}/punchs-in`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    updatePunchIn = async (id: number, start?: Date, end?: Date) => {
+        const params = {
+            ...(start && { start: start }),
+            ...(end && { end: end }),
+        }
+        return new Promise((resolve) => {
+            api.put(`${apiUrl}/punchs-in/${id}`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }

@@ -8,6 +8,7 @@ import { StartStop } from './components/startStop/startStop'
 
 interface props {
     punchIns: Array<PunchIn>
+    getPunchIns: () => void
 }
 
 export const DayPunchIn: FC<props> = (props) => {
@@ -21,7 +22,10 @@ export const DayPunchIn: FC<props> = (props) => {
 
     return (
         <div className='day-punchin'>
-            <StartStop currentPunchIn={currentPunchIn} />
+            <StartStop
+                currentPunchIn={currentPunchIn}
+                getPunchIns={() => props.getPunchIns()}
+            />
             <h2>{t('HOME_RESUME_DAY')}</h2>
             {props.punchIns.map((p) => {
                 return p.end !== null && <LinePunchIn punchIn={p} key={p.id} />
