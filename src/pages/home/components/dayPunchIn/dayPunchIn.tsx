@@ -17,7 +17,9 @@ export const DayPunchIn: FC<props> = (props) => {
 
     useEffect(() => {
         const filter = props.punchIns.find((p) => p.end === null)
-        filter !== undefined && setCurrentPunchIn(filter)
+        filter === undefined
+            ? setCurrentPunchIn(null)
+            : setCurrentPunchIn(filter)
     }, [props.punchIns])
 
     return (

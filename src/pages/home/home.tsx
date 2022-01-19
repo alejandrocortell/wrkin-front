@@ -59,7 +59,7 @@ export const Home: FC = () => {
                 <ContainerWhite>
                     <DayPunchIn
                         punchIns={punchInsToday}
-                        getPunchIns={() => getPunchIns()}
+                        getPunchIns={getPunchIns}
                     />
                 </ContainerWhite>
                 <ContainerWhite>

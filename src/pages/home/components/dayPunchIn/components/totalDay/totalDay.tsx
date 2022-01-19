@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PunchIn } from '../../../../../../models/punchIn'
 import DateUtilities from '../../../../../../utils/date'
@@ -13,10 +13,13 @@ export const TotalDay: FC<props> = (props) => {
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
             const milliseconds = totalDay()
             milliseconds !== undefined && setTotal(milliseconds)
         }, 1000)
+        return () => {
+            clearInterval(interval)
+        }
     }, [])
 
     const totalDay = () => {

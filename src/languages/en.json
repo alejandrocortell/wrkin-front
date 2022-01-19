@@ -26,5 +26,6 @@
 
     "HOME_RESUME_DAY": "Resume of your day",
     "HOME_TOTAL_DAY": "Total day",
-    "HOME_STARTED_AT": "Started at"
+    "HOME_STARTED_AT": "Started at",
+    "HOME_CURRENT_TIME": "Current time"
 }
