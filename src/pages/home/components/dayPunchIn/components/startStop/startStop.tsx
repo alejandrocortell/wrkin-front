@@ -1,11 +1,4 @@
-import {
-    ChangeEvent,
-    ChangeEventHandler,
-    FC,
-    ReactEventHandler,
-    SyntheticEvent,
-    useState,
-} from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../../../components/button/button'
 import { PunchIn } from '../../../../../../models/punchIn'

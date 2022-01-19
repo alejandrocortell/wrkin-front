@@ -25,5 +25,6 @@
     "COMMON_TOTAL": "Total",
 
     "HOME_RESUME_DAY": "Resume of your day",
-    "HOME_TOTAL_DAY": "Total day"
+    "HOME_TOTAL_DAY": "Total day",
+    "HOME_STARTED_AT": "Started at"
 }
