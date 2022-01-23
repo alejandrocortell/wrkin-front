@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PunchIn } from '../../../../../../models/punchIn'
 import DateUtilities from '../../../../../../utils/date'
@@ -20,7 +20,7 @@ export const TotalDay: FC<props> = (props) => {
         return () => {
             clearInterval(interval)
         }
-    }, [])
+    }, [props.punchIns])
 
     const totalDay = () => {
         const elapsed = props.punchIns.map((p) => {
