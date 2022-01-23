@@ -10,7 +10,7 @@ export default class DateUtilities {
         return dayjs(date).format(format)
     }
 
-    diference = (date1: Date, date2: Date) => {
+    diference = (date1: Date | number, date2: Date | number) => {
         return dayjs(date2).diff(dayjs(date1), 'milliseconds', true)
     }
 

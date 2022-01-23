@@ -23,7 +23,7 @@ export const StartStop: FC<props> = (props) => {
             if (props.currentPunchIn !== null) {
                 const milliseconds = dateUtilities.diference(
                     props.currentPunchIn.start,
-                    new Date()
+                    Date.now()
                 )
                 milliseconds !== undefined && setTotal(milliseconds)
             }

@@ -25,7 +25,7 @@ export const TotalDay: FC<props> = (props) => {
     const totalDay = () => {
         const elapsed = props.punchIns.map((p) => {
             if (p.end === null) {
-                return dateUtilities.diference(p.start, new Date())
+                return dateUtilities.diference(p.start, Date.now())
             } else {
                 return dateUtilities.diference(p.start, p.end)
             }
