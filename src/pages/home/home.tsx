@@ -63,7 +63,10 @@ export const Home: FC = () => {
                     />
                 </ContainerWhite>
                 <ContainerWhite>
-                    <HistoricPunchIn />
+                    <HistoricPunchIn
+                        punchIns={punchIns}
+                        getPunchIns={getPunchIns}
+                    />
                 </ContainerWhite>
             </section>
         </Wrapper>
