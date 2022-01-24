@@ -22,7 +22,6 @@ export const HistoricPunchIn: FC<props> = (props) => {
         const filter = props.punchIns.filter((p) => {
             return !dateUtilities.isToday(p.start)
         })
-        console.log(filter)
 
         const format = (date: Date) => dateUtilities.format(date, 'DDMMYYYY')
         const sorted = filter.sort((a, b) => {
