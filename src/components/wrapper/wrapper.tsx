@@ -9,7 +9,8 @@ export const Wrapper: FC<Props> = (props) => {
     return (
         <>
             <Header />
-            <div className='background-app'>{props.children}</div>
+            <div className='background-app'></div>
+            {props.children}
         </>
     )
 }

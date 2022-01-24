@@ -47,7 +47,7 @@ export const HistoricPunchIn: FC<props> = (props) => {
     }, [props.punchIns])
 
     return (
-        <div>
+        <div className='historic-punch-ins'>
             {punchInsNotToday.map((p) => {
                 return (
                     <LineHistoricPunchIn
