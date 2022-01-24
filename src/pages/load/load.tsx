@@ -12,7 +12,7 @@ interface props {}
 
 export const Load: FC<props> = (props) => {
     const auth = useAppSelector((state) => state.auth)
-    const user = useAppSelector((state) => state.user)
+    const { user } = useAppSelector((state) => state.user)
     const dispatch = useAppDispatch()
 
     const navigate = useNavigate()
@@ -28,7 +28,12 @@ export const Load: FC<props> = (props) => {
             .getUserInfo()
             .then((res: any) => {
                 if (res.status === 200) {
-                    dispatch(setUser(res.data.user))
+                    const organizations = res.data.user.organizations
+                    const org =
+                        organizations.length > 1 ? 0 : organizations[0].id
+                    dispatch(
+                        setUser({ ...res.data.user, currentOrganization: org })
+                    )
                 }
             })
             .catch((err) => {
@@ -37,7 +42,9 @@ export const Load: FC<props> = (props) => {
     }, [])
 
     useEffect(() => {
-        if (user.user.user !== '') {
+        if (user.currentOrganization === 0) {
+            navigate('/select-organization')
+        } else if (user.user !== '') {
             navigate('/')
         }
     }, [user])

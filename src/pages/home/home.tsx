@@ -54,7 +54,7 @@ export const Home: FC = () => {
     }
 
     return (
-        <Wrapper>
+        <Wrapper showMenu>
             <section className='home container'>
                 <ContainerWhite>
                     <DayPunchIn
