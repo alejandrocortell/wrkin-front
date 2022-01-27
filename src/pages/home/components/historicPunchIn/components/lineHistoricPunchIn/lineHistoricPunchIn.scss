@@ -1,20 +1,14 @@
-.line-punchIn {
-    @include medium;
+.line-historic-punch-in {
+    margin: 0px 20px 20px 20px;
     display: grid;
-    grid-template-columns: 0.8fr auto 0.8fr 1fr;
-    gap: 5px;
-    margin-bottom: 10px;
+    grid-template-columns: 70px auto 70px 40px;
 
-    div {
-        display: inline;
-    }
-
-    .end {
+    .total-time {
         justify-self: end;
     }
 
-    .space-between {
-        display: flex;
-        justify-content: space-between;
+    .link-button {
+        font-size: 1rem;
+        justify-self: end;
     }
 }

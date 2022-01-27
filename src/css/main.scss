@@ -30,3 +30,24 @@ html {
         max-width: 1320px;
     }
 }
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: $transition-gradient rgba($grey, 0.2);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba($grey, 0.2);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $transition-gradient;
+    border-radius: 20px;
+    border: 3px solid rgba($grey, 0.2);
+}

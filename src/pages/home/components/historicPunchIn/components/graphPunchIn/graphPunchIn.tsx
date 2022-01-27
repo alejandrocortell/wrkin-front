@@ -6,11 +6,11 @@ import DateUtilities from '../../../../../../utils/date'
 const dateUtilities = new DateUtilities()
 
 interface props {
-    punchIn: PunchIn
+    totalDay: number
 }
 
 export const GraphPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
 
-    return <>aaa</>
+    return <div className='graph-punch-in'></div>
 }

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { LinkButton } from '../../../../../../components/linkButton/linkButton'
 import { PunchIn } from '../../../../../../models/punchIn'
 import DateUtilities from '../../../../../../utils/date'
+import { GraphPunchIn } from '../graphPunchIn/graphPunchIn'
 
 const dateUtilities = new DateUtilities()
 
@@ -37,8 +38,10 @@ export const LineHistoricPunchIn: FC<props> = (props) => {
             <span>
                 {dateUtilities.format(props.punchIns[0].start, 'DD-MM-YY')}
             </span>
-            <div></div>
-            <span>{dateUtilities.parseMillisecondsToHHmm(totalDay())}</span>
+            <GraphPunchIn totalDay={totalDay()} />
+            <span className='total-time'>
+                {dateUtilities.parseMillisecondsToHHmm(totalDay())}h
+            </span>
             <LinkButton
                 label={t('COMMON_EDIT')}
                 onClick={() =>
