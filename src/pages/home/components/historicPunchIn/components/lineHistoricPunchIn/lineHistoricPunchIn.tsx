@@ -9,6 +9,8 @@ const dateUtilities = new DateUtilities()
 
 interface props {
     punchIns: Array<PunchIn>
+    targetDay: number
+    margin: number
 }
 
 export const LineHistoricPunchIn: FC<props> = (props) => {
@@ -38,7 +40,11 @@ export const LineHistoricPunchIn: FC<props> = (props) => {
             <span>
                 {dateUtilities.format(props.punchIns[0].start, 'DD-MM-YY')}
             </span>
-            <GraphPunchIn totalDay={totalDay()} />
+            <GraphPunchIn
+                totalDay={totalDay()}
+                targetDay={props.targetDay}
+                margin={props.margin}
+            />
             <span className='total-time'>
                 {dateUtilities.parseMillisecondsToHHmm(totalDay())}h
             </span>

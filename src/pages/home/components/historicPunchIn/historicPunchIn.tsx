@@ -4,7 +4,7 @@ import i18next from 'i18next'
 import { PunchIn } from '../../../../models/punchIn'
 import DateUtilities from '../../../../utils/date'
 import { LineHistoricPunchIn } from './components/lineHistoricPunchIn/lineHistoricPunchIn'
-import { format } from 'path/posix'
+import { useAppSelector } from '../../../../context/hooks'
 
 const dateUtilities = new DateUtilities()
 interface props {
@@ -14,9 +14,13 @@ interface props {
 
 export const HistoricPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
+    const { user } = useAppSelector((state) => state.user)
+    const { settings } = useAppSelector((state) => state.organization)
     const [punchInsNotToday, setPunchInsNotToday] = useState<
         Array<Array<PunchIn>>
     >([])
+
+    const targetDay = user.hoursToWork / 5
 
     useEffect(() => {
         const filter = props.punchIns.filter((p) => {
@@ -49,8 +53,10 @@ export const HistoricPunchIn: FC<props> = (props) => {
             {punchInsNotToday.map((p) => {
                 return (
                     <LineHistoricPunchIn
-                        punchIns={p}
                         key={dateUtilities.format(p[0].start, 'DDMMYYYY')}
+                        punchIns={p}
+                        targetDay={targetDay}
+                        margin={settings.marginHours}
                     />
                 )
             })}
