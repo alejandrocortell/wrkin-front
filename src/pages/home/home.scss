@@ -5,9 +5,13 @@
 
     height: 100%;
 
-    .container-white:first-child {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .container-white {
+        max-height: 86vh;
+
+        &:first-child {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }

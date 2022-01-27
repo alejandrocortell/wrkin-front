@@ -52,6 +52,22 @@ export default class Api {
         })
     }
 
+    getOrganization = async (id: number) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/organizations/${id}`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    getSettings = async (id: number) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/settings/${id}`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
     getUserPunchIns = async (id: number) => {
         return new Promise((resolve) => {
             api.get(`${apiUrl}/users/${id}/punchins`)
