@@ -25,9 +25,7 @@ export const HistoricPunchIn: FC<props> = (props) => {
 
         const format = (date: Date) => dateUtilities.format(date, 'DDMMYYYY')
         const sorted = filter.sort((a, b) => {
-            const formatA = format(a.start)
-            const formatB = format(b.start)
-            return formatA < formatB ? 1 : -1
+            return a.start < b.start ? 1 : -1
         })
 
         let formattedPunchIns: Array<Array<PunchIn>> = []
