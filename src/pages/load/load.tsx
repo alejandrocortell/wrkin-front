@@ -12,6 +12,7 @@ interface props {}
 
 export const Load: FC<props> = (props) => {
     const auth = useAppSelector((state) => state.auth)
+    const [loading, setLoading] = useState(true)
     const { user } = useAppSelector((state) => state.user)
     const dispatch = useAppDispatch()
 
@@ -20,8 +21,12 @@ export const Load: FC<props> = (props) => {
     useEffect(() => {
         if (!auth.logged) {
             navigate('/login')
+        } else if (!loading && user.currentOrganization === 0) {
+            navigate('/select-organization')
+        } else if (!loading && user.user !== '') {
+            navigate('/')
         }
-    }, [auth])
+    }, [auth, user])
 
     useEffect(() => {
         apiManager
@@ -31,6 +36,7 @@ export const Load: FC<props> = (props) => {
                     const organizations = res.data.user.organizations
                     const org =
                         organizations.length > 1 ? 0 : organizations[0].id
+                    setLoading(false)
                     dispatch(
                         setUser({ ...res.data.user, currentOrganization: org })
                     )
@@ -40,14 +46,6 @@ export const Load: FC<props> = (props) => {
                 console.log(err)
             })
     }, [])
-
-    useEffect(() => {
-        if (user.currentOrganization === 0) {
-            navigate('/select-organization')
-        } else if (user.user !== '') {
-            navigate('/')
-        }
-    }, [user])
 
     return (
         <aside>
