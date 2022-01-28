@@ -1,4 +1,12 @@
 .historic-punch-ins {
-    overflow-x: hidden;
-    max-height: 100%;
+    h3 {
+        @include bold;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .list-historic {
+        overflow-x: hidden;
+        max-height: 75vh;
+    }
 }

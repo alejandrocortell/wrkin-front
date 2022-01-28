@@ -1,10 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import i18next from 'i18next'
 import { PunchIn } from '../../../../models/punchIn'
 import DateUtilities from '../../../../utils/date'
-import { LineHistoricPunchIn } from './components/lineHistoricPunchIn/lineHistoricPunchIn'
-import { useAppSelector } from '../../../../context/hooks'
+import { ListPunchIns } from './components/listPunchIns/listPunchIns'
+import { PaginatedPunchIns } from './components/paginatedPunchIns/paginatedPunchIns'
 
 const dateUtilities = new DateUtilities()
 interface props {
@@ -12,15 +11,16 @@ interface props {
     getPunchIns: () => void
 }
 
+export interface InterfacePunchInsNotToday {
+    date: string
+    punchIns: Array<PunchIn>
+}
+
 export const HistoricPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
-    const { user } = useAppSelector((state) => state.user)
-    const { settings } = useAppSelector((state) => state.organization)
     const [punchInsNotToday, setPunchInsNotToday] = useState<
-        Array<Array<PunchIn>>
+        Array<InterfacePunchInsNotToday>
     >([])
-
-    const targetDay = user.hoursToWork / 5
 
     useEffect(() => {
         const filter = props.punchIns.filter((p) => {
@@ -32,7 +32,7 @@ export const HistoricPunchIn: FC<props> = (props) => {
             return a.start < b.start ? 1 : -1
         })
 
-        let formattedPunchIns: Array<Array<PunchIn>> = []
+        let formattedPunchIns: Array<InterfacePunchInsNotToday> = []
         let daysInserted: Array<string> = []
 
         filter.forEach((element) => {
@@ -40,7 +40,10 @@ export const HistoricPunchIn: FC<props> = (props) => {
             const sameDay = sorted.filter((p) => format(p.start) === day)
 
             if (daysInserted.indexOf(day) === -1) {
-                formattedPunchIns.push(sameDay)
+                formattedPunchIns.push({
+                    date: day,
+                    punchIns: sameDay,
+                })
             }
             daysInserted.push(day)
         })
@@ -50,16 +53,11 @@ export const HistoricPunchIn: FC<props> = (props) => {
 
     return (
         <div className='historic-punch-ins'>
-            {punchInsNotToday.map((p) => {
-                return (
-                    <LineHistoricPunchIn
-                        key={dateUtilities.format(p[0].start, 'DDMMYYYY')}
-                        punchIns={p}
-                        targetDay={targetDay}
-                        margin={settings.marginHours}
-                    />
-                )
-            })}
+            <h3>{t('HOME_LAST_PUNCH_IN')}</h3>
+            <PaginatedPunchIns
+                punchInsNotToday={punchInsNotToday}
+                itemsPerPage={10}
+            />
         </div>
     )
 }
