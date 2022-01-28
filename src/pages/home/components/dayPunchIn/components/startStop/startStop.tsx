@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../../../components/button/button'
+import { useAppSelector } from '../../../../../../context/hooks'
 import { PunchIn } from '../../../../../../models/punchIn'
 import Api from '../../../../../../services/api'
 import DateUtilities from '../../../../../../utils/date'
@@ -15,14 +16,15 @@ interface props {
 
 export const StartStop: FC<props> = (props) => {
     const { t } = useTranslation()
+    const { user } = useAppSelector((state) => state.user)
     const [loader, setLoader] = useState(false)
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const intervalTotal = setInterval(() => {
             if (props.currentPunchIn !== null) {
                 const milliseconds = dateUtilities.diference(
-                    props.currentPunchIn.start,
+                    new Date(props.currentPunchIn.start),
                     Date.now()
                 )
                 milliseconds !== undefined && setTotal(milliseconds)
@@ -30,7 +32,7 @@ export const StartStop: FC<props> = (props) => {
         }, 1000)
 
         return () => {
-            clearInterval(interval)
+            clearInterval(intervalTotal)
         }
     }, [])
 
@@ -38,13 +40,18 @@ export const StartStop: FC<props> = (props) => {
         setLoader(true)
         if (props.currentPunchIn === null) {
             apiManager
-                .createPunchIn(new Date())
+                .createPunchIn(user.currentOrganization, new Date())
                 .then((res) => props.getPunchIns())
                 .catch((err) => console.log(err))
                 .finally(() => setLoader(false))
         } else {
             apiManager
-                .updatePunchIn(props.currentPunchIn.id, undefined, new Date())
+                .updatePunchIn(
+                    user.currentOrganization,
+                    props.currentPunchIn.id,
+                    undefined,
+                    new Date()
+                )
                 .then((res) => props.getPunchIns())
                 .catch((err) => console.log(err))
                 .finally(() => setLoader(false))

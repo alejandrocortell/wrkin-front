@@ -76,8 +76,9 @@ export default class Api {
         })
     }
 
-    createPunchIn = async (start: Date, end?: Date) => {
+    createPunchIn = async (organization: number, start: Date, end?: Date) => {
         const params = {
+            organization: organization,
             start: start,
             ...(end && { end: end }),
         }
@@ -88,8 +89,14 @@ export default class Api {
         })
     }
 
-    updatePunchIn = async (id: number, start?: Date, end?: Date) => {
+    updatePunchIn = async (
+        organization: number,
+        id: number,
+        start?: Date,
+        end?: Date
+    ) => {
         const params = {
+            organization: organization,
             ...(start && { start: start }),
             ...(end && { end: end }),
         }

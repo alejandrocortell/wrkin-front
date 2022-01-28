@@ -21,10 +21,6 @@ export const GraphPunchIn: FC<props> = (props) => {
         const marginMill = margin * 3600000
         const targetDayMill = targetDay * 3600000
 
-        console.log('total', totalDay)
-        console.log('margin', marginMill)
-        console.log(targetDayMill)
-
         if (targetDayMill + marginMill < totalDay) {
             return 1
         } else if (targetDayMill - marginMill > totalDay) {

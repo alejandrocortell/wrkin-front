@@ -17,6 +17,7 @@ export const TotalDay: FC<props> = (props) => {
             const milliseconds = totalDay()
             milliseconds !== undefined && setTotal(milliseconds)
         }, 1000)
+
         return () => {
             clearInterval(interval)
         }
