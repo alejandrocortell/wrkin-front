@@ -57,6 +57,7 @@ export const SelectOrganization: FC = () => {
                             {user.organizations.map((org) => {
                                 return (
                                     <Button
+                                        key={org.id}
                                         onClick={() => handleChangeOrg(org.id)}
                                         label={org.name}
                                         style={
