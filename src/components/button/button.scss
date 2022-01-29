@@ -60,6 +60,11 @@
         &:focus-visible {
             outline: 2px solid $secondary;
         }
+
+        &:disabled {
+            cursor: inherit;
+            background: #dddddd;
+        }
     }
 
     &.secondary {

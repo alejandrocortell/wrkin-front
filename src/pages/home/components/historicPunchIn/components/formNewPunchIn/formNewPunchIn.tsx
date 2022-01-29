@@ -15,6 +15,8 @@ interface props {}
 
 export const FormNewPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
+    const [loader, setLoader] = useState(false)
+    const [disabled, setDisabled] = useState(true)
 
     const [dateStart, setDateStart] = useState(
         dateUtilities.format(new Date(), 'YYYY-MM-DD')
@@ -42,40 +44,56 @@ export const FormNewPunchIn: FC<props> = (props) => {
     useEffect(() => {
         if (dateStart === '') return
         setDateStartError(false)
-        const test = val.isString(dateStart)
+        const test = val.isDate(dateStart)
         setDateStartError(test.error)
         setDateStartErrorText(test.errorText)
     }, [debouncedDateStart])
 
-    const debouncedTimeStart = useDebounce(timeStart, 400)
-    useEffect(() => {
-        if (timeStart === '') return
-        setTimeStartError(false)
-        const test = val.isString(timeStart)
-        setTimeStartError(test.error)
-        setTimeStartErrorText(test.errorText)
-    }, [debouncedTimeStart])
-
     const debouncedDateEnd = useDebounce(dateEnd, 400)
     useEffect(() => {
-        if (dateStart === '') return
+        if (dateEnd === '') return
         setDateEndError(false)
-        const test = val.isString(dateEnd)
-        setDateEndError(test.error)
-        setDateEndErrorText(test.errorText)
+        const test = val.isDate(dateEnd)
+        if (test.error) {
+            setDateEndError(test.error)
+            setDateEndErrorText(test.errorText)
+        } else if (new Date(dateEnd) < new Date(dateStart)) {
+            setDateEndError(true)
+            setDateEndErrorText(t('ERROR_INVALID_DATE'))
+        }
     }, [debouncedDateEnd])
 
     const debouncedTimeEnd = useDebounce(timeEnd, 400)
     useEffect(() => {
-        if (timeStart === '') return
+        if (timeEnd === '') return
         setTimeEndError(false)
-        const test = val.isString(timeEnd)
-        setTimeEndError(test.error)
-        setTimeEndErrorText(test.errorText)
+        const start = new Date(`${dateStart} ${timeStart}`)
+        const end = new Date(`${dateEnd} ${timeEnd}`)
+        if (end < start) {
+            setTimeEndError(true)
+            setTimeEndErrorText(t('ERROR_INVALID_TIME'))
+        }
     }, [debouncedTimeEnd])
 
+    useEffect(() => {
+        setDisabled(false)
+        if (
+            !dateStartError &&
+            !timeStartError &&
+            !dateEndError &&
+            !timeEndError
+        ) {
+            setDisabled(true)
+        }
+    }, [dateStart, dateEnd, timeStart, timeEnd])
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+        console.log('siuuu')
+    }
+
     return (
-        <form className='form-new-punch-in'>
+        <form className='form-new-punch-in' onSubmit={handleSubmit}>
             <div className='line'>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -86,13 +104,14 @@ export const FormNewPunchIn: FC<props> = (props) => {
                     type={'date'}
                     error={dateStartError}
                     errorText={dateStartErrorText}
+                    max={dateUtilities.format(new Date(), 'YYYY-MM-DD')}
                 />
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setTimeStart(e.target.value)
                     }
                     value={timeStart}
-                    label={t('FORM_DATE_START')}
+                    label={t('FORM_TIME_START')}
                     type={'time'}
                     error={timeStartError}
                     errorText={timeStartErrorText}
@@ -108,18 +127,26 @@ export const FormNewPunchIn: FC<props> = (props) => {
                     type={'date'}
                     error={dateEndError}
                     errorText={dateEndErrorText}
+                    min={dateStart}
                 />
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setTimeEnd(e.target.value)
                     }
                     value={timeEnd}
-                    label={t('FORM_DATE_END')}
+                    label={t('FORM_TIME_END')}
                     type={'time'}
                     error={timeEndError}
                     errorText={timeEndErrorText}
                 />
             </div>
+            <Button
+                onClick={handleSubmit}
+                label={t('FORM_SAVE')}
+                style={'primary'}
+                disabled={disabled}
+                loading={loader}
+            />
         </form>
     )
 }

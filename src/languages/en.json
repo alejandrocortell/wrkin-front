@@ -10,8 +10,11 @@
     "FORM_REMEMBER": "Remember me",
     "FORM_FORGOT_PASSWORD": "Forgot password?",
     "FORM_LOGIN": "Login",
-    "FORM_DATE_START": "Start",
-    "FORM_DATE_END": "End",
+    "FORM_DATE_START": "Date start",
+    "FORM_DATE_END": "Date end",
+    "FORM_TIME_START": "Time start",
+    "FORM_TIME_END": "Time end",
+    "FORM_SAVE": "Save",
 
     "ERROR_FORM": "An error has ocurred, please try again",
     "ERROR_STRING": "Invalid text",
@@ -21,6 +24,8 @@
     "ERROR_PASSWORD_NUMBER": "Must contain one number",
     "ERROR_PASSWORD_SPECIAL": "Must contain one special character",
     "ERROR_USER_NOT_FOUND": "User or password do not match",
+    "ERROR_INVALID_DATE": "Invalid date",
+    "ERROR_INVALID_TIME": "Invalid time",
 
     "COMMON_START": "Start",
     "COMMON_STOP": "Stop",

@@ -19,6 +19,8 @@ interface Props {
     errorText: string
     required?: boolean
     disabled?: boolean
+    min?: string
+    max?: string
 }
 
 export const InputField: FC<Props> = (props) => {
@@ -64,6 +66,8 @@ export const InputField: FC<Props> = (props) => {
                 required={props.required}
                 disabled={props.disabled}
                 className={`${props.error && 'error'}`}
+                min={props.min}
+                max={props.max}
             />
             <span className='error-text'>{props.error && props.errorText}</span>
         </div>
