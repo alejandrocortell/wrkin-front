@@ -17,6 +17,8 @@
 @import '../pages/home/components/historicPunchIn/components/graphPunchIn/graphPunchIn';
 @import '../pages/home/components/historicPunchIn/components/lineHistoricPunchIn/lineHistoricPunchIn';
 @import '../pages/home/components/historicPunchIn/components/paginatedPunchIns/paginatedPunchIns';
+@import '../pages/home/components/historicPunchIn/components/newPunchIn/newPunchIn';
+@import '../pages/home/components/historicPunchIn/components/formNewPunchIn/formNewPunchIn';
 
 @import '../components/wrapper/wrapper';
 @import '../components/header/header';
@@ -26,3 +28,4 @@
 @import '../components/button/button';
 @import '../components/linkButton/linkButton';
 @import '../components/containerWhite/containerWhite';
+@import '../components/headerModal/headerModal';

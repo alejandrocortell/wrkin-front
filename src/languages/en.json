@@ -10,6 +10,8 @@
     "FORM_REMEMBER": "Remember me",
     "FORM_FORGOT_PASSWORD": "Forgot password?",
     "FORM_LOGIN": "Login",
+    "FORM_DATE_START": "Start",
+    "FORM_DATE_END": "End",
 
     "ERROR_FORM": "An error has ocurred, please try again",
     "ERROR_STRING": "Invalid text",
@@ -31,6 +33,7 @@
     "HOME_TOTAL_DAY": "Total day",
     "HOME_STARTED_AT": "Started at",
     "HOME_CURRENT_TIME": "Current time",
+    "HOME_INSERT_PUNCH_IN": "Insert punch in",
     "HOME_LAST_PUNCH_IN": "Last punch in",
 
     "SELECT_ORGANIZATION_GO_HOME": "Return to home"

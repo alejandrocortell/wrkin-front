@@ -10,6 +10,7 @@ interface Props {
         | 'text'
         | 'email'
         | 'date'
+        | 'time'
         | 'password'
         | 'file'
         | 'number'

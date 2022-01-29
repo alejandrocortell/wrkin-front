@@ -1,7 +1,10 @@
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Button } from '../../../../components/button/button'
+import { useAppSelector } from '../../../../context/hooks'
 import { PunchIn } from '../../../../models/punchIn'
 import DateUtilities from '../../../../utils/date'
+import { NewPunchIn } from './components/newPunchIn/newPunchIn'
 import { PaginatedPunchIns } from './components/paginatedPunchIns/paginatedPunchIns'
 
 const dateUtilities = new DateUtilities()
@@ -17,6 +20,7 @@ export interface InterfacePunchInsNotToday {
 
 export const HistoricPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
+    const { settings } = useAppSelector((state) => state.organization)
     const [punchInsNotToday, setPunchInsNotToday] = useState<
         Array<InterfacePunchInsNotToday>
     >([])
@@ -57,6 +61,7 @@ export const HistoricPunchIn: FC<props> = (props) => {
                 punchInsNotToday={punchInsNotToday}
                 itemsPerPage={12}
             />
+            {settings.allowInsertPastPunchIn && <NewPunchIn />}
         </div>
     )
 }
