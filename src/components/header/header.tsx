@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
 import { Logo } from '../logo/logo'
 import { MenuHeader } from './menuHeader'
 
@@ -10,7 +11,9 @@ export const Header: FC<Props> = (props) => {
             <div className='container'>
                 <div className='container-header'>
                     <div className='container-logo'>
-                        <Logo />
+                        <Link to={'/'}>
+                            <Logo />
+                        </Link>
                     </div>
                     <MenuHeader />
                 </div>
