@@ -33,6 +33,7 @@
     "COMMON_EDIT": "Edit",
     "COMMON_PREV": "Prev",
     "COMMON_NEXT": "Next",
+    "COMMON_SELECT": "Select",
 
     "HOME_RESUME_DAY": "Resume of your day",
     "HOME_TOTAL_DAY": "Total day",
@@ -40,6 +41,7 @@
     "HOME_CURRENT_TIME": "Current time",
     "HOME_INSERT_PUNCH_IN": "Insert punch in",
     "HOME_LAST_PUNCH_IN": "Last punch in",
+    "HOME_MODIFY_PUNCH_IN": "Modify punch in",
 
     "SELECT_ORGANIZATION_GO_HOME": "Return to home"
 }

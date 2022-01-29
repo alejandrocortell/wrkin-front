@@ -7,6 +7,7 @@ import { ListPunchIns } from '../listPunchIns/listPunchIns'
 interface props {
     punchInsNotToday: Array<InterfacePunchInsNotToday>
     itemsPerPage: number
+    getPunchIns: () => void
 }
 
 export const PaginatedPunchIns: FC<props> = (props) => {
@@ -38,7 +39,10 @@ export const PaginatedPunchIns: FC<props> = (props) => {
 
     return (
         <>
-            <ListPunchIns punchInsNotToday={currentItems} />
+            <ListPunchIns
+                punchInsNotToday={currentItems}
+                getPunchIns={props.getPunchIns}
+            />
             <ReactPaginate
                 breakLabel='...'
                 onPageChange={handlePageClick}

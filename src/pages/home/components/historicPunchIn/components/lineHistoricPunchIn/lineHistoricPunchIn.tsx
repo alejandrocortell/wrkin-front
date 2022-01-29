@@ -1,10 +1,11 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LinkButton } from '../../../../../../components/linkButton/linkButton'
-import { PunchIn } from '../../../../../../models/punchIn'
+import { useAppSelector } from '../../../../../../context/hooks'
 import DateUtilities from '../../../../../../utils/date'
 import { InterfacePunchInsNotToday } from '../../historicPunchIn'
 import { GraphPunchIn } from '../graphPunchIn/graphPunchIn'
+import { ModifyPunchIn } from '../modifyPunchIn/modifyPunchIn'
 
 const dateUtilities = new DateUtilities()
 
@@ -12,14 +13,13 @@ interface props {
     punchInsNotToday: InterfacePunchInsNotToday
     targetDay: number
     margin: number
+    getPunchIns: () => void
 }
 
 export const LineHistoricPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
-
-    const edit = (date: string) => {
-        console.log(date)
-    }
+    const { settings } = useAppSelector((state) => state.organization)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     const totalDay = (): number => {
         const elapsed = props.punchInsNotToday.punchIns.map((p) => {
@@ -52,17 +52,20 @@ export const LineHistoricPunchIn: FC<props> = (props) => {
             <span className='total-time'>
                 {dateUtilities.parseMillisecondsToHHmm(totalDay())}h
             </span>
-            <LinkButton
-                label={t('COMMON_EDIT')}
-                onClick={() =>
-                    edit(
-                        dateUtilities.format(
-                            props.punchInsNotToday.punchIns[0].start,
-                            'DDMMYYYY'
-                        )
-                    )
-                }
-            />
+            {settings.allowModifyPunchIn && (
+                <>
+                    <LinkButton
+                        label={t('COMMON_EDIT')}
+                        onClick={() => setModalIsOpen(true)}
+                    />
+                    <ModifyPunchIn
+                        modalIsOpen={modalIsOpen}
+                        closeModal={() => setModalIsOpen(false)}
+                        punchIns={props.punchInsNotToday.punchIns}
+                        getPunchIns={props.getPunchIns}
+                    />
+                </>
+            )}
         </div>
     )
 }

@@ -8,6 +8,7 @@ const dateUtilities = new DateUtilities()
 
 interface props {
     punchInsNotToday: Array<InterfacePunchInsNotToday>
+    getPunchIns: () => void
 }
 
 export const ListPunchIns: FC<props> = (props) => {
@@ -28,6 +29,7 @@ export const ListPunchIns: FC<props> = (props) => {
                         punchInsNotToday={p}
                         targetDay={targetDay}
                         margin={settings.marginHours}
+                        getPunchIns={props.getPunchIns}
                     />
                 )
             })}

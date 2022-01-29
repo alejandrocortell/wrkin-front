@@ -5,46 +5,77 @@ import DateUtilities from '../../../../../../utils/date'
 import { InputField } from '../../../../../../components/input/input'
 import { useDebounce } from '../../../../../../hooks/useDebounce'
 import Validator from '../../../../../../utils/validators'
-import { useAppSelector } from '../../../../../../context/hooks'
 import Api from '../../../../../../services/api'
+import { PunchIn } from '../../../../../../models/punchIn'
+import { useAppSelector } from '../../../../../../context/hooks'
 
 const val = new Validator()
 const dateUtilities = new DateUtilities()
 const apiManager = new Api()
 
 interface props {
-    closeModal: () => void
+    punchIn: PunchIn
+    disabledFields: boolean
     getPunchIns: () => void
+    closeModal: () => void
 }
 
-export const FormNewPunchIn: FC<props> = (props) => {
+export const FormModifyPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
     const { user } = useAppSelector((state) => state.user)
 
-    const [loader, setLoader] = useState(false)
     const [disabled, setDisabled] = useState(true)
+    const [loader, setLoader] = useState(false)
 
     const [dateStart, setDateStart] = useState(
-        dateUtilities.format(new Date(), 'YYYY-MM-DD')
+        dateUtilities.format(new Date(props.punchIn.start), 'YYYY-MM-DD')
     )
     const [dateStartError, setDateStartError] = useState(false)
     const [dateStartErrorText, setDateStartErrorText] = useState('Error text')
 
     const [timeStart, setTimeStart] = useState(
-        `${new Date().getHours()}:${new Date().getMinutes()}`
+        dateUtilities.format(new Date(props.punchIn.start), 'HH:mm')
     )
     const [timeStartError, setTimeStartError] = useState(false)
     const [timeStartErrorText, setTimeStartErrorText] = useState('Error text')
 
-    const [dateEnd, setDateEnd] = useState(dateStart)
+    const [dateEnd, setDateEnd] = useState(
+        props.punchIn.end
+            ? dateUtilities.format(new Date(props.punchIn.end), 'YYYY-MM-DD')
+            : dateUtilities.format(new Date(), 'YYYY-MM-DD')
+    )
     const [dateEndError, setDateEndError] = useState(false)
     const [dateEndErrorText, setDateEndErrorText] = useState('Error text')
 
     const [timeEnd, setTimeEnd] = useState(
-        `${new Date().getHours()}:${new Date().getMinutes() + 1}`
+        props.punchIn.end
+            ? dateUtilities.format(new Date(props.punchIn.end), 'HH:mm')
+            : '00:00'
     )
     const [timeEndError, setTimeEndError] = useState(false)
     const [timeEndErrorText, setTimeEndErrorText] = useState('Error text')
+
+    useEffect(() => {
+        setDateStart(
+            dateUtilities.format(new Date(props.punchIn.start), 'YYYY-MM-DD')
+        )
+        setTimeStart(
+            dateUtilities.format(new Date(props.punchIn.start), 'HH:mm')
+        )
+        setDateEnd(
+            props.punchIn.end
+                ? dateUtilities.format(
+                      new Date(props.punchIn.end),
+                      'YYYY-MM-DD'
+                  )
+                : dateUtilities.format(new Date(), 'YYYY-MM-DD')
+        )
+        setTimeEnd(
+            props.punchIn.end
+                ? dateUtilities.format(new Date(props.punchIn.end), 'HH:mm')
+                : '00:00'
+        )
+    }, [props.punchIn])
 
     const debouncedDateStart = useDebounce(dateStart, 400)
     useEffect(() => {
@@ -106,11 +137,12 @@ export const FormNewPunchIn: FC<props> = (props) => {
         e.preventDefault()
         setLoader(true)
         const org = user.currentOrganization
+        const id = props.punchIn.id
         const start = new Date(`${dateStart} ${timeStart}`)
         const end = new Date(`${dateEnd} ${timeEnd}`)
 
         apiManager
-            .createPunchIn(org, start, end)
+            .updatePunchIn(org, id, start, end)
             .then((res) => {
                 props.closeModal()
                 props.getPunchIns()
@@ -132,6 +164,7 @@ export const FormNewPunchIn: FC<props> = (props) => {
                     error={dateStartError}
                     errorText={dateStartErrorText}
                     max={dateUtilities.format(new Date(), 'YYYY-MM-DD')}
+                    disabled={props.disabledFields}
                 />
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -142,6 +175,7 @@ export const FormNewPunchIn: FC<props> = (props) => {
                     type={'time'}
                     error={timeStartError}
                     errorText={timeStartErrorText}
+                    disabled={props.disabledFields}
                 />
             </div>
             <div className='line'>
@@ -155,6 +189,7 @@ export const FormNewPunchIn: FC<props> = (props) => {
                     error={dateEndError}
                     errorText={dateEndErrorText}
                     min={dateStart}
+                    disabled={props.disabledFields}
                 />
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -165,6 +200,7 @@ export const FormNewPunchIn: FC<props> = (props) => {
                     type={'time'}
                     error={timeEndError}
                     errorText={timeEndErrorText}
+                    disabled={props.disabledFields}
                 />
             </div>
             <Button
