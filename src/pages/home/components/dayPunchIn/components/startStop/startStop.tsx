@@ -21,20 +21,22 @@ export const StartStop: FC<props> = (props) => {
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
-        const intervalTotal = setInterval(() => {
-            if (props.currentPunchIn !== null) {
-                const milliseconds = dateUtilities.diference(
-                    new Date(props.currentPunchIn.start),
-                    Date.now()
-                )
-                milliseconds !== undefined && setTotal(milliseconds)
-            }
-        }, 1000)
+        if (props.currentPunchIn?.end === null) {
+            const intervalTotal = setInterval(() => {
+                if (props.currentPunchIn !== null) {
+                    const milliseconds = dateUtilities.diference(
+                        new Date(props.currentPunchIn.start),
+                        Date.now()
+                    )
+                    milliseconds !== undefined && setTotal(milliseconds)
+                }
+            }, 1000)
 
-        return () => {
-            clearInterval(intervalTotal)
+            return () => {
+                clearInterval(intervalTotal)
+            }
         }
-    }, [])
+    }, [props.currentPunchIn])
 
     const handleClick = () => {
         setLoader(true)
@@ -52,7 +54,10 @@ export const StartStop: FC<props> = (props) => {
                     undefined,
                     new Date()
                 )
-                .then((res) => props.getPunchIns())
+                .then((res) => {
+                    props.getPunchIns()
+                    setTotal(0)
+                })
                 .catch((err) => console.log(err))
                 .finally(() => setLoader(false))
         }

@@ -55,7 +55,7 @@ export const HistoricPunchIn: FC<props> = (props) => {
             <h3>{t('HOME_LAST_PUNCH_IN')}</h3>
             <PaginatedPunchIns
                 punchInsNotToday={punchInsNotToday}
-                itemsPerPage={10}
+                itemsPerPage={12}
             />
         </div>
     )
