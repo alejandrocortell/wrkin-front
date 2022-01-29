@@ -1,15 +1,13 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../../../components/button/button'
-import DateUtilities from '../../../../../../utils/date'
 import Modal from 'react-modal'
 import { HeaderModal } from '../../../../../../components/headerModal/headerModal'
-import { InputField } from '../../../../../../components/input/input'
 import { FormNewPunchIn } from '../formNewPunchIn/formNewPunchIn'
 
-const dateUtilities = new DateUtilities()
-
-interface props {}
+interface props {
+    getPunchIns: () => void
+}
 
 export const NewPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
@@ -35,7 +33,10 @@ export const NewPunchIn: FC<props> = (props) => {
                     title={t('HOME_INSERT_PUNCH_IN')}
                     onClose={closeModal}
                 />
-                <FormNewPunchIn />
+                <FormNewPunchIn
+                    getPunchIns={props.getPunchIns}
+                    closeModal={closeModal}
+                />
             </Modal>
         </div>
     )

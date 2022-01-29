@@ -2,19 +2,25 @@ import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../../../components/button/button'
 import DateUtilities from '../../../../../../utils/date'
-import Modal from 'react-modal'
-import { HeaderModal } from '../../../../../../components/headerModal/headerModal'
 import { InputField } from '../../../../../../components/input/input'
 import { useDebounce } from '../../../../../../hooks/useDebounce'
 import Validator from '../../../../../../utils/validators'
+import { useAppSelector } from '../../../../../../context/hooks'
+import Api from '../../../../../../services/api'
 
 const val = new Validator()
 const dateUtilities = new DateUtilities()
+const apiManager = new Api()
 
-interface props {}
+interface props {
+    closeModal: () => void
+    getPunchIns: () => void
+}
 
 export const FormNewPunchIn: FC<props> = (props) => {
     const { t } = useTranslation()
+    const { user } = useAppSelector((state) => state.user)
+
     const [loader, setLoader] = useState(false)
     const [disabled, setDisabled] = useState(true)
 
@@ -35,7 +41,7 @@ export const FormNewPunchIn: FC<props> = (props) => {
     const [dateEndErrorText, setDateEndErrorText] = useState('Error text')
 
     const [timeEnd, setTimeEnd] = useState(
-        `${new Date().getHours()}:${new Date().getMinutes()}`
+        `${new Date().getHours()}:${new Date().getMinutes() + 1}`
     )
     const [timeEndError, setTimeEndError] = useState(false)
     const [timeEndErrorText, setTimeEndErrorText] = useState('Error text')
@@ -69,27 +75,49 @@ export const FormNewPunchIn: FC<props> = (props) => {
         setTimeEndError(false)
         const start = new Date(`${dateStart} ${timeStart}`)
         const end = new Date(`${dateEnd} ${timeEnd}`)
-        if (end < start) {
+        if (end <= start) {
             setTimeEndError(true)
             setTimeEndErrorText(t('ERROR_INVALID_TIME'))
         }
     }, [debouncedTimeEnd])
 
     useEffect(() => {
-        setDisabled(false)
+        setDisabled(true)
         if (
             !dateStartError &&
             !timeStartError &&
             !dateEndError &&
             !timeEndError
         ) {
-            setDisabled(true)
+            console.log('enteer')
+            setDisabled(false)
         }
-    }, [dateStart, dateEnd, timeStart, timeEnd])
+    }, [
+        dateStart,
+        dateEnd,
+        timeStart,
+        timeEnd,
+        dateStartError,
+        timeStartError,
+        dateEndError,
+        timeEndError,
+    ])
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        console.log('siuuu')
+        setLoader(true)
+        const org = user.currentOrganization
+        const start = new Date(`${dateStart} ${timeStart}`)
+        const end = new Date(`${dateEnd} ${timeEnd}`)
+
+        apiManager
+            .createPunchIn(org, start, end)
+            .then((res) => {
+                props.closeModal()
+                props.getPunchIns()
+            })
+            .catch((err) => console.log(err))
+            .finally(() => setLoader(false))
     }
 
     return (

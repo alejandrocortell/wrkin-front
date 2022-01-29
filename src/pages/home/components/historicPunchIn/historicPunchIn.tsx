@@ -61,7 +61,9 @@ export const HistoricPunchIn: FC<props> = (props) => {
                 punchInsNotToday={punchInsNotToday}
                 itemsPerPage={12}
             />
-            {settings.allowInsertPastPunchIn && <NewPunchIn />}
+            {settings.allowInsertPastPunchIn && (
+                <NewPunchIn getPunchIns={props.getPunchIns} />
+            )}
         </div>
     )
 }

@@ -51,6 +51,7 @@
             z-index: -1;
             transition: opacity 0.4s;
         }
+
         &:hover {
             &:before {
                 opacity: 1;
@@ -64,6 +65,10 @@
         &:disabled {
             cursor: inherit;
             background: #dddddd;
+
+            &:before {
+                background: #dddddd;
+            }
         }
     }
 
