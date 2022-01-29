@@ -1,7 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import ReactPaginate from 'react-paginate'
 import { useAppSelector } from '../../../../../../context/hooks'
-import { PunchIn } from '../../../../../../models/punchIn'
 import DateUtilities from '../../../../../../utils/date'
 import { InterfacePunchInsNotToday } from '../../historicPunchIn'
 import { LineHistoricPunchIn } from '../lineHistoricPunchIn/lineHistoricPunchIn'

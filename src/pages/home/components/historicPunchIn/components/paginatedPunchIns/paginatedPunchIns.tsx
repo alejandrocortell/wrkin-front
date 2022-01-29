@@ -1,6 +1,6 @@
+import { t } from 'i18next'
 import { FC, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
-import { PunchIn } from '../../../../../../models/punchIn'
 import { InterfacePunchInsNotToday } from '../../historicPunchIn'
 import { ListPunchIns } from '../listPunchIns/listPunchIns'
 
@@ -18,12 +18,12 @@ export const PaginatedPunchIns: FC<props> = (props) => {
 
     useEffect(() => {
         const endOffset = itemOffset + props.itemsPerPage
-        const currentItems = props.punchInsNotToday.slice(itemOffset, endOffset)
-        setCurrentItems(currentItems)
+        const newItems = props.punchInsNotToday.slice(itemOffset, endOffset)
+        setCurrentItems(newItems)
         setPageCount(
             Math.ceil(props.punchInsNotToday.length / props.itemsPerPage)
         )
-    }, [itemOffset, props.itemsPerPage])
+    }, [itemOffset, props.itemsPerPage, props.punchInsNotToday])
 
     // Invoke when user click to request another page.
     const handlePageClick = (event: { selected: number }) => {
@@ -39,15 +39,25 @@ export const PaginatedPunchIns: FC<props> = (props) => {
     return (
         <>
             <ListPunchIns punchInsNotToday={currentItems} />
-            {/* <Items currentItems={currentItems} /> */}
             <ReactPaginate
                 breakLabel='...'
-                nextLabel='next >'
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={2}
+                marginPagesDisplayed={2}
                 pageCount={pageCount}
-                previousLabel='< previous'
+                nextLabel={`»`}
+                previousLabel={`«`}
                 renderOnZeroPageCount={undefined}
+                pageClassName='page-item'
+                pageLinkClassName='page-link'
+                previousClassName='page-item'
+                previousLinkClassName='page-link'
+                nextClassName='page-item'
+                nextLinkClassName='page-link'
+                breakClassName='page-item'
+                breakLinkClassName='page-link'
+                containerClassName='pagination'
+                activeClassName='active'
             />
         </>
     )

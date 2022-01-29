@@ -24,6 +24,8 @@
     "COMMON_STOP": "Stop",
     "COMMON_TOTAL": "Total",
     "COMMON_EDIT": "Edit",
+    "COMMON_PREV": "Prev",
+    "COMMON_NEXT": "Next",
 
     "HOME_RESUME_DAY": "Resume of your day",
     "HOME_TOTAL_DAY": "Total day",

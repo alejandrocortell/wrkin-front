@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PunchIn } from '../../../../models/punchIn'
 import DateUtilities from '../../../../utils/date'
-import { ListPunchIns } from './components/listPunchIns/listPunchIns'
 import { PaginatedPunchIns } from './components/paginatedPunchIns/paginatedPunchIns'
 
 const dateUtilities = new DateUtilities()
