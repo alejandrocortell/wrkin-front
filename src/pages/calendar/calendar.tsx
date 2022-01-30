@@ -11,7 +11,7 @@ export const Calendar: FC = () => {
 
     return (
         <Wrapper showMenu>
-            <CalendarComponent year={2022} month={1} />
+            <CalendarComponent />
         </Wrapper>
     )
 }
