@@ -1,22 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { initialUser } from '../models/user'
+import { initialUser, User } from '../models/user'
+
+const initialState = {
+    user: initialUser,
+}
 
 export const userSlice = createSlice({
     name: 'user',
-    initialState: initialUser,
+    initialState: initialState,
     reducers: {
-        increment: (state) => {
-            state.id += 1
+        setUser: (state, action: PayloadAction<User>) => {
+            state.user = action.payload
         },
-        decrement: (state) => {
-            state.id -= 1
+        changeOrganization: (state, action: PayloadAction<number>) => {
+            state.user.currentOrganization = action.payload
         },
-        incrementByAmount: (state, action: PayloadAction<number>) => {
-            state.id += action.payload
+        logoutUser: (state) => {
+            state.user = initialUser
         },
     },
 })
 
-export const { increment, decrement, incrementByAmount } = userSlice.actions
+export const { setUser, changeOrganization, logoutUser } = userSlice.actions
 
 export default userSlice.reducer

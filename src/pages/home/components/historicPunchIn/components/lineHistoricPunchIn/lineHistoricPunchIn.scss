@@ -1,0 +1,15 @@
+.line-historic-punch-in {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 70px auto 70px 40px;
+
+    .total-time {
+        justify-self: end;
+    }
+
+    .link-button {
+        font-size: 1rem;
+        justify-self: end;
+    }
+}

@@ -57,4 +57,19 @@ export default class Validator {
             errorText: '',
         }
     }
+
+    isDate = (date: string) => {
+        const validateDate = new Date(date)
+        if (validateDate instanceof Date && !isNaN(validateDate.getTime())) {
+            return {
+                error: false,
+                errorText: '',
+            }
+        } else {
+            return {
+                error: true,
+                errorText: t('ERROR_INVALID_DATE'),
+            }
+        }
+    }
 }

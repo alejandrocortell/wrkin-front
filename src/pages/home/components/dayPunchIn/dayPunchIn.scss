@@ -1,0 +1,16 @@
+.day-punchin {
+    width: 100%;
+    max-width: 400px;
+
+    h2 {
+        @include bold;
+        margin-bottom: 15px;
+    }
+
+    .divider {
+        margin: 10px 0px;
+        width: 100%;
+        height: 2px;
+        background-color: $blue;
+    }
+}

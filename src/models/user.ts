@@ -12,6 +12,8 @@ export interface User {
     updatedAt: String
     roleId: number
     managerId: number
+    organizations: Array<any>
+    currentOrganization: number
 }
 
 export const initialUser: User = {
@@ -28,4 +30,6 @@ export const initialUser: User = {
     updatedAt: new Date().toDateString(),
     roleId: 0,
     managerId: 0,
+    organizations: [],
+    currentOrganization: 0,
 }

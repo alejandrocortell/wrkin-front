@@ -1,4 +1,73 @@
 html {
     font-size: 16px;
     @include regular;
+    color: $blue;
+}
+
+.container {
+    margin: 30px auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%;
+
+    @include sm {
+        max-width: 540px;
+    }
+
+    @include md {
+        max-width: 720px;
+    }
+
+    @include lg {
+        max-width: 960px;
+    }
+
+    @include xl {
+        max-width: 1140px;
+    }
+
+    @include xxl {
+        max-width: 1320px;
+    }
+}
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: $transition-gradient rgba($grey, 0.2);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba($grey, 0.2);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $transition-gradient;
+    border-radius: 20px;
+    border: 3px solid rgba($grey, 0.2);
+}
+
+.ReactModal__Overlay {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent
+        linear-gradient(
+            118deg,
+            rgba($primary, 0.2) 0%,
+            rgba($secondary, 0.2) 92%,
+            rgba($blue, 0.2) 150%
+        )
+        0% 0% no-repeat padding-box;
+
+    .ReactModal__Content {
+        inset: auto !important;
+        min-width: 500px;
+    }
 }

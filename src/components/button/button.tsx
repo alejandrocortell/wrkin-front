@@ -3,7 +3,7 @@ import React, { ChangeEvent, FC } from 'react'
 interface Props {
     onClick: (event: React.MouseEvent<HTMLElement>) => void
     label: string
-    style: 'primary' | 'secondary'
+    style: 'primary' | 'secondary' | 'delete'
     disabled?: boolean
     loading?: boolean
 }

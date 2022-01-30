@@ -5,8 +5,11 @@ import { useAppDispatch } from '../context/hooks'
 import { login } from '../context/authSlice'
 import { RequireAuth } from '../hooks/requireAuth'
 import { FourOFour } from '../pages/404/404'
+import { Load } from '../pages/load/load'
 import { Home } from '../pages/home/home'
 import { Login } from '../pages/login/login'
+import { Calendar } from '../pages/calendar/calendar'
+import { SelectOrganization } from '../pages/selectOrganization/selectOrganization'
 
 const cookie = new Cookie()
 
@@ -24,8 +27,13 @@ export const App: FC = () => {
         <Routes>
             <Route element={<RequireAuth />}>
                 <Route path='/' element={<Home />} />
-                {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+                <Route path='/calendar' element={<Calendar />} />
+                <Route
+                    path='/select-organization'
+                    element={<SelectOrganization />}
+                />
             </Route>
+            <Route path='/loading' element={<Load />} />
             <Route path='/login' element={<Login />} />
             <Route path='*' element={<FourOFour />} />
         </Routes>

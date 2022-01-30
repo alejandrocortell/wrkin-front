@@ -9,7 +9,7 @@ export const Login: FC = () => {
 
     useEffect(() => {
         if (auth.logged) {
-            navigate('/')
+            navigate('/loading')
         }
     }, [auth])
 

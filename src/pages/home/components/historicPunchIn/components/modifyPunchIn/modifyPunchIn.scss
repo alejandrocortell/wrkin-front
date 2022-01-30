@@ -1,0 +1,27 @@
+.list-modify-punch-in {
+    .line-punch-in {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        &.selected {
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-new-punch-in {
+    margin-top: 20px;
+}
+
+.container-buttons {
+    .button {
+        margin-bottom: 10px;
+    }
+}

@@ -1,9 +1,23 @@
 {
+    "NAV_PUNCHINS": "Punch ins",
+    "NAV_CALENDAR": "Calendar",
+    "NAV_DOCUMENTS": "Documents",
+    "NAV_MY_ACCOUNT": "My account",
+    "NAV_SELECT_ORGANIZATION": "Change organization",
+    "NAV_LOGOUT": "Logout",
+
     "FORM_USER": "User",
     "FORM_PASSWORD": "Password",
     "FORM_REMEMBER": "Remember me",
     "FORM_FORGOT_PASSWORD": "Forgot password?",
     "FORM_LOGIN": "Login",
+    "FORM_DATE_START": "Date start",
+    "FORM_DATE_END": "Date end",
+    "FORM_TIME_START": "Time start",
+    "FORM_TIME_END": "Time end",
+    "FORM_DELETE": "Delete",
+    "FORM_CONFIRM_DELETE": "Confirm delete",
+    "FORM_SAVE": "Save",
 
     "ERROR_FORM": "An error has ocurred, please try again",
     "ERROR_STRING": "Invalid text",
@@ -12,5 +26,26 @@
     "ERROR_PASSWORD_UPPER": "Must contain one uppercase",
     "ERROR_PASSWORD_NUMBER": "Must contain one number",
     "ERROR_PASSWORD_SPECIAL": "Must contain one special character",
-    "ERROR_USER_NOT_FOUND": "User or password do not match"
+    "ERROR_USER_NOT_FOUND": "User or password do not match",
+    "ERROR_INVALID_DATE": "Invalid date",
+    "ERROR_INVALID_TIME": "Invalid time",
+
+    "COMMON_START": "Start",
+    "COMMON_STOP": "Stop",
+    "COMMON_TOTAL": "Total",
+    "COMMON_EDIT": "Edit",
+    "COMMON_PREV": "Prev",
+    "COMMON_NEXT": "Next",
+    "COMMON_SELECT": "Select",
+
+    "HOME_RESUME_DAY": "Resume of your day",
+    "HOME_TOTAL_DAY": "Total day",
+    "HOME_STARTED_AT": "Started at",
+    "HOME_CURRENT_TIME": "Current time",
+    "HOME_INSERT_PUNCH_IN": "Insert punch in",
+    "HOME_LAST_PUNCH_IN": "Last punch in",
+    "HOME_MODIFY_PUNCH_IN": "Modify punch in",
+
+    "SELECT_ORGANIZATION_SELECT": "Choose your organization",
+    "SELECT_ORGANIZATION_GO_HOME": "Return to home"
 }

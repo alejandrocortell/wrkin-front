@@ -1,0 +1,30 @@
+.header-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+        font-size: 1.5rem;
+        @include semi-bold;
+    }
+
+    button {
+        border: 0;
+        padding: 0;
+        background-color: inherit;
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0;
+        transition: 0.2;
+
+        &:hover {
+            cursor: pointer;
+            img {
+                filter: brightness(50%);
+                transition: 0.2;
+            }
+        }
+    }
+}

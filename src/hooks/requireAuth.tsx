@@ -3,11 +3,13 @@ import { useAppSelector } from '../context/hooks'
 
 export const RequireAuth = () => {
     const auth = useAppSelector((state) => state.auth)
-    let location = useLocation()
+    const { user } = useAppSelector((state) => state.user)
 
     if (!auth.logged) {
-        return <Navigate to='/login' state={{ from: location }} />
+        return <Navigate to='/login' />
+    } else if (user.user === '') {
+        return <Navigate to='/loading' />
+    } else {
+        return <Outlet />
     }
-
-    return <Outlet />
 }

@@ -1,0 +1,43 @@
+// Responsive values
+$xs: '(min-width: 0px)';
+$sm: '(min-width: 576px)';
+$md: '(min-width: 768px)';
+$lg: '(min-width: 992px)';
+$xl: '(min-width: 1200px)';
+$xxl: '(min-width: 1400px)';
+
+@mixin xs {
+    @media #{$xs} {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media #{$sm} {
+        @content;
+    }
+}
+
+@mixin md {
+    @media #{$md} {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media #{$lg} {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media #{$xl} {
+        @content;
+    }
+}
+
+@mixin xxl {
+    @media #{$xxl} {
+        @content;
+    }
+}

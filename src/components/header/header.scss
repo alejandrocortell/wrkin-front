@@ -1,0 +1,111 @@
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: $white;
+    box-shadow: 0px 3px 6px $box-shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .container-logo {
+            max-width: 100px;
+        }
+
+        .nav-header ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            li {
+                margin: 0px 10px;
+
+                .link-button {
+                    z-index: 1;
+                    font-size: 1rem;
+                    @include medium;
+                }
+
+                &.container-user {
+                    position: relative;
+
+                    img {
+                        height: 25px;
+                        margin-right: 5px;
+                    }
+
+                    .arrow-expand {
+                        margin: 0;
+                        margin-left: 5px;
+                        height: 7px;
+                        transition: 0.2s;
+                    }
+
+                    .dropdown-user {
+                        position: relative;
+                        z-index: 2;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        @include medium;
+                    }
+
+                    .submenu {
+                        z-index: 0;
+                        position: absolute;
+                        width: 180%;
+                        top: 0px;
+                        right: -10px;
+                        padding: 30px 10px 20px;
+                        background-color: $white;
+                        box-shadow: 0px 10px 30px -15px $box-shadow;
+                        transform: scaleY(0);
+                        transform-origin: top;
+                        transition: transform 0.26s ease;
+
+                        ul {
+                            display: flex;
+                            justify-content: center;
+                            align-items: flex-end;
+                            flex-direction: column;
+
+                            li {
+                                margin: 8px 15px;
+                                width: 100%;
+                                text-align: right;
+
+                                .link-button {
+                                    @include medium;
+
+                                    &::after {
+                                        height: 1.5px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &:hover,
+                    &.visible {
+                        .arrow-expand {
+                            transform: rotate(180deg);
+                            transition: 0.2s;
+                        }
+
+                        .submenu {
+                            transform: scaleY(1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

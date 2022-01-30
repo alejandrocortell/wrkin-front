@@ -1,4 +1,5 @@
 @import 'reset';
+@import 'mixins';
 @import 'colors';
 @import 'fonts';
 @import 'main';
@@ -6,9 +7,26 @@
 @import '../pages/login/login';
 @import '../pages/login/components/columnLogin/columnLogin';
 @import '../pages/login/components/formLogin/formLogin';
+@import '../pages/selectOrganization/selectOrganization';
+@import '../pages/home/home';
+@import '../pages/home/components/dayPunchIn/dayPunchIn';
+@import '../pages/home/components/dayPunchIn/components/linePunchIn/linePunchIn';
+@import '../pages/home/components/dayPunchIn/components/totalDay/totalDay';
+@import '../pages/home/components/dayPunchIn/components/startStop/startStop';
+@import '../pages/home/components/historicPunchIn/historicPunchIn';
+@import '../pages/home/components/historicPunchIn/components/graphPunchIn/graphPunchIn';
+@import '../pages/home/components/historicPunchIn/components/lineHistoricPunchIn/lineHistoricPunchIn';
+@import '../pages/home/components/historicPunchIn/components/paginatedPunchIns/paginatedPunchIns';
+@import '../pages/home/components/historicPunchIn/components/newPunchIn/newPunchIn';
+@import '../pages/home/components/historicPunchIn/components/formNewPunchIn/formNewPunchIn';
+@import '../pages/home/components/historicPunchIn/components/modifyPunchIn/modifyPunchIn';
 
+@import '../components/wrapper/wrapper';
+@import '../components/header/header';
 @import '../components/logo/logo';
 @import '../components/input/input';
 @import '../components/checkbox/checkbox';
 @import '../components/button/button';
 @import '../components/linkButton/linkButton';
+@import '../components/containerWhite/containerWhite';
+@import '../components/headerModal/headerModal';

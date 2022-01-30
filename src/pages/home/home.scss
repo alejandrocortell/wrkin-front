@@ -1,0 +1,14 @@
+.home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+
+    height: calc(100% - (100px + 150px));
+
+    .container-white {
+        height: 85vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
