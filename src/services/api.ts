@@ -106,4 +106,12 @@ export default class Api {
                 .catch((err) => resolve(err))
         })
     }
+
+    deletePunchIn = async (id: number) => {
+        return new Promise((resolve) => {
+            api.delete(`${apiUrl}/punchs-in/${id}`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }

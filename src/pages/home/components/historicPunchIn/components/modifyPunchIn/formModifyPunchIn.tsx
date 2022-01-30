@@ -26,6 +26,7 @@ export const FormModifyPunchIn: FC<props> = (props) => {
 
     const [disabled, setDisabled] = useState(true)
     const [loader, setLoader] = useState(false)
+    const [confirmationDelete, setConfirmationDelete] = useState(false)
 
     const [dateStart, setDateStart] = useState(
         dateUtilities.format(new Date(props.punchIn.start), 'YYYY-MM-DD')
@@ -56,6 +57,7 @@ export const FormModifyPunchIn: FC<props> = (props) => {
     const [timeEndErrorText, setTimeEndErrorText] = useState('Error text')
 
     useEffect(() => {
+        setConfirmationDelete(false)
         setDateStart(
             dateUtilities.format(new Date(props.punchIn.start), 'YYYY-MM-DD')
         )
@@ -133,6 +135,26 @@ export const FormModifyPunchIn: FC<props> = (props) => {
         timeEndError,
     ])
 
+    const handleConfirmationDelete = (e: any) => {
+        e.preventDefault()
+        setConfirmationDelete(true)
+    }
+
+    const handleDelete = (e: any) => {
+        e.preventDefault()
+        setLoader(true)
+        const id = props.punchIn.id
+
+        apiManager
+            .deletePunchIn(id)
+            .then((res) => {
+                props.closeModal()
+                props.getPunchIns()
+            })
+            .catch((err) => console.log(err))
+            .finally(() => setLoader(false))
+    }
+
     const handleSubmit = (e: any) => {
         e.preventDefault()
         setLoader(true)
@@ -203,13 +225,31 @@ export const FormModifyPunchIn: FC<props> = (props) => {
                     disabled={props.disabledFields}
                 />
             </div>
-            <Button
-                onClick={handleSubmit}
-                label={t('FORM_SAVE')}
-                style={'primary'}
-                disabled={disabled}
-                loading={loader}
-            />
+            <div className='container-buttons'>
+                <Button
+                    onClick={handleConfirmationDelete}
+                    label={t('FORM_DELETE')}
+                    style={'secondary'}
+                    disabled={disabled}
+                    loading={loader}
+                />
+                {confirmationDelete && (
+                    <Button
+                        onClick={handleDelete}
+                        label={t('FORM_CONFIRM_DELETE')}
+                        style={'delete'}
+                        disabled={disabled}
+                        loading={loader}
+                    />
+                )}
+                <Button
+                    onClick={handleSubmit}
+                    label={t('FORM_SAVE')}
+                    style={'primary'}
+                    disabled={disabled}
+                    loading={loader}
+                />
+            </div>
         </form>
     )
 }
