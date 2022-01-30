@@ -27,7 +27,7 @@ export const MenuHeader: FC<Props> = (props) => {
                     <LinkButton label={t('NAV_PUNCHINS')} path={''} />
                 </li>
                 <li>
-                    <LinkButton label={t('NAV_CALENDAR')} path={''} />
+                    <LinkButton label={t('NAV_CALENDAR')} path={'/calendar'} />
                 </li>
                 <li>
                     <LinkButton label={t('NAV_DOCUMENTS')} path={''} />

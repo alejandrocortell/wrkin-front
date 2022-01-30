@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { useAppDispatch, useAppSelector } from '../../context/hooks'
 import { useTranslation } from 'react-i18next'
-import i18next from 'i18next'
 import { Wrapper } from '../../components/wrapper/wrapper'
+import { CalendarComponent } from './components/calendarComponent/calendarComponent'
 
 export const Calendar: FC = () => {
     const { t } = useTranslation()
@@ -10,8 +10,8 @@ export const Calendar: FC = () => {
     const dispatch = useAppDispatch()
 
     return (
-        <Wrapper>
-            <div>Calendar page</div>
+        <Wrapper showMenu>
+            <CalendarComponent year={2022} month={1} />
         </Wrapper>
     )
 }
