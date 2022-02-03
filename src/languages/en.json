@@ -47,5 +47,10 @@
     "HOME_MODIFY_PUNCH_IN": "Modify punch in",
 
     "SELECT_ORGANIZATION_SELECT": "Choose your organization",
-    "SELECT_ORGANIZATION_GO_HOME": "Return to home"
+    "SELECT_ORGANIZATION_GO_HOME": "Return to home",
+
+    "CALENDAR_WORKED": "Worked",
+    "CALENDAR_HOLIDAYS": "Holidays",
+    "CALENDAR_BANKDAY": "Bank day",
+    "CALENDAR_SICK": "Sick leave"
 }

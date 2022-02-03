@@ -12,7 +12,7 @@ const dateUtilities = new DateUtilities()
 const apiManager = new Api()
 
 export const Home: FC = () => {
-    const user = useAppSelector((state) => state.user)
+    const { user } = useAppSelector((state) => state.user)
     const [punchIns, setPunchIns] = useState<Array<PunchIn>>([])
     const [punchInsToday, setPunchInsToday] = useState<Array<PunchIn>>([])
 
@@ -29,7 +29,7 @@ export const Home: FC = () => {
 
     const getPunchIns = () => {
         apiManager
-            .getUserPunchIns(user.user.id)
+            .getUserPunchIns(user.id)
             .then((res: any) => {
                 console.log(res)
                 if (res.status === 200 && res.data.punchIns !== undefined) {
