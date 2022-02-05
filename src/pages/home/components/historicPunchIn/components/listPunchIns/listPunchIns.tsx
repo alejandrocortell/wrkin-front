@@ -13,9 +13,12 @@ interface props {
 
 export const ListPunchIns: FC<props> = (props) => {
     const { user } = useAppSelector((state) => state.user)
+    const { organization } = useAppSelector((state) => state.organization)
     const { settings } = useAppSelector((state) => state.organization)
 
-    const targetDay = user.hoursToWork / 5
+    const targetDay = user.organizations.find(
+        (org) => org.organizationId === organization.id
+    ).hoursToWork
 
     return (
         <div className='list-historic'>
