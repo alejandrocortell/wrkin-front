@@ -50,7 +50,7 @@ const dayjsLocalizer = () => {
         formats,
         firstOfWeek(culture) {
             let data = dayjs.localeData()
-            return data ? data.firstDayOfWeek() : 0
+            return data ? data.firstDayOfWeek() + 1 : 0
         },
 
         format(value, format, culture) {

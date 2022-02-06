@@ -114,4 +114,12 @@ export default class Api {
                 .catch((err) => resolve(err))
         })
     }
+
+    getDaysOff = async (id: number) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users/${id}/daysoff`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }

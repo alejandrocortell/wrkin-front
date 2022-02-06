@@ -51,6 +51,9 @@
 
     "CALENDAR_WORKED": "Worked",
     "CALENDAR_HOLIDAYS": "Holidays",
-    "CALENDAR_BANKDAY": "Bank day",
-    "CALENDAR_SICK": "Sick leave"
+    "CALENDAR_DAYOFF": "Day off",
+    "CALENDAR_SICK": "Sick leave",
+    "CALENDAR_FORMATION": "Formation",
+    "CALENDAR_EXAM": "Official exam",
+    "CALENDAR_OTHER": "Other"
 }

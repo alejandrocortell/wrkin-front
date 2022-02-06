@@ -1,4 +1,4 @@
-export interface calendarEvent {
+export interface CalendarEvent {
     title: string
     type: 'work' | 'sick' | 'bank' | 'holyday'
     start: Date

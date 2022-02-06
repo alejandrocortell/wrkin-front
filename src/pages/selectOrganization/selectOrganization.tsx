@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../context/hooks'
 import { useTranslation } from 'react-i18next'
 import { Wrapper } from '../../components/wrapper/wrapper'
@@ -16,9 +16,11 @@ export const SelectOrganization: FC = () => {
     const { t } = useTranslation()
     const { user } = useAppSelector((state) => state.user)
     const dispatch = useAppDispatch()
+    const [loader, setLoader] = useState(false)
 
     const handleChangeOrg = (id: number) => {
         dispatch(changeOrganization(id))
+        setLoader(false)
         apiManager
             .getOrganization(id)
             .then((res: any) => {
@@ -35,6 +37,7 @@ export const SelectOrganization: FC = () => {
                 console.log(res)
                 if (res.status === 200) {
                     dispatch(setSettings(res.data.settings))
+                    setLoader(true)
                 }
             })
             .catch((err) => {
@@ -71,7 +74,7 @@ export const SelectOrganization: FC = () => {
                                     />
                                 )
                             })}
-                            {user.currentOrganization !== 0 && (
+                            {user.currentOrganization !== 0 && loader && (
                                 <LinkButton
                                     label={t('SELECT_ORGANIZATION_GO_HOME')}
                                     path={'/'}

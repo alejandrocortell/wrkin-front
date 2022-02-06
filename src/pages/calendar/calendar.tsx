@@ -1,12 +1,13 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../context/hooks'
 import { useTranslation } from 'react-i18next'
 import { Wrapper } from '../../components/wrapper/wrapper'
 import { CalendarComponent } from './components/calendarComponent/calendarComponent'
 import Api from '../../services/api'
 import { PunchIn } from '../../models/punchIn'
-import { calendarEvent } from '../../models/calendarEvent'
+import { CalendarEvent } from '../../models/calendarEvent'
 import DateUtilities from '../../utils/date'
+import { DayOff } from '../../models/dayOff'
 
 const apiManager = new Api()
 const dateUtilities = new DateUtilities()
@@ -21,13 +22,18 @@ export const Calendar: FC = () => {
     const { t } = useTranslation()
     const { user } = useAppSelector((state) => state.user)
     const dispatch = useAppDispatch()
-    const [events, setEvents] = useState<Array<calendarEvent>>([])
+    const [punchIns, setPunchIns] = useState<Array<CalendarEvent>>([])
+    const [daysOff, setDaysOff] = useState<Array<CalendarEvent>>([])
 
     useEffect(() => {
+        getPunchIns()
+        getDaysOff()
+    }, [])
+
+    const getPunchIns = async () => {
         apiManager
             .getUserPunchIns(user.id)
             .then((res: any) => {
-                console.log(res)
                 if (res.status === 200 && res.data.punchIns !== undefined) {
                     const groupedByDay = groupPunchIns(res.data.punchIns)
                     const sorted = groupedByDay.map(
@@ -39,8 +45,8 @@ export const Calendar: FC = () => {
                             }
                         }
                     )
-                    console.log(sorted)
-                    const data = sorted.map((p: any): calendarEvent => {
+
+                    const data: Array<CalendarEvent> = sorted.map((p: any) => {
                         return {
                             title: `${dateUtilities.parseMillisecondsToHHmm(
                                 p.milliseconds
@@ -52,13 +58,36 @@ export const Calendar: FC = () => {
                         }
                     })
 
-                    setEvents(data)
+                    setPunchIns(data)
                 }
             })
             .catch((err) => {
                 console.log(err)
             })
-    }, [])
+    }
+
+    const getDaysOff = async () => {
+        apiManager
+            .getDaysOff(user.id)
+            .then((res: any) => {
+                if (res.status === 200) {
+                    const { daysOff } = res.data
+                    const data = daysOff.map((d: DayOff) => {
+                        return {
+                            title: dayType(d.dayOffTypeId),
+                            type: d.dayOffTypeId,
+                            start: d.start,
+                            end: d.end,
+                            allDay: true,
+                        }
+                    })
+                    setDaysOff(data)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     const groupPunchIns = (punchIns: Array<PunchIn>) => {
         const format = (date: Date) => dateUtilities.format(date, 'DD-MMYYYY')
@@ -101,9 +130,18 @@ export const Calendar: FC = () => {
         return milliseconds
     }
 
+    const dayType = (id: number) => {
+        if (id === 1) return t('CALENDAR_HOLIDAYS')
+        if (id === 2) return t('CALENDAR_DAYOFF')
+        if (id === 3) return t('CALENDAR_SICK')
+        if (id === 4) return t('CALENDAR_FORMATION')
+        if (id === 5) return t('CALENDAR_EXAM')
+        return t('CALENDAR_OTHER')
+    }
+
     return (
         <Wrapper showMenu>
-            <CalendarComponent events={events} />
+            <CalendarComponent punchIns={punchIns} daysOff={daysOff} />
         </Wrapper>
     )
 }
