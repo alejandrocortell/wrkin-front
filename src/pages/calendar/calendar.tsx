@@ -8,6 +8,7 @@ import { PunchIn } from '../../models/punchIn'
 import { CalendarEvent } from '../../models/calendarEvent'
 import DateUtilities from '../../utils/date'
 import { DayOff } from '../../models/dayOff'
+import { ContainerWhite } from '../../components/containerWhite/containerWhite'
 
 const apiManager = new Api()
 const dateUtilities = new DateUtilities()
@@ -141,7 +142,11 @@ export const Calendar: FC = () => {
 
     return (
         <Wrapper showMenu>
-            <CalendarComponent punchIns={punchIns} daysOff={daysOff} />
+            <section className='calendar container'>
+                <ContainerWhite>
+                    <CalendarComponent punchIns={punchIns} daysOff={daysOff} />
+                </ContainerWhite>
+            </section>
         </Wrapper>
     )
 }

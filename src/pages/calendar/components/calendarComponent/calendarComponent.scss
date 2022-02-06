@@ -1,95 +1,114 @@
-.calendar-component {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 1px solid;
+.rbc-calendar {
+    .rbc-toolbar {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
 
-    &__header {
-        width: 100%;
-        display: flex;
-
-        div {
-            flex: 1 1 14.338%;
-            text-align: center;
-            font-weight: bold;
-            color: #fff;
-            background: #000;
-            padding: 0.5em 0;
+        .rbc-toolbar-label {
+            @include semi-bold;
         }
     }
 
-    &__body {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
+    .rbc-month-view {
+        border: none;
 
-        > div {
-            flex: 0 0 14.3433%;
-            min-height: 5em;
-            border: 1px solid;
-            margin-left: -1px;
-            margin-bottom: -1px;
-            padding: 0.5em;
+        .rbc-day-bg {
+            + .rbc-day-bg {
+                border-left: 2px solid $blue;
+            }
         }
 
-        .event {
-            background: lightblue;
-            border: 1px solid blue;
-            color: blue;
-            padding: 0.25em;
-            font-size: 70%;
-        }
-    }
-}
+        .rbc-month-row {
+            + .rbc-month-row {
+                border-top: 2px solid $blue;
+            }
 
-.rbc-event {
-    @include semi-bold;
-    font-size: 0.8rem;
+            .rbc-off-range-bg {
+                background-color: rgba($grey, 0.4);
+            }
 
-    .rbc-event-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &.category- {
-        &work {
-            background-image: linear-gradient(
-                115deg,
-                $blue 0%,
-                $blue 70%,
-                $secondary 100%
-            );
+            .rbc-today {
+                background-color: $primary;
+                background-image: linear-gradient(
+                    115deg,
+                    lighten($color: $primary, $amount: 25) 0%,
+                    lighten($color: $primary, $amount: 25) 60%,
+                    lighten($color: $secondary, $amount: 25) 100%
+                );
+            }
         }
 
-        &1,
-        &2 {
-            background-image: linear-gradient(
-                115deg,
-                $blue 0%,
-                $blue 70%,
-                $green 100%
-            );
+        .rbc-header {
+            border-bottom: 2px solid $blue;
+
+            + .rbc-header {
+                border-left: 2px solid $blue;
+            }
         }
 
-        &3 {
-            background-image: linear-gradient(
-                115deg,
-                $blue 0%,
-                $blue 70%,
-                $red 100%
-            );
+        .rbc-date-cell {
+            text-align: left;
+            @include semi-bold;
+            padding: 2px 5px;
+            margin-bottom: 5px;
         }
 
-        &4,
-        &5,
-        &6 {
-            background-image: linear-gradient(
-                115deg,
-                $blue 0%,
-                $blue 70%,
-                $primary 100%
-            );
+        .rbc-row-segment {
+            padding: 0 5px 2px 5px;
+
+            .rbc-event {
+                @include semi-bold;
+                font-size: 0.8rem;
+                border-radius: none;
+                pointer-events: none;
+                cursor: inherit;
+
+                .rbc-event-content {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                &.category- {
+                    &work {
+                        background-image: linear-gradient(
+                            115deg,
+                            $blue 0%,
+                            $blue 70%,
+                            $secondary 100%
+                        );
+                    }
+
+                    &1,
+                    &2 {
+                        background-image: linear-gradient(
+                            115deg,
+                            $blue 0%,
+                            $blue 70%,
+                            $green 100%
+                        );
+                    }
+
+                    &3 {
+                        background-image: linear-gradient(
+                            115deg,
+                            $blue 0%,
+                            $blue 70%,
+                            $red 100%
+                        );
+                    }
+
+                    &4,
+                    &5,
+                    &6 {
+                        background-image: linear-gradient(
+                            115deg,
+                            $blue 0%,
+                            $blue 70%,
+                            $primary 100%
+                        );
+                    }
+                }
+            }
         }
     }
 }

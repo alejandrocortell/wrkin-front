@@ -5,6 +5,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { CalendarEvent } from '../../../../models/calendarEvent'
 import 'dayjs/locale/es'
 import i18next from 'i18next'
+import RBCToolbar from './customToolbar'
 interface props {
     punchIns: Array<CalendarEvent>
     daysOff: Array<CalendarEvent>
@@ -32,6 +33,10 @@ export const CalendarComponent: FC<props> = (props) => {
         event: 'Evento',
     }
 
+    const doRequest = () => {
+        console.log('aaa')
+    }
+
     return (
         <>
             <Calendar
@@ -40,12 +45,17 @@ export const CalendarComponent: FC<props> = (props) => {
                 culture={i18next.language}
                 events={events}
                 startAccessor='start'
-                // endAccessor='end'
                 style={{ height: 500 }}
                 views={['month']}
+                selectable={false}
                 eventPropGetter={(event) => ({
                     className: 'category-' + event.type,
                 })}
+                components={{
+                    toolbar: (props) => (
+                        <RBCToolbar {...props} doRequest={doRequest} />
+                    ),
+                }}
             />
         </>
     )
