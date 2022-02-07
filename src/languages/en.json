@@ -55,5 +55,6 @@
     "CALENDAR_SICK": "Sick leave",
     "CALENDAR_FORMATION": "Formation",
     "CALENDAR_EXAM": "Official exam",
-    "CALENDAR_OTHER": "Other"
+    "CALENDAR_OTHER": "Other",
+    "CALENDAR_DO_REQUEST": "Do request"
 }
