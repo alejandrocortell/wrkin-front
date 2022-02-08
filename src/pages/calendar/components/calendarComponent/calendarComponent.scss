@@ -1,4 +1,7 @@
 .rbc-calendar {
+    z-index: 0;
+    position: relative;
+
     .rbc-toolbar {
         margin-bottom: 20px;
         display: grid;

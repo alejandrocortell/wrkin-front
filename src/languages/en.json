@@ -56,5 +56,6 @@
     "CALENDAR_FORMATION": "Formation",
     "CALENDAR_EXAM": "Official exam",
     "CALENDAR_OTHER": "Other",
-    "CALENDAR_DO_REQUEST": "Do request"
+    "CALENDAR_DO_REQUEST": "Do request",
+    "CALENDAR_CREATE_REQUEST": "Create new request"
 }

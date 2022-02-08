@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import dayjs from 'dayjs'
 import { LinkButton } from './../../../../components/linkButton/linkButton'
 import nextMonth from './../../../../assets/img/next_month.svg'
@@ -7,10 +7,10 @@ import { Button } from '../../../../components/button/button'
 import { useTranslation } from 'react-i18next'
 
 // @ts-ignore
-function RBCToolbar(props) {
+export const RBCToolbar: FC<props> = (props) => {
     const { t } = useTranslation()
-
     const [viewState, setViewState] = useState('month')
+
     const getCustomToolbar = () => {
         const handlePreviousMonth = () => {
             const view = viewState
@@ -152,7 +152,7 @@ function RBCToolbar(props) {
 
                 <span className='rbc-btn-group do-request'>
                     <Button
-                        onClick={props.doRequest}
+                        onClick={props.openModalRequest}
                         label={t('CALENDAR_DO_REQUEST')}
                         style={'secondary'}
                     />
@@ -163,5 +163,3 @@ function RBCToolbar(props) {
 
     return <>{getCustomToolbar()}</>
 }
-
-export default RBCToolbar

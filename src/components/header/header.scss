@@ -23,6 +23,7 @@
 
             li {
                 margin: 0px 10px;
+                z-index: 2;
 
                 .link-button {
                     z-index: 1;
@@ -32,6 +33,7 @@
 
                 &.container-user {
                     position: relative;
+                    z-index: 1;
 
                     img {
                         height: 25px;
@@ -55,7 +57,7 @@
                     }
 
                     .submenu {
-                        z-index: 0;
+                        z-index: 1;
                         position: absolute;
                         width: 180%;
                         top: 0px;
