@@ -1,0 +1,57 @@
+.dropdown {
+    select {
+        appearance: none;
+        background-color: transparent;
+        border: none;
+        padding: 0 1em 0 0;
+        margin: 0;
+        width: 100%;
+        font-family: inherit;
+        font-size: inherit;
+        cursor: inherit;
+        line-height: inherit;
+        z-index: 1;
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        height: 40px;
+        padding: 10px;
+        border: 1px solid $grey;
+        border-radius: 5px;
+
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%23120052' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-position-y: 5px;
+
+        @include semi-bold;
+        font-size: 1.1rem;
+        color: $blue;
+
+        &:focus-visible,
+        &:focus {
+            outline: 1px solid $blue;
+            border: 1px solid $blue;
+        }
+
+        &.error {
+            outline: 1px solid $red !important;
+            border: 1px solid $red !important;
+        }
+
+        &:disabled {
+            background-color: rgba($grey, 0.2);
+            color: $grey;
+        }
+
+        option {
+            background-color: $white;
+        }
+
+        &:hover {
+            background-color: $white;
+        }
+    }
+}

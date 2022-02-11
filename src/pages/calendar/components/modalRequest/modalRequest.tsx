@@ -11,6 +11,7 @@ import { InputField } from '../../../../components/input/input'
 import { Button } from '../../../../components/button/button'
 import { Checkbox } from '../../../../components/checkbox/checkbox'
 import { DayOffType } from '../../../../models/typeDayOff'
+import { Dropdown } from '../../../../components/dropdown/dropdown'
 
 const val = new Validator()
 const dateUtilities = new DateUtilities()
@@ -28,6 +29,10 @@ export const ModalRequest: FC<props> = (props) => {
     const [disabled, setDisabled] = useState(true)
 
     const [allDay, setAllDay] = useState(false)
+
+    const [type, setType] = useState(props.types[0].dayOffType)
+    const [typeError, setTypeError] = useState(false)
+    const [typeErrorText, setTypeErrorText] = useState('Error text')
 
     const [dateStart, setDateStart] = useState(
         dateUtilities.format(new Date(), 'YYYY-MM-DD')
@@ -149,6 +154,20 @@ export const ModalRequest: FC<props> = (props) => {
                     onChange={() => setAllDay(!allDay)}
                     checked={allDay}
                     label={t('CALENDAR_ALL_DAY')}
+                />
+            </div>
+            <div className='line'>
+                <Dropdown
+                    onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+                        setType(e.target.value)
+                    }}
+                    value={type}
+                    label={'Type'}
+                    list={props.types.map((t) => {
+                        return { value: t.dayOffType }
+                    })}
+                    error={typeError}
+                    errorText={typeErrorText}
                 />
             </div>
             <div className='line'>
