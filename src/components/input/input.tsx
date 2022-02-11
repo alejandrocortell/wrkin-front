@@ -36,8 +36,12 @@ export const InputField: FC<Props> = (props) => {
 
     if (type === 'textarea') {
         return (
-            <div>
-                <textarea name='' id='' cols={30} rows={10}></textarea>
+            <div className='input-field'>
+                <label>
+                    {props.label}
+                    {props.required && '*'}
+                </label>
+                <textarea name='' id='' cols={30} rows={4}></textarea>
             </div>
         )
     }
