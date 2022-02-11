@@ -1,0 +1,223 @@
+import { ChangeEvent, FC, useEffect, useState } from 'react'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import 'dayjs/locale/es'
+import { useTranslation } from 'react-i18next'
+import Validator from '../../../../utils/validators'
+import DateUtilities from '../../../../utils/date'
+import Api from '../../../../services/api'
+import { useDebounce } from '../../../../hooks/useDebounce'
+import { useAppSelector } from '../../../../context/hooks'
+import { InputField } from '../../../../components/input/input'
+import { Button } from '../../../../components/button/button'
+import { Checkbox } from '../../../../components/checkbox/checkbox'
+import { DayOffType } from '../../../../models/typeDayOff'
+
+const val = new Validator()
+const dateUtilities = new DateUtilities()
+const apiManager = new Api()
+
+interface props {
+    types: Array<DayOffType>
+}
+
+export const ModalRequest: FC<props> = (props) => {
+    const { t } = useTranslation()
+    const { user } = useAppSelector((state) => state.user)
+
+    const [loader, setLoader] = useState(false)
+    const [disabled, setDisabled] = useState(true)
+
+    const [allDay, setAllDay] = useState(false)
+
+    const [dateStart, setDateStart] = useState(
+        dateUtilities.format(new Date(), 'YYYY-MM-DD')
+    )
+    const [dateStartError, setDateStartError] = useState(false)
+    const [dateStartErrorText, setDateStartErrorText] = useState('Error text')
+
+    const [timeStart, setTimeStart] = useState(
+        `${new Date().getHours()}:${new Date().getMinutes()}`
+    )
+    const [timeStartError, setTimeStartError] = useState(false)
+    const [timeStartErrorText, setTimeStartErrorText] = useState('Error text')
+
+    const [dateEnd, setDateEnd] = useState(dateStart)
+    const [dateEndError, setDateEndError] = useState(false)
+    const [dateEndErrorText, setDateEndErrorText] = useState('Error text')
+
+    const [timeEnd, setTimeEnd] = useState(
+        `${new Date().getHours()}:${new Date().getMinutes() + 1}`
+    )
+    const [timeEndError, setTimeEndError] = useState(false)
+    const [timeEndErrorText, setTimeEndErrorText] = useState('Error text')
+
+    const [message, setMessage] = useState('')
+    const [messageError, setMessageError] = useState(false)
+    const [messageErrorText, setMessageErrorText] = useState('Error text')
+
+    const debouncedDateStart = useDebounce(dateStart, 400)
+    useEffect(() => {
+        if (dateStart === '') return
+        setDateStartError(false)
+        const test = val.isDate(dateStart)
+        setDateStartError(test.error)
+        setDateStartErrorText(test.errorText)
+    }, [debouncedDateStart])
+
+    const debouncedDateEnd = useDebounce(dateEnd, 400)
+    useEffect(() => {
+        if (dateEnd === '') return
+        setDateEndError(false)
+        const test = val.isDate(dateEnd)
+        if (test.error) {
+            setDateEndError(test.error)
+            setDateEndErrorText(test.errorText)
+        } else if (new Date(dateEnd) < new Date(dateStart)) {
+            setDateEndError(true)
+            setDateEndErrorText(t('ERROR_INVALID_DATE'))
+        }
+    }, [debouncedDateEnd])
+
+    const debouncedTimeEnd = useDebounce(timeEnd, 400)
+    useEffect(() => {
+        if (timeEnd === '') return
+        setTimeEndError(false)
+        const start = new Date(`${dateStart} ${timeStart}`)
+        const end = new Date(`${dateEnd} ${timeEnd}`)
+        if (end <= start) {
+            setTimeEndError(true)
+            setTimeEndErrorText(t('ERROR_INVALID_TIME'))
+        }
+    }, [debouncedTimeEnd])
+
+    const debouncedMessage = useDebounce(message, 400)
+    useEffect(() => {
+        if (message === '') return
+        setMessageError(false)
+        const test = val.isString(message)
+        if (test.error) {
+            setMessageError(test.error)
+            setMessageErrorText(test.errorText)
+        }
+    }, [debouncedMessage])
+
+    useEffect(() => {
+        setDisabled(true)
+        if (
+            !dateStartError &&
+            !timeStartError &&
+            !dateEndError &&
+            !timeEndError
+        ) {
+            setDisabled(false)
+        }
+    }, [
+        dateStart,
+        dateEnd,
+        timeStart,
+        timeEnd,
+        dateStartError,
+        timeStartError,
+        dateEndError,
+        timeEndError,
+    ])
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+        setLoader(true)
+        // const org = user.currentOrganization
+        // const start = new Date(`${dateStart} ${timeStart}`)
+        // const end = new Date(`${dateEnd} ${timeEnd}`)
+
+        // apiManager
+        //     .createPunchIn(org, start, end)
+        //     .then((res) => {
+        //         props.closeModal()
+        //         props.getPunchIns()
+        //     })
+        //     .catch((err) => console.log(err))
+        //     .finally(() => setLoader(false))
+    }
+
+    return (
+        <form
+            className='form-new-punch-in modal-request'
+            onSubmit={handleSubmit}
+        >
+            <div className='all-day'>
+                <Checkbox
+                    onChange={() => setAllDay(!allDay)}
+                    checked={allDay}
+                    label={t('CALENDAR_ALL_DAY')}
+                />
+            </div>
+            <div className='line'>
+                <InputField
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setDateStart(e.target.value)
+                    }
+                    value={dateStart}
+                    label={t('FORM_DATE_START')}
+                    type={'date'}
+                    error={dateStartError}
+                    errorText={dateStartErrorText}
+                    max={dateUtilities.format(new Date(), 'YYYY-MM-DD')}
+                />
+                <InputField
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setTimeStart(e.target.value)
+                    }
+                    value={timeStart}
+                    label={t('FORM_TIME_START')}
+                    type={'time'}
+                    error={timeStartError}
+                    errorText={timeStartErrorText}
+                    disabled={allDay}
+                />
+            </div>
+            <div className='line'>
+                <InputField
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setDateEnd(e.target.value)
+                    }
+                    value={dateEnd}
+                    label={t('FORM_DATE_END')}
+                    type={'date'}
+                    error={dateEndError}
+                    errorText={dateEndErrorText}
+                    min={dateStart}
+                />
+                <InputField
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setTimeEnd(e.target.value)
+                    }
+                    value={timeEnd}
+                    label={t('FORM_TIME_END')}
+                    type={'time'}
+                    error={timeEndError}
+                    errorText={timeEndErrorText}
+                    disabled={allDay}
+                />
+            </div>
+            <div className='line'>
+                <InputField
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setMessage(e.target.value)
+                    }
+                    value={message}
+                    label={t('FORM_MESSAGE')}
+                    type={'textarea'}
+                    error={messageError}
+                    errorText={messageErrorText}
+                />
+            </div>
+            <Button
+                onClick={handleSubmit}
+                label={t('CALENDAR_SEND_REQUEST')}
+                style={'primary'}
+                disabled={disabled}
+                loading={loader}
+            />
+        </form>
+    )
+}

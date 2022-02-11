@@ -18,6 +18,7 @@
     "FORM_DELETE": "Delete",
     "FORM_CONFIRM_DELETE": "Confirm delete",
     "FORM_SAVE": "Save",
+    "FORM_MESSAGE": "Message",
 
     "ERROR_FORM": "An error has ocurred, please try again",
     "ERROR_STRING": "Invalid text",
@@ -29,6 +30,7 @@
     "ERROR_USER_NOT_FOUND": "User or password do not match",
     "ERROR_INVALID_DATE": "Invalid date",
     "ERROR_INVALID_TIME": "Invalid time",
+    "ERROR_MESSAGE": "Message is required",
 
     "COMMON_START": "Start",
     "COMMON_STOP": "Stop",
@@ -57,5 +59,7 @@
     "CALENDAR_EXAM": "Official exam",
     "CALENDAR_OTHER": "Other",
     "CALENDAR_DO_REQUEST": "Do request",
-    "CALENDAR_CREATE_REQUEST": "Create new request"
+    "CALENDAR_CREATE_REQUEST": "Create new request",
+    "CALENDAR_SEND_REQUEST": "Send request",
+    "CALENDAR_ALL_DAY": "All day"
 }

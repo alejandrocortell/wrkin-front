@@ -9,6 +9,10 @@ import { RBCToolbar } from './customToolbar'
 import Modal from 'react-modal'
 import { HeaderModal } from '../../../../components/headerModal/headerModal'
 import { useTranslation } from 'react-i18next'
+import { ModalRequest } from '../modalRequest/modalRequest'
+import Api from '../../../../services/api'
+
+const apiManager = new Api()
 
 interface props {
     punchIns: Array<CalendarEvent>
@@ -19,11 +23,25 @@ export const CalendarComponent: FC<props> = (props) => {
     const { t } = useTranslation()
     const [events, setEvents] = useState<Array<CalendarEvent>>([])
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [typesDayOff, setTypesDayOff] = useState([])
 
     useEffect(() => {
         const insert = [...props.punchIns, ...props.daysOff]
         setEvents(insert)
     }, [props.punchIns, props.daysOff])
+
+    useEffect(() => {
+        apiManager
+            .getDaysOffTypes()
+            .then((res: any) => {
+                if (res.status === 200) {
+                    setTypesDayOff(res.data)
+                } else {
+                    console.log(res)
+                }
+            })
+            .catch((err) => console.log(err))
+    }, [])
 
     const messages = {
         allDay: 'Dia Inteiro',
@@ -58,6 +76,7 @@ export const CalendarComponent: FC<props> = (props) => {
                     title={t('CALENDAR_CREATE_REQUEST')}
                     onClose={closeModalRequest}
                 />
+                <ModalRequest types={typesDayOff} />
             </Modal>
             <Calendar
                 localizer={localizer}

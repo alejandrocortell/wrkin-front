@@ -1,0 +1,12 @@
+.modal-request {
+    .all-day {
+        .checkbox-field {
+            font-size: 1.1rem;
+            @include semi-bold;
+
+            .checkmark {
+                transform: translateX(1px);
+            }
+        }
+    }
+}
