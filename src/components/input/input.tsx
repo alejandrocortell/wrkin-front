@@ -41,7 +41,16 @@ export const InputField: FC<Props> = (props) => {
                     {props.label}
                     {props.required && '*'}
                 </label>
-                <textarea name='' id='' cols={30} rows={4}></textarea>
+                <textarea
+                    name=''
+                    id=''
+                    cols={30}
+                    rows={4}
+                    onChange={handleChange as any}
+                    required={props.required}
+                    disabled={props.disabled}
+                    className={`${props.error && 'error'}`}
+                />
             </div>
         )
     }

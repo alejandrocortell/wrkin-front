@@ -17,6 +17,7 @@ const apiManager = new Api()
 interface props {
     punchIns: Array<CalendarEvent>
     daysOff: Array<CalendarEvent>
+    getDaysOff: () => void
 }
 
 export const CalendarComponent: FC<props> = (props) => {
@@ -76,7 +77,11 @@ export const CalendarComponent: FC<props> = (props) => {
                     title={t('CALENDAR_CREATE_REQUEST')}
                     onClose={closeModalRequest}
                 />
-                <ModalRequest types={typesDayOff} />
+                <ModalRequest
+                    types={typesDayOff}
+                    onClose={closeModalRequest}
+                    getDaysOff={props.getDaysOff}
+                />
             </Modal>
             <Calendar
                 localizer={localizer}

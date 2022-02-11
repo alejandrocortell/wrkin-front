@@ -123,6 +123,27 @@ export default class Api {
         })
     }
 
+    createDayOff = async (
+        organization: number,
+        start: Date,
+        end: Date,
+        dayOffType: number,
+        message: string
+    ) => {
+        const params = {
+            organization: organization,
+            start: start,
+            end: end,
+            dayOffType: dayOffType,
+            message: message,
+        }
+        return new Promise((resolve) => {
+            api.post(`${apiUrl}/requests-days-off`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
     getDaysOffTypes = async () => {
         return new Promise((resolve) => {
             api.get(`${apiUrl}/days-off`)

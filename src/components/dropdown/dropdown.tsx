@@ -30,7 +30,11 @@ export const Dropdown: FC<Props> = (props) => {
                 className={`${props.error && 'error'}`}
             >
                 {props.list.map((e) => {
-                    return <option key={e.value}>{e.value}</option>
+                    return (
+                        <option key={e.value}>
+                            {e.value.charAt(0).toUpperCase() + e.value.slice(1)}
+                        </option>
+                    )
                 })}
             </select>
             <span className='error-text'>{props.error && props.errorText}</span>

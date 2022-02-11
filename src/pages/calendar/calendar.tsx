@@ -144,7 +144,11 @@ export const Calendar: FC = () => {
         <Wrapper showMenu>
             <section className='calendar container'>
                 <ContainerWhite>
-                    <CalendarComponent punchIns={punchIns} daysOff={daysOff} />
+                    <CalendarComponent
+                        punchIns={punchIns}
+                        daysOff={daysOff}
+                        getDaysOff={getDaysOff}
+                    />
                 </ContainerWhite>
             </section>
         </Wrapper>

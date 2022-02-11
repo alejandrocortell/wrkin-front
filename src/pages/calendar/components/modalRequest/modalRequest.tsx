@@ -19,6 +19,8 @@ const apiManager = new Api()
 
 interface props {
     types: Array<DayOffType>
+    onClose: () => void
+    getDaysOff: () => void
 }
 
 export const ModalRequest: FC<props> = (props) => {
@@ -97,7 +99,10 @@ export const ModalRequest: FC<props> = (props) => {
 
     const debouncedMessage = useDebounce(message, 400)
     useEffect(() => {
-        if (message === '') return
+        // if (message === '') {
+        //     setMessageError(false)
+        //     return
+        // }
         setMessageError(false)
         const test = val.isString(message)
         if (test.error) {
@@ -112,7 +117,9 @@ export const ModalRequest: FC<props> = (props) => {
             !dateStartError &&
             !timeStartError &&
             !dateEndError &&
-            !timeEndError
+            !timeEndError &&
+            !messageError &&
+            message !== ''
         ) {
             setDisabled(false)
         }
@@ -121,27 +128,35 @@ export const ModalRequest: FC<props> = (props) => {
         dateEnd,
         timeStart,
         timeEnd,
+        message,
         dateStartError,
         timeStartError,
         dateEndError,
         timeEndError,
+        messageError,
     ])
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
         setLoader(true)
-        // const org = user.currentOrganization
-        // const start = new Date(`${dateStart} ${timeStart}`)
-        // const end = new Date(`${dateEnd} ${timeEnd}`)
+        const timeStartCalc = allDay ? '00:00' : timeStart
+        const timeEndCalc = allDay ? '23:59' : timeEnd
+        const org = user.currentOrganization
+        const start = new Date(`${dateStart} ${timeStartCalc}`)
+        const end = new Date(`${dateEnd} ${timeEndCalc}`)
+        const dayOffType = props.types.find((t) => {
+            return t.dayOffType === type.toLowerCase()
+        })
+        const idDayOffType = dayOffType ? dayOffType.id : 1
 
-        // apiManager
-        //     .createPunchIn(org, start, end)
-        //     .then((res) => {
-        //         props.closeModal()
-        //         props.getPunchIns()
-        //     })
-        //     .catch((err) => console.log(err))
-        //     .finally(() => setLoader(false))
+        apiManager
+            .createDayOff(org, start, end, idDayOffType, message)
+            .then((res) => {
+                props.onClose()
+                props.getDaysOff()
+            })
+            .catch((err) => console.log(err))
+            .finally(() => setLoader(false))
     }
 
     return (
@@ -149,17 +164,15 @@ export const ModalRequest: FC<props> = (props) => {
             className='form-new-punch-in modal-request'
             onSubmit={handleSubmit}
         >
-            <div className='all-day'>
+            <div className='line all-day'>
                 <Checkbox
                     onChange={() => setAllDay(!allDay)}
                     checked={allDay}
                     label={t('CALENDAR_ALL_DAY')}
                 />
-            </div>
-            <div className='line'>
                 <Dropdown
                     onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-                        setType(e.target.value)
+                        setType(e.target.value.toLowerCase)
                     }}
                     value={type}
                     label={'Type'}
@@ -180,7 +193,7 @@ export const ModalRequest: FC<props> = (props) => {
                     type={'date'}
                     error={dateStartError}
                     errorText={dateStartErrorText}
-                    max={dateUtilities.format(new Date(), 'YYYY-MM-DD')}
+                    min={dateUtilities.format(new Date(), 'YYYY-MM-DD')}
                 />
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
