@@ -123,6 +123,14 @@ export default class Api {
         })
     }
 
+    getDocumentsUser = async (id: number) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users/${id}/documents`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
     createDayOff = async (
         organization: number,
         start: Date,
@@ -155,6 +163,14 @@ export default class Api {
     getStatusRequestTypes = async () => {
         return new Promise((resolve) => {
             api.get(`${apiUrl}/status-requests`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    getDocumentsTypes = async () => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/documents-types`)
                 .then((res) => resolve(res))
                 .catch((err) => resolve(err))
         })

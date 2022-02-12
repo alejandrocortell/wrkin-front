@@ -24,13 +24,16 @@ export const MenuHeader: FC<Props> = (props) => {
         <nav className='nav-header'>
             <ul>
                 <li>
-                    <LinkButton label={t('NAV_PUNCHINS')} path={''} />
+                    <LinkButton label={t('NAV_PUNCHINS')} path={'/'} />
                 </li>
                 <li>
                     <LinkButton label={t('NAV_CALENDAR')} path={'/calendar'} />
                 </li>
                 <li>
-                    <LinkButton label={t('NAV_DOCUMENTS')} path={''} />
+                    <LinkButton
+                        label={t('NAV_DOCUMENTS')}
+                        path={'/documents'}
+                    />
                 </li>
                 <li
                     className={`container-user ${visibleSubMenu && 'visible'}`}
