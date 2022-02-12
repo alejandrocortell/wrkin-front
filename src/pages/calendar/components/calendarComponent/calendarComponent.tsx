@@ -93,7 +93,7 @@ export const CalendarComponent: FC<props> = (props) => {
                 views={['month']}
                 selectable={false}
                 eventPropGetter={(event) => ({
-                    className: 'category-' + event.type,
+                    className: 'category-' + event.status,
                 })}
                 components={{
                     toolbar: (props) => (

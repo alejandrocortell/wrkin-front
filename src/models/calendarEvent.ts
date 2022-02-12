@@ -4,4 +4,5 @@ export interface CalendarEvent {
     start: Date
     end: Date
     allDay?: boolean
+    status: number | undefined
 }

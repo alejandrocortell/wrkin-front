@@ -56,6 +56,7 @@ export const Calendar: FC = () => {
                             start: p.start,
                             end: p.end,
                             allDay: true,
+                            status: undefined,
                         }
                     })
 
@@ -80,6 +81,7 @@ export const Calendar: FC = () => {
                             start: d.start,
                             end: d.end,
                             allDay: true,
+                            status: d.statusRequestId,
                         }
                     })
                     setDaysOff(data)
