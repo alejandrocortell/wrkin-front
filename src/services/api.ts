@@ -151,4 +151,12 @@ export default class Api {
                 .catch((err) => resolve(err))
         })
     }
+
+    getStatusRequestTypes = async () => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/status-requests`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }

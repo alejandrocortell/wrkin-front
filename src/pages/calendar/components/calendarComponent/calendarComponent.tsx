@@ -11,6 +11,7 @@ import { HeaderModal } from '../../../../components/headerModal/headerModal'
 import { useTranslation } from 'react-i18next'
 import { ModalRequest } from '../modalRequest/modalRequest'
 import Api from '../../../../services/api'
+import { ModalEvent } from '../modalEvent/modalEvent'
 
 const apiManager = new Api()
 
@@ -23,8 +24,11 @@ interface props {
 export const CalendarComponent: FC<props> = (props) => {
     const { t } = useTranslation()
     const [events, setEvents] = useState<Array<CalendarEvent>>([])
-    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [modalRequestIsOpen, setModalRequestIsOpen] = useState(false)
+    const [modalEventIsOpen, setModalEventIsOpen] = useState(false)
     const [typesDayOff, setTypesDayOff] = useState([])
+    const [statusRequest, setStatusRequest] = useState([])
+    const [eventModal, setEventModal] = useState<CalendarEvent>()
 
     useEffect(() => {
         const insert = [...props.punchIns, ...props.daysOff]
@@ -37,6 +41,19 @@ export const CalendarComponent: FC<props> = (props) => {
             .then((res: any) => {
                 if (res.status === 200) {
                     setTypesDayOff(res.data)
+                } else {
+                    console.log(res)
+                }
+            })
+            .catch((err) => console.log(err))
+    }, [])
+
+    useEffect(() => {
+        apiManager
+            .getStatusRequestTypes()
+            .then((res: any) => {
+                if (res.status === 200) {
+                    setStatusRequest(res.data)
                 } else {
                     console.log(res)
                 }
@@ -59,18 +76,27 @@ export const CalendarComponent: FC<props> = (props) => {
     }
 
     const openModalRequest = () => {
-        setModalIsOpen(true)
+        setModalRequestIsOpen(true)
     }
 
     const closeModalRequest = () => {
-        setModalIsOpen(false)
+        setModalRequestIsOpen(false)
+    }
+
+    const openModalEvent = (event: CalendarEvent) => {
+        setEventModal(event)
+        setModalEventIsOpen(true)
+    }
+
+    const closeModalEvent = () => {
+        setModalEventIsOpen(false)
     }
 
     return (
         <>
             <Modal
                 ariaHideApp={false}
-                isOpen={modalIsOpen}
+                isOpen={modalRequestIsOpen}
                 onRequestClose={closeModalRequest}
             >
                 <HeaderModal
@@ -83,6 +109,22 @@ export const CalendarComponent: FC<props> = (props) => {
                     getDaysOff={props.getDaysOff}
                 />
             </Modal>
+            {eventModal && (
+                <Modal
+                    ariaHideApp={false}
+                    isOpen={modalEventIsOpen}
+                    onRequestClose={closeModalEvent}
+                >
+                    <HeaderModal
+                        title={eventModal.title}
+                        onClose={closeModalEvent}
+                    />
+                    <ModalEvent
+                        event={eventModal}
+                        statusRequest={statusRequest}
+                    />
+                </Modal>
+            )}
             <Calendar
                 localizer={localizer}
                 messages={messages}
@@ -91,7 +133,8 @@ export const CalendarComponent: FC<props> = (props) => {
                 startAccessor='start'
                 style={{ height: 500 }}
                 views={['month']}
-                selectable={false}
+                selectable={true}
+                onSelectEvent={(event) => openModalEvent(event)}
                 eventPropGetter={(event) => ({
                     className: 'category-' + event.status,
                 })}

@@ -39,6 +39,7 @@
     "COMMON_PREV": "Prev",
     "COMMON_NEXT": "Next",
     "COMMON_SELECT": "Select",
+    "COMMON_DAY": "Day",
 
     "HOME_RESUME_DAY": "Resume of your day",
     "HOME_TOTAL_DAY": "Total day",
@@ -61,5 +62,6 @@
     "CALENDAR_DO_REQUEST": "Do request",
     "CALENDAR_CREATE_REQUEST": "Create new request",
     "CALENDAR_SEND_REQUEST": "Send request",
-    "CALENDAR_ALL_DAY": "All day"
+    "CALENDAR_ALL_DAY": "All day",
+    "CALENDAR_STATUS_REQUEST": "Status request"
 }
