@@ -19,6 +19,8 @@
     "FORM_CONFIRM_DELETE": "Confirm delete",
     "FORM_SAVE": "Save",
     "FORM_MESSAGE": "Message",
+    "FORM_FILE_SELECTED": "File selected",
+    "FORM_NOT_FILE_SELECTED": "Not file selected",
 
     "ERROR_FORM": "An error has ocurred, please try again",
     "ERROR_STRING": "Invalid text",
@@ -63,5 +65,12 @@
     "CALENDAR_CREATE_REQUEST": "Create new request",
     "CALENDAR_SEND_REQUEST": "Send request",
     "CALENDAR_ALL_DAY": "All day",
-    "CALENDAR_STATUS_REQUEST": "Status request"
+    "CALENDAR_STATUS_REQUEST": "Status request",
+
+    "DOCUMENTS_TYPE_PAYSLIP": "Payslip",
+    "DOCUMENTS_TYPE_SICK_LEAVE": "Sick leave",
+    "DOCUMENTS_TYPE_IDENTIFYING": "Identifying",
+    "DOCUMENTS_TYPE_GENERIC": "Generic",
+    "DOCUMENTS_UPLOAD_DOCUMENT": "Upload document",
+    "DOCUMENTS_DROP_FILES": "Choose a file or drag it here"
 }

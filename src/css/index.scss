@@ -28,10 +28,15 @@
 @import '../pages/calendar/components/modalRequest/modalRequest';
 @import '../pages/calendar/components/modalEvent/modalEvent';
 
+@import '../pages/documents/documents.scss';
+@import '../pages/documents/components/selector/selector';
+@import '../pages/documents/components/uploadDocument/uploadDocument';
+
 @import '../components/wrapper/wrapper';
 @import '../components/header/header';
 @import '../components/logo/logo';
 @import '../components/input/input';
+@import '../components/inputFile/inputFile';
 @import '../components/checkbox/checkbox';
 @import '../components/button/button';
 @import '../components/linkButton/linkButton';
