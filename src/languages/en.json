@@ -72,5 +72,7 @@
     "DOCUMENTS_TYPE_IDENTIFYING": "Identifying",
     "DOCUMENTS_TYPE_GENERIC": "Generic",
     "DOCUMENTS_UPLOAD_DOCUMENT": "Upload document",
-    "DOCUMENTS_DROP_FILES": "Choose a file or drag it here"
+    "DOCUMENTS_DROP_FILES": "Choose a file or drag it here",
+    "DOCUMENTS_UPLOAD_DONE": "Document uploaded",
+    "DOCUMENTS_UPLOAD_FAIL": "The upload has failed, please try again"
 }

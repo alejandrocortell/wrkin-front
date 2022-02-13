@@ -131,6 +131,24 @@ export default class Api {
         })
     }
 
+    uploadDocument = async (
+        documentType: number,
+        user: number,
+        organization: number,
+        file: File
+    ) => {
+        let bodyFormData = new FormData()
+        bodyFormData.append('organization', organization.toString())
+        bodyFormData.append('user', user.toString())
+        bodyFormData.append('documentType', documentType.toString())
+        bodyFormData.append('file', file)
+        return new Promise((resolve) => {
+            api.post(`${apiUrl}/documents`, bodyFormData)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
     createDayOff = async (
         organization: number,
         start: Date,

@@ -4,6 +4,8 @@ import { Wrapper } from '../../components/wrapper/wrapper'
 import { DocumentType } from './../../models/documentType'
 import Api from '../../services/api'
 import { useAppSelector } from '../../context/hooks'
+import { SelectorDocuments } from './components/selector/selector'
+import { UploadDocument } from './components/uploadDocument/uploadDocument'
 
 const apiManager = new Api()
 
@@ -13,6 +15,7 @@ export const Documents: FC<props> = (props) => {
     const [documentTypes, setDocumentTypes] = useState<Array<DocumentType>>([])
     const [documentsUser, setDocumentsUser] = useState<Array<DocumentType>>([])
     const { user } = useAppSelector((state) => state.user)
+    const [view, setView] = useState(1)
 
     useEffect(() => {
         apiManager
@@ -28,6 +31,10 @@ export const Documents: FC<props> = (props) => {
     }, [])
 
     useEffect(() => {
+        getDocuments()
+    }, [])
+
+    const getDocuments = () => {
         apiManager
             .getDocumentsUser(user.id)
             .then((res: any) => {
@@ -38,17 +45,27 @@ export const Documents: FC<props> = (props) => {
                 }
             })
             .catch((err) => console.log(err))
-    }, [])
+    }
 
     return (
         <Wrapper showMenu>
             <section className='documents container'>
                 <ContainerWhite>
-                    <div>
-                        {documentTypes.map((doc) => {
-                            return <div>{doc.name}</div>
-                        })}
-                    </div>
+                    <SelectorDocuments
+                        types={documentTypes}
+                        selected={view}
+                        onSelect={(newView) => setView(newView)}
+                    />
+                </ContainerWhite>
+                <ContainerWhite>
+                    <>
+                        {view === 5 && (
+                            <UploadDocument
+                                types={documentTypes}
+                                getDocuments={getDocuments}
+                            />
+                        )}
+                    </>
                 </ContainerWhite>
             </section>
         </Wrapper>
