@@ -6,6 +6,8 @@ import Api from '../../services/api'
 import { useAppSelector } from '../../context/hooks'
 import { SelectorDocuments } from './components/selector/selector'
 import { UploadDocument } from './components/uploadDocument/uploadDocument'
+import { DocumentUser } from '../../models/documentUser'
+import { DocumentsList } from './components/documentsList/documentsList'
 
 const apiManager = new Api()
 
@@ -13,7 +15,7 @@ interface props {}
 
 export const Documents: FC<props> = (props) => {
     const [documentTypes, setDocumentTypes] = useState<Array<DocumentType>>([])
-    const [documentsUser, setDocumentsUser] = useState<Array<DocumentType>>([])
+    const [documentsUser, setDocumentsUser] = useState<Array<DocumentUser>>([])
     const { user } = useAppSelector((state) => state.user)
     const [view, setView] = useState(1)
 
@@ -39,12 +41,22 @@ export const Documents: FC<props> = (props) => {
             .getDocumentsUser(user.id)
             .then((res: any) => {
                 if (res.status === 200) {
-                    setDocumentsUser(res.data)
+                    setDocumentsUser(res.data.documents)
                 } else {
                     console.log(res)
                 }
             })
             .catch((err) => console.log(err))
+    }
+
+    const filterDocuments = (type: number) => {
+        const docsByOrg = documentsUser.filter(
+            (doc) => doc.organizationId === user.currentOrganization
+        )
+        const docsByType = docsByOrg.filter(
+            (doc) => doc.documentTypeId === type
+        )
+        return docsByType
     }
 
     return (
@@ -58,14 +70,14 @@ export const Documents: FC<props> = (props) => {
                     />
                 </ContainerWhite>
                 <ContainerWhite>
-                    <>
-                        {view === 5 && (
-                            <UploadDocument
-                                types={documentTypes}
-                                getDocuments={getDocuments}
-                            />
-                        )}
-                    </>
+                    {view === 5 ? (
+                        <UploadDocument
+                            types={documentTypes}
+                            getDocuments={getDocuments}
+                        />
+                    ) : (
+                        <DocumentsList documents={filterDocuments(view)} />
+                    )}
                 </ContainerWhite>
             </section>
         </Wrapper>
