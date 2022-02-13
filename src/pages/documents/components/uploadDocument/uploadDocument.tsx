@@ -44,7 +44,7 @@ export const UploadDocument: FC<props> = (props) => {
         const userId = user.id
         const org = user.currentOrganization
         const documentType = props.types.find((t) => {
-            return t.name === type
+            return t.name === type.toLowerCase()
         })
         const idDocumentType = documentType ? documentType.id : 1
 
