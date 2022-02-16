@@ -1,2 +1,36 @@
 .document {
+    padding: 5px 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    border: 2px solid $blue;
+    border-radius: 4px;
+    transition: 0.2s;
+
+    &:hover {
+        box-shadow: 0px 3px 6px $box-shadow-hight;
+        transition: 0.2s;
+    }
+
+    .container-info {
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        p {
+            @include semi-bold;
+            margin-bottom: 3px;
+        }
+
+        span {
+            font-size: 0.8rem;
+        }
+    }
+
+    .container-button {
+        padding: 5px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }

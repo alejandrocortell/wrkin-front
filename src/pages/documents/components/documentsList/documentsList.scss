@@ -1,2 +1,14 @@
 .documents-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    gap: 10px;
+
+    @include lg {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include xl {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }

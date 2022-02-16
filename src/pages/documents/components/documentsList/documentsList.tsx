@@ -1,7 +1,6 @@
 import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
-import { LinkButton } from '../../../../components/linkButton/linkButton'
 import { DocumentUser } from '../../../../models/documentUser'
+import { Document } from '../document/document'
 
 interface props {
     documents: Array<DocumentUser>
@@ -9,9 +8,9 @@ interface props {
 
 export const DocumentsList: FC<props> = (props) => {
     return (
-        <div className='selector-documents'>
+        <div className='documents-list'>
             {props.documents.map((doc) => {
-                return <div className={''}>{doc.name}</div>
+                return <Document document={doc} key={doc.id} />
             })}
         </div>
     )
