@@ -7,21 +7,18 @@ import { AxiosResponse } from 'axios'
 import { setUser } from '../../context/userSlice'
 import { Wrapper } from '../../components/wrapper/wrapper'
 import { ContainerWhite } from '../../components/containerWhite/containerWhite'
+import { FormMyAccount } from './components/formMyAccount/formMyAccount'
 
 const apiManager = new Api()
 
 interface props {}
 
 export const MyAccount: FC<props> = (props) => {
-    const auth = useAppSelector((state) => state.auth)
-    const { user } = useAppSelector((state) => state.user)
-    const dispatch = useAppDispatch()
-
     return (
         <Wrapper showMenu>
             <section className='my-account container'>
                 <ContainerWhite>
-                    <>my account</>
+                    <FormMyAccount />
                 </ContainerWhite>
             </section>
         </Wrapper>

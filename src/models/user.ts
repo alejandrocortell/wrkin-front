@@ -1,15 +1,15 @@
 export interface User {
     id: number
-    user: String
-    firstName: String
-    lastName: String
-    birthday: String
-    address: String
-    zipcode: String
-    city: String
+    user: string
+    firstName: string
+    lastName: string
+    birthday: string
+    address: string
+    zipcode: string
+    city: string
     hoursToWork: number
-    createdAt: String
-    updatedAt: String
+    createdAt: string
+    updatedAt: string
     roleId: number
     managerId: number
     organizations: Array<any>

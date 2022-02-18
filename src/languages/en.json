@@ -21,6 +21,15 @@
     "FORM_MESSAGE": "Message",
     "FORM_FILE_SELECTED": "File selected",
     "FORM_NOT_FILE_SELECTED": "Not file selected",
+    "FORM_FIRST_NAME": "First name",
+    "FORM_LAST_NAME": "Last name",
+    "FORM_BIRTHDAY": "User",
+    "FORM_ADDRESS": "Address",
+    "FORM_ZIPCODE": "Zipcode",
+    "FORM_CITY": "City",
+    "FORM_ROLE": "Role",
+    "FORM_MANAGER": "Manager",
+    "FORM_ORGANIZATION": "Organization",
 
     "ERROR_FORM": "An error has ocurred, please try again",
     "ERROR_STRING": "Invalid text",
@@ -74,5 +83,7 @@
     "DOCUMENTS_UPLOAD_DOCUMENT": "Upload document",
     "DOCUMENTS_DROP_FILES": "Choose a file or drag it here",
     "DOCUMENTS_UPLOAD_DONE": "Document uploaded",
-    "DOCUMENTS_UPLOAD_FAIL": "The upload has failed, please try again"
+    "DOCUMENTS_UPLOAD_FAIL": "The upload has failed, please try again",
+
+    "MY_ACCOUNT_": ""
 }

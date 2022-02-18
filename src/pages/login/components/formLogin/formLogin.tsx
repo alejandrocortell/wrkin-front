@@ -25,7 +25,7 @@ export const FormLogin: FC = () => {
 
     const [pass, setPass] = useState('123456aA?')
     const [passError, setPassError] = useState(false)
-    const [passErrorText, setPassErrorText] = useState('Error text')
+    const [passErrorText, setPassErrorText] = useState(t('ERROR_STRING'))
 
     const [remember, setRemember] = useState(true)
     const [buttonLoader, setButtonLoader] = useState(false)
