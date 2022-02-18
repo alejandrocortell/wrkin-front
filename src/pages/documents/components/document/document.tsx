@@ -21,10 +21,13 @@ export const Document: FC<props> = (props) => {
                     )}
                 </span>
             </div>
-
-            <div className='container-button'>
+            <a
+                className='container-button'
+                href={props.document.path}
+                download={props.document.name}
+            >
                 <img src={iconDownloadFile} />
-            </div>
+            </a>
         </div>
     )
 }
