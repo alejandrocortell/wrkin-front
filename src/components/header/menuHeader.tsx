@@ -55,7 +55,7 @@ export const MenuHeader: FC<Props> = (props) => {
                             <li>
                                 <LinkButton
                                     label={t('NAV_MY_ACCOUNT')}
-                                    path={''}
+                                    path={'/my-account'}
                                 />
                             </li>
                             <li>

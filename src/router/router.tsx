@@ -11,6 +11,7 @@ import { Login } from '../pages/login/login'
 import { Calendar } from '../pages/calendar/calendar'
 import { SelectOrganization } from '../pages/selectOrganization/selectOrganization'
 import { Documents } from '../pages/documents/documents'
+import { MyAccount } from '../pages/myAccount/myAccount'
 
 const cookie = new Cookie()
 
@@ -34,6 +35,7 @@ export const App: FC = () => {
                     element={<SelectOrganization />}
                 />
                 <Route path='/documents' element={<Documents />} />
+                <Route path='/my-account' element={<MyAccount />} />
             </Route>
             <Route path='/loading' element={<Load />} />
             <Route path='/login' element={<Login />} />
