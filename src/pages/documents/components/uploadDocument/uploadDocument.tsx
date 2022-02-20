@@ -42,7 +42,7 @@ export const UploadDocument: FC<props> = (props) => {
         if (selectedFile === undefined) return
         setLoader(true)
         const userId = user.id
-        const org = user.currentOrganization
+        const org = user.OrganizationId
         const documentType = props.types.find((t) => {
             return t.name === type.toLowerCase()
         })

@@ -71,6 +71,3 @@ export const MenuHeader: FC<Props> = (props) => {
         </nav>
     )
 }
-function user(user: any) {
-    throw new Error('Function not implemented.')
-}

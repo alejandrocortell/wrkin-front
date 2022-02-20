@@ -13,6 +13,7 @@ export interface User {
     roleId: number
     managerId: number
     OrganizationId: number
+    avatar: string | null
 }
 
 export const initialUser: User = {
@@ -30,4 +31,5 @@ export const initialUser: User = {
     roleId: 0,
     managerId: 0,
     OrganizationId: 0,
+    avatar: null,
 }

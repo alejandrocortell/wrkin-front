@@ -8,6 +8,7 @@ import { setUser } from '../../context/userSlice'
 import { Wrapper } from '../../components/wrapper/wrapper'
 import { ContainerWhite } from '../../components/containerWhite/containerWhite'
 import { FormMyAccount } from './components/formMyAccount/formMyAccount'
+import { FormAvatar } from './components/formAvatar/formAvatar'
 
 const apiManager = new Api()
 
@@ -18,7 +19,10 @@ export const MyAccount: FC<props> = (props) => {
         <Wrapper showMenu>
             <section className='my-account container'>
                 <ContainerWhite>
-                    <FormMyAccount />
+                    <div className='container-forms'>
+                        <FormAvatar />
+                        <FormMyAccount />
+                    </div>
                 </ContainerWhite>
             </section>
         </Wrapper>

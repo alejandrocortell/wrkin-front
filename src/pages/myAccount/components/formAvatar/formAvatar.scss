@@ -1,0 +1,21 @@
+.form-avatar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .avatar {
+        width: inherit;
+        border-radius: 10px;
+        box-shadow: 0px 3px 6px $box-shadow;
+        margin-bottom: 10px;
+    }
+
+    .link-button {
+        font-size: 1rem;
+    }
+
+    .file-name {
+        display: none;
+    }
+}

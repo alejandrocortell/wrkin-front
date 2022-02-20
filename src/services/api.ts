@@ -193,4 +193,23 @@ export default class Api {
                 .catch((err) => resolve(err))
         })
     }
+
+    uploadAvatar = async (id: number, avatar: File) => {
+        let bodyFormData = new FormData()
+        bodyFormData.append('avatar', avatar)
+
+        return new Promise((resolve) => {
+            api.post(`${apiUrl}/users/${id}/upload-avatar`, bodyFormData)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    getAvatar = async (avatar: string) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users/avatar/${avatar}`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }
