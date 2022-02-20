@@ -5,9 +5,14 @@
     flex-direction: column;
 
     .avatar {
-        width: inherit;
+        width: 270px;
         border-radius: 10px;
         box-shadow: 0px 3px 6px $box-shadow;
+        margin-bottom: 10px;
+    }
+
+    .non-avatar {
+        width: 270px;
         margin-bottom: 10px;
     }
 
