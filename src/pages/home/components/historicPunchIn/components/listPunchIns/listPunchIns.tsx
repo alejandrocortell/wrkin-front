@@ -16,9 +16,7 @@ export const ListPunchIns: FC<props> = (props) => {
     const { organization } = useAppSelector((state) => state.organization)
     const { settings } = useAppSelector((state) => state.organization)
 
-    const targetDay = user.organizations.find(
-        (org) => org.organizationId === organization.id
-    ).hoursToWork
+    const targetDay = user.hoursToWork
 
     return (
         <div className='list-historic'>

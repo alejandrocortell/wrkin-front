@@ -6,6 +6,5 @@ export interface DocumentUser {
     createdAt: Date
     updatedAt: Date
     documentTypeId: number
-    organizationId: number
     userId: number
 }

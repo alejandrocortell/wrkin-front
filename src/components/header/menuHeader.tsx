@@ -60,12 +60,6 @@ export const MenuHeader: FC<Props> = (props) => {
                             </li>
                             <li>
                                 <LinkButton
-                                    label={t('NAV_SELECT_ORGANIZATION')}
-                                    path={'/select-organization'}
-                                />
-                            </li>
-                            <li>
-                                <LinkButton
                                     label={t('NAV_LOGOUT')}
                                     onClick={handleLogout}
                                 />

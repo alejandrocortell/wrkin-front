@@ -46,45 +46,46 @@ export const SelectOrganization: FC = () => {
     }
 
     return (
-        <Wrapper showMenu={false}>
-            <div className='select-organization container'>
-                <ContainerWhite>
-                    <>
-                        <div className='container-logo'>
-                            <img src={Logo} alt='WRKIN' />
-                        </div>
-                        <div className='choose-text'>
-                            {t('SELECT_ORGANIZATION_SELECT')}
-                        </div>
-                        <div className='container-buttons'>
-                            {user.organizations.map((org) => {
-                                return (
-                                    <Button
-                                        key={org.organizationId}
-                                        onClick={() =>
-                                            handleChangeOrg(org.organizationId)
-                                        }
-                                        label={org.organizationName}
-                                        style={
-                                            user.currentOrganization ===
-                                            org.organizationId
-                                                ? 'primary'
-                                                : 'secondary'
-                                        }
-                                    />
-                                )
-                            })}
-                            {user.currentOrganization !== 0 && loader && (
-                                <LinkButton
-                                    label={t('SELECT_ORGANIZATION_GO_HOME')}
-                                    path={'/'}
-                                />
-                            )}
-                        </div>
-                    </>
-                </ContainerWhite>
-            </div>
-        </Wrapper>
+        <></>
+        // <Wrapper showMenu={false}>
+        //     <div className='select-organization container'>
+        //         <ContainerWhite>
+        //             <>
+        //                 <div className='container-logo'>
+        //                     <img src={Logo} alt='WRKIN' />
+        //                 </div>
+        //                 <div className='choose-text'>
+        //                     {t('SELECT_ORGANIZATION_SELECT')}
+        //                 </div>
+        //                 <div className='container-buttons'>
+        //                     {user.organizations.map((org) => {
+        //                         return (
+        //                             <Button
+        //                                 key={org.organizationId}
+        //                                 onClick={() =>
+        //                                     handleChangeOrg(org.organizationId)
+        //                                 }
+        //                                 label={org.organizationName}
+        //                                 style={
+        //                                     user.currentOrganization ===
+        //                                     org.organizationId
+        //                                         ? 'primary'
+        //                                         : 'secondary'
+        //                                 }
+        //                             />
+        //                         )
+        //                     })}
+        //                     {user.currentOrganization !== 0 && loader && (
+        //                         <LinkButton
+        //                             label={t('SELECT_ORGANIZATION_GO_HOME')}
+        //                             path={'/'}
+        //                         />
+        //                     )}
+        //                 </div>
+        //             </>
+        //         </ContainerWhite>
+        //     </div>
+        // </Wrapper>
     )
 }
 function getSettings(settings: any): any {

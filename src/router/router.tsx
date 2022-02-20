@@ -30,10 +30,6 @@ export const App: FC = () => {
             <Route element={<RequireAuth />}>
                 <Route path='/' element={<Home />} />
                 <Route path='/calendar' element={<Calendar />} />
-                <Route
-                    path='/select-organization'
-                    element={<SelectOrganization />}
-                />
                 <Route path='/documents' element={<Documents />} />
                 <Route path='/my-account' element={<MyAccount />} />
             </Route>

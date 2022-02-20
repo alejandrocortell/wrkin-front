@@ -50,10 +50,7 @@ export const Documents: FC<props> = (props) => {
     }
 
     const filterDocuments = (type: number) => {
-        const docsByOrg = documentsUser.filter(
-            (doc) => doc.organizationId === user.currentOrganization
-        )
-        const docsByType = docsByOrg.filter(
+        const docsByType = documentsUser.filter(
             (doc) => doc.documentTypeId === type
         )
         return docsByType

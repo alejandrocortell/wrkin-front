@@ -8,5 +8,4 @@ export interface DayOff {
     dayOffTypeId: number
     userId: number
     statusRequestId: number
-    organizationId: number
 }
