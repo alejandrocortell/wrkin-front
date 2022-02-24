@@ -9,9 +9,9 @@ import { Load } from '../pages/load/load'
 import { Home } from '../pages/home/home'
 import { Login } from '../pages/login/login'
 import { Calendar } from '../pages/calendar/calendar'
-import { SelectOrganization } from '../pages/selectOrganization/selectOrganization'
 import { Documents } from '../pages/documents/documents'
 import { MyAccount } from '../pages/myAccount/myAccount'
+import { ManageUsers } from '../pages/manageUsers/manageUsers'
 
 const cookie = new Cookie()
 
@@ -27,11 +27,14 @@ export const App: FC = () => {
 
     return (
         <Routes>
-            <Route element={<RequireAuth />}>
+            <Route element={<RequireAuth roles={[5, 4, 3, 2, 1]} />}>
                 <Route path='/' element={<Home />} />
                 <Route path='/calendar' element={<Calendar />} />
                 <Route path='/documents' element={<Documents />} />
                 <Route path='/my-account' element={<MyAccount />} />
+            </Route>
+            <Route element={<RequireAuth roles={[4]} />}>
+                <Route path='/manage-users' element={<ManageUsers />} />
             </Route>
             <Route path='/loading' element={<Load />} />
             <Route path='/login' element={<Login />} />

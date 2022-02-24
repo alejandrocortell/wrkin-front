@@ -12,7 +12,7 @@ interface Props {}
 export const MenuHeader: FC<Props> = (props) => {
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
-    const user = useAppSelector((state) => state.user)
+    const { user } = useAppSelector((state) => state.user)
     const [visibleSubMenu, setVisibleSubMenu] = useState(false)
 
     const handleLogout = () => {
@@ -35,6 +35,14 @@ export const MenuHeader: FC<Props> = (props) => {
                         path={'/documents'}
                     />
                 </li>
+                {user.roleId === 4 && (
+                    <li>
+                        <LinkButton
+                            label={t('NAV_MANAGE_USERS')}
+                            path={'/manage-users'}
+                        />
+                    </li>
+                )}
                 <li
                     className={`container-user ${visibleSubMenu && 'visible'}`}
                     onMouseEnter={() => setVisibleSubMenu(true)}
@@ -43,7 +51,7 @@ export const MenuHeader: FC<Props> = (props) => {
                 >
                     <div className='dropdown-user'>
                         <img src={circle} alt='User account' />
-                        {user.user.user}
+                        {user.user}
                         <img
                             src={arrow}
                             alt='expand menu'
