@@ -105,12 +105,11 @@ export const FormNewPunchIn: FC<props> = (props) => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
         setLoader(true)
-        const org = user.currentOrganization
         const start = new Date(`${dateStart} ${timeStart}`)
         const end = new Date(`${dateEnd} ${timeEnd}`)
 
         apiManager
-            .createPunchIn(org, start, end)
+            .createPunchIn(start, end)
             .then((res) => {
                 props.closeModal()
                 props.getPunchIns()

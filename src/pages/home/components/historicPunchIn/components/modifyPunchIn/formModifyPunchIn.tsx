@@ -158,13 +158,12 @@ export const FormModifyPunchIn: FC<props> = (props) => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
         setLoader(true)
-        const org = user.currentOrganization
         const id = props.punchIn.id
         const start = new Date(`${dateStart} ${timeStart}`)
         const end = new Date(`${dateEnd} ${timeEnd}`)
 
         apiManager
-            .updatePunchIn(org, id, start, end)
+            .updatePunchIn(id, start, end)
             .then((res) => {
                 props.closeModal()
                 props.getPunchIns()
