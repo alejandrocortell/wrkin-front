@@ -9,10 +9,22 @@
     }
 
     .error-form {
-        position: absolute;
         margin-top: 10px;
+        margin-bottom: 10px;
         @include medium;
         color: $red;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .form-updated {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        @include medium;
+        color: $green;
+        font-size: 0.9rem;
+    }
+
+    &.form-pass {
+        margin-top: 40px;
     }
 }

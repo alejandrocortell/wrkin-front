@@ -1,16 +1,16 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../components/button/button'
-import { Checkbox } from '../../../../components/checkbox/checkbox'
 import { InputField } from '../../../../components/input/input'
-import { LinkButton } from '../../../../components/linkButton/linkButton'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import Validator from '../../../../utils/validators'
 import Api from '../../../../services/api'
 import { useAppDispatch, useAppSelector } from '../../../../context/hooks'
-import { login } from '../../../../context/authSlice'
 import { useNavigate } from 'react-router-dom'
+import DateUtilities from '../../../../utils/date'
+import { setUser } from '../../../../context/userSlice'
 
+const dateUtilities = new DateUtilities()
 const val = new Validator()
 const apiManager = new Api()
 
@@ -18,7 +18,9 @@ export const FormMyAccount: FC = () => {
     const { t } = useTranslation()
     const { user } = useAppSelector((state) => state.user)
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
+
+    const [disableAccount, setDisableAccount] = useState(true)
+    const [disablePass, setDisablePass] = useState(true)
 
     const [userName, setUserName] = useState(user.user)
     const [userError, setUserError] = useState(false)
@@ -52,9 +54,26 @@ export const FormMyAccount: FC = () => {
     const [passError, setPassError] = useState(false)
     const [passErrorText, setPassErrorText] = useState('')
 
-    const [buttonLoader, setButtonLoader] = useState(false)
-    const [errorForm, setErrorForm] = useState(false)
-    const [textErrorForm, setTextErrorForm] = useState('')
+    const [passConfirm, setPassConfirm] = useState('')
+    const [passConfirmError, setPassConfirmError] = useState(false)
+    const [passConfirmErrorText, setPassConfirmErrorText] = useState('')
+
+    const [buttonLoaderAccount, setButtonLoaderAccount] = useState(false)
+    const [buttonLoaderPass, setButtonLoaderPass] = useState(false)
+
+    const [accountUpdated, setAccountUpdated] = useState(false)
+    const [passwordUpdated, setPasswordUpdated] = useState(false)
+    const [errorAccount, setErrorAccount] = useState(false)
+    const [errorPassword, setErrorPassword] = useState(false)
+
+    useEffect(() => {
+        setFirstName(user.firstName)
+        setLastName(user.lastName)
+        setBirthday(user.birthday)
+        setAddress(user.address)
+        setZipcode(user.zipcode)
+        setCity(user.city)
+    }, [user])
 
     const debouncedUser = useDebounce(userName, 400)
     useEffect(() => {
@@ -128,151 +147,262 @@ export const FormMyAccount: FC = () => {
         setPassErrorText(test.errorText)
     }, [debouncedPass])
 
-    const handleSubmit = (e: any) => {
+    const debouncedPassConfirm = useDebounce(passConfirm, 400)
+    useEffect(() => {
+        setPassConfirmError(false)
+        if (passConfirm === '') return
+        if (pass !== passConfirm) {
+            setPassConfirmError(true)
+            setPassConfirmErrorText(t('ERROR_PASSWORD_MATCH'))
+        }
+    }, [debouncedPassConfirm])
+
+    useEffect(() => {
+        if (
+            userName === user.user &&
+            firstName === user.firstName &&
+            lastName === user.lastName &&
+            birthday === user.birthday &&
+            address === user.address &&
+            zipcode === user.zipcode &&
+            city === user.city
+        ) {
+            setDisableAccount(true)
+            return
+        }
+
+        if (
+            userName !== '' &&
+            !userError &&
+            firstName !== '' &&
+            !firstNameError &&
+            lastName !== '' &&
+            !lastNameError &&
+            birthday !== '' &&
+            !birthdayError &&
+            address !== '' &&
+            !addressError &&
+            zipcode !== '' &&
+            !zipcodeError &&
+            city !== '' &&
+            !cityError
+        ) {
+            setDisableAccount(false)
+        } else {
+            setDisableAccount(true)
+        }
+    }, [
+        userName,
+        userError,
+        firstName,
+        firstNameError,
+        lastName,
+        lastNameError,
+        birthday,
+        birthdayError,
+        address,
+        addressError,
+        zipcode,
+        zipcodeError,
+        city,
+        cityError,
+    ])
+
+    useEffect(() => {
+        if (
+            pass !== '' &&
+            !passError &&
+            passConfirm !== '' &&
+            !passConfirmError
+        ) {
+            setDisablePass(false)
+        } else {
+            setDisablePass(true)
+        }
+    }, [pass, passError, passConfirm, passConfirmError])
+
+    const handleUpdateAccount = (e: any) => {
         e.preventDefault()
-        setUserError(false)
-        // const testUser = val.isString(user)
-        // if (testUser.error) {
-        //     setUserError(testUser.error)
-        //     setUserErrorText(testUser.errorText)
-        //     return
-        // }
+        setErrorAccount(false)
+        setButtonLoaderAccount(true)
+        setAccountUpdated(false)
 
-        // setPassError(false)
-        // const testPass = val.isPassword(pass)
-        // if (testPass.error) {
-        //     setPassError(testPass.error)
-        //     setPassErrorText(testPass.errorText)
-        //     return
-        // }
-
-        // doLogin()
-        // navigate('/')
+        apiManager
+            .updateUser(
+                user.id,
+                userName,
+                firstName,
+                lastName,
+                new Date(birthday),
+                address,
+                zipcode,
+                city
+            )
+            .then((res: any) => {
+                if (res.status !== 201) {
+                    setErrorAccount(true)
+                    return
+                }
+                setDisableAccount(true)
+                setAccountUpdated(true)
+                dispatch(setUser(res.data.user))
+            })
+            .catch((err) => setErrorAccount(true))
+            .finally(() => setButtonLoaderAccount(false))
     }
 
-    const doLogin = async () => {
-        setErrorForm(false)
-        setButtonLoader(true)
+    const handleUpdatePass = (e: any) => {
+        e.preventDefault()
+        setButtonLoaderPass(true)
+        setErrorPassword(false)
+        setPasswordUpdated(false)
 
-        // await apiManager
-        //     .login(user, pass)
-        //     .then((res: any) => {
-        //         setButtonLoader(false)
-        //         if (res.status !== 200) {
-        //             setErrorForm(true)
-        //             setTextErrorForm(t('ERROR_FORM'))
-        //             return
-        //         }
-
-        //         if (res.data.status === 204) {
-        //             setErrorForm(true)
-        //             setTextErrorForm(t('ERROR_USER_NOT_FOUND'))
-        //             return
-        //         }
-
-        //         dispatch(login(res.data.token))
-        //     })
-        //     .catch((err) => console.log(err))
+        apiManager
+            .updatePass(user.id, pass)
+            .then((res: any) => {
+                if (res.status !== 201) {
+                    setErrorPassword(true)
+                    return
+                }
+                setPasswordUpdated(true)
+                setPass('')
+                setPassConfirm('')
+            })
+            .catch((err) => setErrorPassword(true))
+            .finally(() => setButtonLoaderPass(false))
     }
 
     return (
-        <form className='form-my-account' onSubmit={handleSubmit}>
-            <InputField
-                value={userName}
-                label={t('FORM_USER')}
-                type='text'
-                error={userError}
-                errorText={userErrorText}
-                required
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setUserName(e.target.value)
-                }
-            />
-            <InputField
-                value={firstName}
-                label={t('FORM_FIRST_NAME')}
-                type='text'
-                error={firstNameError}
-                errorText={firstNameErrorText}
-                required
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setFirstName(e.target.value)
-                }
-            />
-            <InputField
-                value={lastName}
-                label={t('FORM_LAST_NAME')}
-                type='text'
-                error={lastNameError}
-                errorText={lastNameErrorText}
-                required
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setLastName(e.target.value)
-                }
-            />
-            <InputField
-                value={birthday}
-                label={t('FORM_BIRTHDAY')}
-                type='text'
-                error={birthdayError}
-                errorText={birthdayErrorText}
-                required
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setBirthday(e.target.value)
-                }
-            />
-            <InputField
-                value={address}
-                label={t('FORM_ADDRESS')}
-                type='text'
-                error={addressError}
-                errorText={addressErrorText}
-                required
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setAddress(e.target.value)
-                }
-            />
-            <InputField
-                value={zipcode}
-                label={t('FORM_ZIPCODE')}
-                type='text'
-                error={zipcodeError}
-                errorText={zipcodeErrorText}
-                required
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setZipcode(e.target.value)
-                }
-            />
-            <InputField
-                value={city}
-                label={t('FORM_CITY')}
-                type='text'
-                error={cityError}
-                errorText={cityErrorText}
-                required
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setCity(e.target.value)
-                }
-            />
-            <InputField
-                value={pass}
-                label={t('FORM_PASSWORD')}
-                type='password'
-                error={passError}
-                errorText={passErrorText}
-                required
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setPass(e.target.value)
-                }
-            />
-
-            <Button
-                onClick={handleSubmit}
-                label={t('FORM_LOGIN')}
-                style={'primary'}
-                loading={buttonLoader}
-            />
-            {errorForm && <div className='error-form'>{textErrorForm}</div>}
-        </form>
+        <div>
+            <form className='form-my-account' onSubmit={handleUpdateAccount}>
+                <InputField
+                    value={userName}
+                    label={t('FORM_USER')}
+                    type='text'
+                    error={userError}
+                    errorText={userErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setUserName(e.target.value)
+                    }
+                    disabled
+                />
+                <InputField
+                    value={firstName}
+                    label={t('FORM_FIRST_NAME')}
+                    type='text'
+                    error={firstNameError}
+                    errorText={firstNameErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setFirstName(e.target.value)
+                    }
+                />
+                <InputField
+                    value={lastName}
+                    label={t('FORM_LAST_NAME')}
+                    type='text'
+                    error={lastNameError}
+                    errorText={lastNameErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setLastName(e.target.value)
+                    }
+                />
+                <InputField
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setBirthday(e.target.value)
+                    }
+                    value={dateUtilities.format(
+                        new Date(birthday),
+                        'YYYY-MM-DD'
+                    )}
+                    label={t('FORM_BIRTHDAY')}
+                    type={'date'}
+                    error={birthdayError}
+                    errorText={birthdayErrorText}
+                />
+                <InputField
+                    value={address}
+                    label={t('FORM_ADDRESS')}
+                    type='text'
+                    error={addressError}
+                    errorText={addressErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setAddress(e.target.value)
+                    }
+                />
+                <InputField
+                    value={zipcode}
+                    label={t('FORM_ZIPCODE')}
+                    type='text'
+                    error={zipcodeError}
+                    errorText={zipcodeErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setZipcode(e.target.value)
+                    }
+                />
+                <InputField
+                    value={city}
+                    label={t('FORM_CITY')}
+                    type='text'
+                    error={cityError}
+                    errorText={cityErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setCity(e.target.value)
+                    }
+                />
+                {accountUpdated && (
+                    <div className='form-updated'>
+                        {t('FORM_ACCOUNT_UPDATED')}
+                    </div>
+                )}
+                {errorAccount && (
+                    <div className='error-form'>{t('ERROR_FORM')}</div>
+                )}
+                <Button
+                    onClick={handleUpdateAccount}
+                    label={t('FORM_UPDATE_ACCOUNT')}
+                    style={'primary'}
+                    loading={buttonLoaderAccount}
+                    disabled={disableAccount}
+                />
+            </form>
+            <form
+                className='form-my-account form-pass'
+                onSubmit={handleUpdatePass}
+            >
+                <InputField
+                    value={pass}
+                    label={t('FORM_PASSWORD')}
+                    type='password'
+                    error={passError}
+                    errorText={passErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setPass(e.target.value)
+                    }
+                />
+                <InputField
+                    value={passConfirm}
+                    label={t('FORM_CONFIRM_PASSWORD')}
+                    type='password'
+                    error={passConfirmError}
+                    errorText={passConfirmErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setPassConfirm(e.target.value)
+                    }
+                />
+                {passwordUpdated && (
+                    <div className='form-updated'>{t('FORM_PASS_UPDATED')}</div>
+                )}
+                {errorPassword && (
+                    <div className='error-form'>{t('ERROR_FORM')}</div>
+                )}
+                <Button
+                    onClick={handleUpdatePass}
+                    label={t('FORM_UPDATE_PASSWORD')}
+                    style={'primary'}
+                    loading={buttonLoaderPass}
+                    disabled={disablePass}
+                />
+            </form>
+        </div>
     )
 }

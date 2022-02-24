@@ -76,9 +76,8 @@ export default class Api {
         })
     }
 
-    createPunchIn = async (organization: number, start: Date, end?: Date) => {
+    createPunchIn = async (start: Date, end?: Date) => {
         const params = {
-            organization: organization,
             start: start,
             ...(end && { end: end }),
         }
@@ -89,14 +88,8 @@ export default class Api {
         })
     }
 
-    updatePunchIn = async (
-        organization: number,
-        id: number,
-        start?: Date,
-        end?: Date
-    ) => {
+    updatePunchIn = async (id: number, start?: Date, end?: Date) => {
         const params = {
-            organization: organization,
             ...(start && { start: start }),
             ...(end && { end: end }),
         }
@@ -208,6 +201,43 @@ export default class Api {
     getAvatar = async (avatar: string) => {
         return new Promise((resolve) => {
             api.get(`${apiUrl}/users/avatar/${avatar}`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    updateUser = async (
+        id: number,
+        user: string,
+        firstName: string,
+        lastName: string,
+        birthday: Date,
+        address: string,
+        zipcode: string,
+        city: string
+    ) => {
+        const params = {
+            user: user,
+            firstName: firstName,
+            lastName: lastName,
+            birthday: birthday,
+            address: address,
+            zipcode: zipcode,
+            city: city,
+        }
+        return new Promise((resolve) => {
+            api.put(`${apiUrl}/users/${id}`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    updatePass = async (id: number, password: string) => {
+        const params = {
+            password: password,
+        }
+        return new Promise((resolve) => {
+            api.put(`${apiUrl}/users/${id}`, params)
                 .then((res) => resolve(res))
                 .catch((err) => resolve(err))
         })
