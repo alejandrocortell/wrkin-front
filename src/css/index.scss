@@ -38,7 +38,10 @@
 @import '../pages/myAccount//components/formMyAccount/formMyAccount.scss';
 @import '../pages/myAccount//components/formAvatar/formAvatar.scss';
 
-@import '../pages/manageUsers/manageUsers.scss';
+@import '../pages/manage/manage.scss';
+@import '../pages/manage/components/requests/requests.scss';
+@import '../pages/manage/components/requests/components/pendings/pendings.scss';
+@import '../pages/manage/components/selector/selector.scss';
 
 @import '../components/wrapper/wrapper';
 @import '../components/header/header';

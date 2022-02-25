@@ -3,7 +3,7 @@
     "NAV_CALENDAR": "Calendar",
     "NAV_DOCUMENTS": "Documents",
     "NAV_MY_ACCOUNT": "My account",
-    "NAV_MANAGE_USERS": "Manage users",
+    "NAV_MANAGE_ORG": "Manage org",
     "NAV_SELECT_ORGANIZATION": "Change organization",
     "NAV_LOGOUT": "Logout",
 
@@ -92,5 +92,7 @@
     "DOCUMENTS_UPLOAD_DONE": "Document uploaded",
     "DOCUMENTS_UPLOAD_FAIL": "The upload has failed, please try again",
 
-    "MY_ACCOUNT_": ""
+    "MANAGE_EMPLOYEES": "Employees",
+    "MANAGE_REQUESTS": "Requests",
+    "MANAGE_PENDINGS": "Pendings"
 }

@@ -52,6 +52,14 @@ export default class Api {
         })
     }
 
+    getAllUsers = async () => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
     getOrganization = async (id: number) => {
         return new Promise((resolve) => {
             api.get(`${apiUrl}/organizations/${id}`)
@@ -111,6 +119,14 @@ export default class Api {
     getDaysOff = async (id: number) => {
         return new Promise((resolve) => {
             api.get(`${apiUrl}/users/${id}/daysoff`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    getAllDaysOff = async () => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/requests-days-off`)
                 .then((res) => resolve(res))
                 .catch((err) => resolve(err))
         })

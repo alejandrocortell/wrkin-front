@@ -38,8 +38,8 @@ export const MenuHeader: FC<Props> = (props) => {
                 {user.roleId === 4 && (
                     <li>
                         <LinkButton
-                            label={t('NAV_MANAGE_USERS')}
-                            path={'/manage-users'}
+                            label={t('NAV_MANAGE_ORG')}
+                            path={'/manage/request'}
                         />
                     </li>
                 )}

@@ -7,6 +7,7 @@ import { AxiosResponse } from 'axios'
 import { setUser } from '../../context/userSlice'
 import { Wrapper } from '../../components/wrapper/wrapper'
 import { ContainerWhite } from '../../components/containerWhite/containerWhite'
+import { SelectorManage } from './components/selector/selector'
 
 const apiManager = new Api()
 
@@ -15,7 +16,10 @@ interface props {}
 export const ManageUsers: FC<props> = (props) => {
     return (
         <Wrapper showMenu>
-            <section className='manage-users container'>
+            <section className='manage container'>
+                <ContainerWhite>
+                    <SelectorManage />
+                </ContainerWhite>
                 <ContainerWhite>
                     <></>
                 </ContainerWhite>
