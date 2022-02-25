@@ -14,7 +14,7 @@ export const LineContracted: FC<props> = (props) => {
 
     return (
         <div className='contracted line' onClick={props.changeExpanded}>
-            <div>{`${props.user.firstName} ${props.user.lastName}`}</div>
+            <p className='user'>{`${props.user.firstName} ${props.user.lastName}`}</p>
         </div>
     )
 }

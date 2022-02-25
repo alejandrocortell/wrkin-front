@@ -94,5 +94,7 @@
 
     "MANAGE_EMPLOYEES": "Employees",
     "MANAGE_REQUESTS": "Requests",
-    "MANAGE_PENDINGS": "Pendings"
+    "MANAGE_PENDINGS": "Pendings",
+    "MANAGE_PENDINGS_EMPLOYEE": "Employee",
+    "MANAGE_PENDINGS_MESSAGE": "Message"
 }
