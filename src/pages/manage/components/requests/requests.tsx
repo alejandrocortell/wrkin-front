@@ -7,6 +7,7 @@ import { Pendings } from './components/pendings/pendings'
 interface props {
     requests: Array<DayOff>
     users: Array<User>
+    updateRequest: () => void
 }
 
 export const Requests: FC<props> = (props) => {
@@ -20,7 +21,11 @@ export const Requests: FC<props> = (props) => {
 
     return (
         <div className='requests'>
-            <Pendings pendings={filterPendings()} users={props.users} />
+            <Pendings
+                pendings={filterPendings()}
+                users={props.users}
+                updateRequest={props.updateRequest}
+            />
         </div>
     )
 }

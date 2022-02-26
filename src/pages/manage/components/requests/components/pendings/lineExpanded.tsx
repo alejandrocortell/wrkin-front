@@ -1,23 +1,56 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDayOffType } from '../../../../../../hooks/useDayOffType'
 import { DayOff } from '../../../../../../models/dayOff'
 import { User } from '../../../../../../models/user'
 import DateUtilities from '../../../../../../utils/date'
+import arrow from '../../../../../../assets/img/arrow.svg'
+import { Button } from '../../../../../../components/button/button'
+import DaysOffService from '../../../../../../services/daysOffService'
 
 const dateUtilities = new DateUtilities()
-
+const daysOffService = new DaysOffService()
 interface props {
     request: DayOff
     user: User
     changeExpanded: () => void
+    updateRequest: () => void
 }
 
 export const LineExpanded: FC<props> = (props) => {
     const { t } = useTranslation()
+    const dayOffType = useDayOffType(props.request.dayOffTypeId)
+    const [loadReject, setLoadReject] = useState(false)
+    const [loadAccept, setLoadAccept] = useState(false)
+
+    const accept = () => {
+        setLoadAccept(true)
+
+        daysOffService
+            .updateRequest(props.request.id, 1)
+            .then((res) => props.updateRequest())
+            .catch((res) => console.log(res))
+            .finally(() => setLoadAccept(false))
+    }
+
+    const reject = () => {
+        setLoadReject(true)
+
+        daysOffService
+            .updateRequest(props.request.id, 2)
+            .then((res) => props.updateRequest())
+            .catch((res) => console.log(res))
+            .finally(() => setLoadReject(false))
+    }
 
     return (
-        <div className='expanded line' onClick={props.changeExpanded}>
-            <p className='user'>{`${props.user.firstName} ${props.user.lastName}`}</p>
+        <div className='expanded line'>
+            <div className='line-user'>
+                <p className='user'>{`${props.user.firstName} ${props.user.lastName}`}</p>
+                <span onClick={props.changeExpanded}>
+                    <img src={arrow} alt='Contract line' />
+                </span>
+            </div>
             <div className='times'>
                 <div>
                     <p className='title'>{t('FORM_DATE_START')}</p>
@@ -40,11 +73,25 @@ export const LineExpanded: FC<props> = (props) => {
             </div>
             <div>
                 <p className='title'>{t('MANAGE_TYPE_DAY_OFF')}</p>
-                <p className='message'>{props.request.dayOffTypeId}</p>
+                <p className='message'>{dayOffType}</p>
             </div>
             <div>
                 <p className='title'>{t('MANAGE_PENDINGS_MESSAGE')}</p>
                 <p className='message'>{props.request.message}</p>
+            </div>
+            <div className='container-buttons'>
+                <Button
+                    onClick={reject}
+                    label={t('MANAGE_REJECT')}
+                    style={'delete'}
+                    loading={loadReject}
+                />
+                <Button
+                    onClick={accept}
+                    label={t('MANAGE_ACCEPT')}
+                    style={'accept'}
+                    loading={loadAccept}
+                />
             </div>
         </div>
     )

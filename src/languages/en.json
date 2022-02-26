@@ -70,12 +70,13 @@
     "SELECT_ORGANIZATION_SELECT": "Choose your organization",
     "SELECT_ORGANIZATION_GO_HOME": "Return to home",
 
+    "DAYOFF_TYPE_HOLIDAYS": "Holidays",
+    "DAYOFF_TYPE_DAYOFF": "Day off",
+    "DAYOFF_TYPE_SICK": "Sick leave",
+    "DAYOFF_TYPE_FORMATION": "Formation",
+    "DAYOFF_TYPE_EXAM": "Official exam",
+
     "CALENDAR_WORKED": "Worked",
-    "CALENDAR_HOLIDAYS": "Holidays",
-    "CALENDAR_DAYOFF": "Day off",
-    "CALENDAR_SICK": "Sick leave",
-    "CALENDAR_FORMATION": "Formation",
-    "CALENDAR_EXAM": "Official exam",
     "CALENDAR_OTHER": "Other",
     "CALENDAR_DO_REQUEST": "Do request",
     "CALENDAR_CREATE_REQUEST": "Create new request",
@@ -97,5 +98,7 @@
     "MANAGE_PENDINGS": "Pendings",
     "MANAGE_PENDINGS_EMPLOYEE": "Employee",
     "MANAGE_PENDINGS_MESSAGE": "Message",
-    "MANAGE_TYPE_DAY_OFF": "Type day off"
+    "MANAGE_TYPE_DAY_OFF": "Type day off",
+    "MANAGE_ACCEPT": "Accept",
+    "MANAGE_REJECT": "Reject"
 }

@@ -72,4 +72,15 @@ export default class DaysOffService {
                 .catch((err) => resolve(err))
         })
     }
+
+    updateRequest = async (id: number, status: number) => {
+        const params = {
+            statusRequestId: status,
+        }
+        return new Promise((resolve) => {
+            api.put(`${apiUrl}/requests-days-off/${id}`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }

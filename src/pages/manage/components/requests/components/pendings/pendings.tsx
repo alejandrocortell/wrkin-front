@@ -8,6 +8,7 @@ import { LineExpanded } from './lineExpanded'
 interface props {
     pendings: Array<DayOff>
     users: Array<User>
+    updateRequest: () => void
 }
 
 export const Pendings: FC<props> = (props) => {
@@ -26,6 +27,7 @@ export const Pendings: FC<props> = (props) => {
                             initialUser
                         }
                         changeExpanded={() => setExpanded(0)}
+                        updateRequest={props.updateRequest}
                     />
                 ) : (
                     <LineContracted

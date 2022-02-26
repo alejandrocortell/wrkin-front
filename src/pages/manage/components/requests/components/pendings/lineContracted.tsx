@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DayOff } from '../../../../../../models/dayOff'
 import { User } from '../../../../../../models/user'
+import arrow from '../../../../../../assets/img/arrow.svg'
 
 interface props {
     request: DayOff
@@ -14,7 +15,12 @@ export const LineContracted: FC<props> = (props) => {
 
     return (
         <div className='contracted line' onClick={props.changeExpanded}>
-            <p className='user'>{`${props.user.firstName} ${props.user.lastName}`}</p>
+            <div className='line-user'>
+                <p className='user'>{`${props.user.firstName} ${props.user.lastName}`}</p>
+                <span>
+                    <img src={arrow} alt='Expand line' />
+                </span>
+            </div>
         </div>
     )
 }

@@ -18,6 +18,11 @@ export const ManageRequests: FC<props> = (props) => {
     const [users, setUsers] = useState<Array<User>>([])
 
     useEffect(() => {
+        getAllDaysOff()
+        getAllUsers()
+    }, [])
+
+    const getAllDaysOff = () => {
         daysOffService
             .getAllDaysOff()
             .then((res: any) => {
@@ -26,9 +31,9 @@ export const ManageRequests: FC<props> = (props) => {
                 }
             })
             .catch((err) => console.log(err))
-    }, [])
+    }
 
-    useEffect(() => {
+    const getAllUsers = () => {
         userServide
             .getAllUsers()
             .then((res: any) => {
@@ -37,7 +42,7 @@ export const ManageRequests: FC<props> = (props) => {
                 }
             })
             .catch((err) => console.log(err))
-    }, [])
+    }
 
     return (
         <Wrapper showMenu>
@@ -46,7 +51,11 @@ export const ManageRequests: FC<props> = (props) => {
                     <SelectorManage />
                 </ContainerWhite>
                 <ContainerWhite>
-                    <Requests requests={requests} users={users} />
+                    <Requests
+                        requests={requests}
+                        users={users}
+                        updateRequest={getAllDaysOff}
+                    />
                 </ContainerWhite>
             </section>
         </Wrapper>
