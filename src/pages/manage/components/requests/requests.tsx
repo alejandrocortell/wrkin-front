@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
 import { DayOff } from '../../../../models/dayOff'
 import { User } from '../../../../models/user'
 import { Pendings } from './components/pendings/pendings'
+import { PaginatedDaysOff } from './components/replied/components/paginatedPunchIns/paginatedLines'
 
 interface props {
     requests: Array<DayOff>
@@ -11,11 +11,15 @@ interface props {
 }
 
 export const Requests: FC<props> = (props) => {
-    const { t } = useTranslation()
-
     const filterPendings = () => {
         return props.requests.filter((request) => {
             return request.statusRequestId === 3
+        })
+    }
+
+    const filterPast = () => {
+        return props.requests.filter((request) => {
+            return request.statusRequestId !== 3
         })
     }
 
@@ -25,6 +29,12 @@ export const Requests: FC<props> = (props) => {
                 pendings={filterPendings()}
                 users={props.users}
                 updateRequest={props.updateRequest}
+            />
+
+            <PaginatedDaysOff
+                replied={filterPast()}
+                itemsPerPage={10}
+                users={props.users}
             />
         </div>
     )

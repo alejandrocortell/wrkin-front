@@ -1,0 +1,17 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .page-item {
+        margin: 0px 5px;
+
+        &.active {
+            @include bold;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
