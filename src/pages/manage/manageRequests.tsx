@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react'
-import DaysOffService from '../../services/daysOffService'
-import UserService from '../../services/userService'
-import { Wrapper } from '../../components/wrapper/wrapper'
-import { ContainerWhite } from '../../components/containerWhite/containerWhite'
+import DaysOffService from 'services/daysOffService'
+import UserService from 'services/userService'
+import { Wrapper } from 'components/wrapper/wrapper'
+import { ContainerWhite } from 'components/containerWhite/containerWhite'
 import { SelectorManage } from './components/selector/selector'
 import { Requests } from './components/requests/requests'
-import { DayOff } from '../../models/dayOff'
-import { User } from '../../models/user'
+import { DayOff } from 'models/dayOff'
+import { User } from 'models/user'
 
 const daysOffService = new DaysOffService()
 const userServide = new UserService()

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PunchIn } from '../../../../../../models/punchIn'
-import DateUtilities from '../../../../../../utils/date'
+import { PunchIn } from 'models/punchIn'
+import DateUtilities from 'utils/date'
 
 const dateUtilities = new DateUtilities()
 

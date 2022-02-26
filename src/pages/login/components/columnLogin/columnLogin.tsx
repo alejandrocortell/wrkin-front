@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
-import { Logo } from '../../../../components/logo/logo'
+import { Logo } from 'components/logo/logo'
 import { FormLogin } from '../formLogin/formLogin'
 
 export const ColumnLogin: FC = () => {

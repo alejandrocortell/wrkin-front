@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react'
-import visibility from '../../assets/img/visibility.svg'
-import visibilityOff from '../../assets/img/visibility_off.svg'
+import visibility from 'assets/img/visibility.svg'
+import visibilityOff from 'assets/img/visibility_off.svg'
 
 interface Props {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void

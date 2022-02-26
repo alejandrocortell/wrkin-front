@@ -28,7 +28,8 @@
         "redux": "^4.1.2",
         "redux-devtools-extension": "^2.13.9",
         "redux-thunk": "^2.4.1",
-        "sass": "^1.46.0"
+        "sass": "^1.46.0",
+        "vite-tsconfig-paths": "^3.4.1"
     },
     "devDependencies": {
         "@types/node": "^17.0.8",

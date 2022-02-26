@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { Logo } from '../logo/logo'
+import { Logo } from 'components/logo/logo'
 import { MenuHeader } from './menuHeader'
 
 interface Props {}

@@ -1,19 +1,19 @@
 import { FC, useEffect, useState } from 'react'
 import { Location } from 'history'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../context/hooks'
-import UserService from '../../services/userService'
-import OrganizationService from '../../services/organizationService'
-import DaysOffService from '../../services/daysOffService'
-import DocumentsService from '../../services/documentsService'
+import { useAppDispatch, useAppSelector } from 'context/hooks'
+import UserService from 'services/userService'
+import OrganizationService from 'services/organizationService'
+import DaysOffService from 'services/daysOffService'
+import DocumentsService from 'services/documentsService'
 import { AxiosResponse } from 'axios'
-import { setUser } from '../../context/userSlice'
+import { setUser } from 'context/userSlice'
 import {
     setDocumentTypes,
     setOrganization,
     setSettings,
     setTypesDayOff,
-} from '../../context/organizationSlice'
+} from 'context/organizationSlice'
 
 const userService = new UserService()
 const organizationService = new OrganizationService()

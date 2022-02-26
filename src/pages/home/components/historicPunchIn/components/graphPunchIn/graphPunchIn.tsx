@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import DateUtilities from '../../../../../../utils/date'
+import DateUtilities from 'utils/date'
 
 const dateUtilities = new DateUtilities()
 

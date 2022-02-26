@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
-import { useAppSelector } from '../../../../../../context/hooks'
-import DateUtilities from '../../../../../../utils/date'
+import { useAppSelector } from 'context/hooks'
+import DateUtilities from 'utils/date'
 import { InterfacePunchInsNotToday } from '../../historicPunchIn'
 import { LineHistoricPunchIn } from '../lineHistoricPunchIn/lineHistoricPunchIn'
 

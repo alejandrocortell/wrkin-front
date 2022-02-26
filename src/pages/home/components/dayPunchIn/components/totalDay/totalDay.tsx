@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PunchIn } from '../../../../../../models/punchIn'
-import DateUtilities from '../../../../../../utils/date'
+import { PunchIn } from 'models/punchIn'
+import DateUtilities from 'utils/date'
 const dateUtilities = new DateUtilities()
 
 interface props {

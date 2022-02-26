@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '../../../../../../components/button/button'
+import { Button } from 'components/button/button'
 import Modal from 'react-modal'
-import { HeaderModal } from '../../../../../../components/headerModal/headerModal'
+import { HeaderModal } from 'components/headerModal/headerModal'
 import { FormNewPunchIn } from '../formNewPunchIn/formNewPunchIn'
 
 interface props {

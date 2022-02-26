@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react'
 import dayjs from 'dayjs'
-import { LinkButton } from './../../../../components/linkButton/linkButton'
-import nextMonth from './../../../../assets/img/next_month.svg'
-import nextYear from './../../../../assets/img/next_year.svg'
-import { Button } from '../../../../components/button/button'
+import { LinkButton } from 'components/linkButton/linkButton'
+import nextMonth from 'assets/img/next_month.svg'
+import nextYear from 'assets/img/next_year.svg'
+import { Button } from 'components/button/button'
 import { useTranslation } from 'react-i18next'
 
 // @ts-ignore

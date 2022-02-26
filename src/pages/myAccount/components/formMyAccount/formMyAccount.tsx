@@ -1,14 +1,14 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '../../../../components/button/button'
-import { InputField } from '../../../../components/input/input'
-import { useDebounce } from '../../../../hooks/useDebounce'
-import Validator from '../../../../utils/validators'
-import UserService from '../../../../services/userService'
-import { useAppDispatch, useAppSelector } from '../../../../context/hooks'
+import { Button } from 'components/button/button'
+import { InputField } from 'components/input/input'
+import { useDebounce } from 'hooks/useDebounce'
+import Validator from 'utils/validators'
+import UserService from 'services/userService'
+import { useAppDispatch, useAppSelector } from 'context/hooks'
 import { useNavigate } from 'react-router-dom'
-import DateUtilities from '../../../../utils/date'
-import { setUser } from '../../../../context/userSlice'
+import DateUtilities from 'utils/date'
+import { setUser } from 'context/userSlice'
 
 const dateUtilities = new DateUtilities()
 const val = new Validator()

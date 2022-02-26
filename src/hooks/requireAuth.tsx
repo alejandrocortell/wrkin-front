@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { useAppSelector } from '../context/hooks'
+import { useAppSelector } from 'context/hooks'
 
 interface props {
     roles: Array<number>

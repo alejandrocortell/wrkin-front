@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, useState } from 'react'
 import { FileDrop } from 'react-file-drop'
 import { useTranslation } from 'react-i18next'
-import imageFile from './../../assets/img/file.svg'
+import imageFile from 'assets/img/file.svg'
 
 interface props {
     value: any

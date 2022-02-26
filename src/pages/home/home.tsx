@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react'
-import { Wrapper } from '../../components/wrapper/wrapper'
-import { ContainerWhite } from '../../components/containerWhite/containerWhite'
+import { Wrapper } from 'components/wrapper/wrapper'
+import { ContainerWhite } from 'components/containerWhite/containerWhite'
 import { DayPunchIn } from './components/dayPunchIn/dayPunchIn'
 import { HistoricPunchIn } from './components/historicPunchIn/historicPunchIn'
-import { useAppSelector } from '../../context/hooks'
-import UserService from '../../services/userService'
-import { PunchIn } from '../../models/punchIn'
-import DateUtilities from '../../utils/date'
+import { useAppSelector } from 'context/hooks'
+import UserService from 'services/userService'
+import { PunchIn } from 'models/punchIn'
+import DateUtilities from 'utils/date'
 
 const dateUtilities = new DateUtilities()
 const userService = new UserService()

@@ -1,10 +1,10 @@
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LinkButton } from '../../../../../../components/linkButton/linkButton'
-import { useAppSelector } from '../../../../../../context/hooks'
-import DateUtilities from '../../../../../../utils/date'
-import { InterfacePunchInsNotToday } from '../../historicPunchIn'
+import { LinkButton } from 'components/linkButton/linkButton'
+import { useAppSelector } from 'context/hooks'
+import DateUtilities from 'utils/date'
 import { GraphPunchIn } from '../graphPunchIn/graphPunchIn'
+import { InterfacePunchInsNotToday } from '../../historicPunchIn'
 import { ModifyPunchIn } from '../modifyPunchIn/modifyPunchIn'
 
 const dateUtilities = new DateUtilities()

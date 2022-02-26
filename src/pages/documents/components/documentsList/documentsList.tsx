@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { DocumentUser } from '../../../../models/documentUser'
-import { Document } from '../document/document'
+import { DocumentUser } from 'models/documentUser'
+import { Document } from './../document/document'
 
 interface props {
     documents: Array<DocumentUser>

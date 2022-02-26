@@ -1,14 +1,14 @@
 import { FC, useCallback, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../context/hooks'
+import { useAppDispatch, useAppSelector } from 'context/hooks'
 import { useTranslation } from 'react-i18next'
-import { Wrapper } from '../../components/wrapper/wrapper'
+import { Wrapper } from 'components/wrapper/wrapper'
 import { CalendarComponent } from './components/calendarComponent/calendarComponent'
-import UserService from '../../services/userService'
-import { PunchIn } from '../../models/punchIn'
-import { CalendarEvent } from '../../models/calendarEvent'
-import DateUtilities from '../../utils/date'
-import { DayOff } from '../../models/dayOff'
-import { ContainerWhite } from '../../components/containerWhite/containerWhite'
+import UserService from 'services/userService'
+import { PunchIn } from 'models/punchIn'
+import { CalendarEvent } from 'models/calendarEvent'
+import DateUtilities from 'utils/date'
+import { DayOff } from 'models/dayOff'
+import { ContainerWhite } from 'components/containerWhite/containerWhite'
 
 const userService = new UserService()
 const dateUtilities = new DateUtilities()

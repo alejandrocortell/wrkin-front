@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { Wrapper } from '../../components/wrapper/wrapper'
-import { ContainerWhite } from '../../components/containerWhite/containerWhite'
+import { Wrapper } from 'components/wrapper/wrapper'
+import { ContainerWhite } from 'components/containerWhite/containerWhite'
 import { FormMyAccount } from './components/formMyAccount/formMyAccount'
 import { FormAvatar } from './components/formAvatar/formAvatar'
 

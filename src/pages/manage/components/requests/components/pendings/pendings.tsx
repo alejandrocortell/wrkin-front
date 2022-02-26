@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DayOff } from '../../../../../../models/dayOff'
-import { initialUser, User } from '../../../../../../models/user'
+import { DayOff } from 'models/dayOff'
+import { initialUser, User } from 'models/user'
 import { LineContracted } from './lineContracted'
 import { LineExpanded } from './lineExpanded'
 

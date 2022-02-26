@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Header } from '../header/header'
+import { Header } from './../header/header'
 
 interface Props {
     showMenu: boolean

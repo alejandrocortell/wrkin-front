@@ -1,8 +1,8 @@
 import { t } from 'i18next'
 import { FC, useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
-import { DayOff } from '../../../../../../../../models/dayOff'
-import { User } from '../../../../../../../../models/user'
+import { DayOff } from 'models/dayOff'
+import { User } from 'models/user'
 import { ListDaysOff } from '../listDaysOff/listDaysOff'
 
 interface props {

@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LinkButton } from '../../../../components/linkButton/linkButton'
-import Validator from '../../../../utils/validators'
-import UserService from '../../../../services/userService'
-import { useAppDispatch, useAppSelector } from '../../../../context/hooks'
-import { InputFile } from '../../../../components/inputFile/inputFile'
-import { setUser } from '../../../../context/userSlice'
-import accountImg from '../../../../assets/img/person.svg'
+import { LinkButton } from 'components/linkButton/linkButton'
+import Validator from 'utils/validators'
+import UserService from 'services/userService'
+import { useAppDispatch, useAppSelector } from 'context/hooks'
+import { InputFile } from 'components/inputFile/inputFile'
+import { setUser } from 'context/userSlice'
+import accountImg from 'assets/img/person.svg'
 
 const val = new Validator()
 const userService = new UserService()

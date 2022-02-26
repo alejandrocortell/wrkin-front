@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../context/hooks'
+import { useAppDispatch, useAppSelector } from 'context/hooks'
 import { useTranslation } from 'react-i18next'
-import { LinkButton } from '../linkButton/linkButton'
-import circle from '../../assets/img/account_circle.svg'
-import arrow from '../../assets/img/arrow.svg'
-import { logout } from '../../context/authSlice'
-import { logoutUser } from '../../context/userSlice'
+import { LinkButton } from 'components/linkButton/linkButton'
+import circle from 'assets/img/account_circle.svg'
+import arrow from 'assets/img/arrow.svg'
+import { logout } from 'context/authSlice'
+import { logoutUser } from 'context/userSlice'
 
 interface Props {}
 

@@ -1,13 +1,13 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '../../../../../../components/button/button'
-import DateUtilities from '../../../../../../utils/date'
-import { InputField } from '../../../../../../components/input/input'
-import { useDebounce } from '../../../../../../hooks/useDebounce'
-import Validator from '../../../../../../utils/validators'
-import PunchInService from '../../../../../../services/punchInService'
-import { PunchIn } from '../../../../../../models/punchIn'
-import { useAppSelector } from '../../../../../../context/hooks'
+import { Button } from 'components/button/button'
+import DateUtilities from 'utils/date'
+import { InputField } from 'components/input/input'
+import { useDebounce } from 'hooks/useDebounce'
+import Validator from 'utils/validators'
+import PunchInService from 'services/punchInService'
+import { PunchIn } from 'models/punchIn'
+import { useAppSelector } from 'context/hooks'
 
 const val = new Validator()
 const dateUtilities = new DateUtilities()

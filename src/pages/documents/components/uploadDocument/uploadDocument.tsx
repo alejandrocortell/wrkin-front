@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '../../../../components/button/button'
-import { Dropdown } from '../../../../components/dropdown/dropdown'
-import { InputFile } from '../../../../components/inputFile/inputFile'
-import { useAppSelector } from '../../../../context/hooks'
-import DocumentsService from '../../../../services/documentsService'
+import { Button } from 'components/button/button'
+import { Dropdown } from 'components/dropdown/dropdown'
+import { InputFile } from 'components/inputFile/inputFile'
+import { useAppSelector } from 'context/hooks'
+import DocumentsService from 'services/documentsService'
 
 const documentsService = new DocumentsService()
 

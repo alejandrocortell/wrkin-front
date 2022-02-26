@@ -1,10 +1,10 @@
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDayOffType } from '../../../../../../../../hooks/useDayOffType'
-import { DayOff } from '../../../../../../../../models/dayOff'
-import { User } from '../../../../../../../../models/user'
-import DateUtilities from '../../../../../../../../utils/date'
-import arrow from '../../../../../../../../assets/img/arrow.svg'
+import { useDayOffType } from 'hooks/useDayOffType'
+import { DayOff } from 'models/dayOff'
+import { User } from 'models/user'
+import DateUtilities from 'utils/date'
+import arrow from 'assets/img/arrow.svg'
 
 const dateUtilities = new DateUtilities()
 interface props {

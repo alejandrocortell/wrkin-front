@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import close from '../../assets/img/close.svg'
+import close from 'assets/img/close.svg'
 
 interface Props {
     title: string

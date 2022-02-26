@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { DocumentType } from '../models/documentType'
-import { initialOrganization, Organization } from '../models/organization'
-import { initialSettings, Settings } from '../models/settings'
-import { DayOffType } from '../models/typeDayOff'
+import { DocumentType } from 'models/documentType'
+import { initialOrganization, Organization } from 'models/organization'
+import { initialSettings, Settings } from 'models/settings'
+import { DayOffType } from 'models/typeDayOff'
 
 const initialState = {
     organization: initialOrganization,

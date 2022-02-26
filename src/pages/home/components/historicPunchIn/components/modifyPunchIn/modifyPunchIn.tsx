@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Modal from 'react-modal'
-import { HeaderModal } from '../../../../../../components/headerModal/headerModal'
-import { PunchIn } from '../../../../../../models/punchIn'
+import { HeaderModal } from 'components/headerModal/headerModal'
+import { PunchIn } from 'models/punchIn'
 import { LinePunchInModify } from './linePunchInModify'
 import { FormModifyPunchIn } from './formModifyPunchIn'
 

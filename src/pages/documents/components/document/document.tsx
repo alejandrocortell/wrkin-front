@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { DocumentUser } from '../../../../models/documentUser'
-import iconDownloadFile from '../../../../assets/img/file_download.svg'
-import DateUtilities from '../../../../utils/date'
+import { DocumentUser } from 'models/documentUser'
+import iconDownloadFile from 'assets/img/file_download.svg'
+import DateUtilities from 'utils/date'
 
 const dateUtilities = new DateUtilities()
 

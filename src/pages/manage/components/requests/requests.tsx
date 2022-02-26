@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { DayOff } from '../../../../models/dayOff'
-import { User } from '../../../../models/user'
+import { DayOff } from 'models/dayOff'
+import { User } from 'models/user'
 import { Pendings } from './components/pendings/pendings'
 import { PaginatedDaysOff } from './components/replied/components/paginatedPunchIns/paginatedLines'
 

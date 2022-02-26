@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
-import { DayOff } from '../../../../../../../../models/dayOff'
-import { initialUser, User } from '../../../../../../../../models/user'
-import { LineContracted } from '../lines/lineContracted'
+import { DayOff } from 'models/dayOff'
+import { initialUser, User } from 'models/user'
 import { LineExpanded } from '../lines/lineExpanded'
+import { LineContracted } from '../lines/lineContracted'
 
 interface props {
     replied: Array<DayOff>

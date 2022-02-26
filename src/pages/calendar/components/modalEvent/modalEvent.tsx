@@ -2,9 +2,9 @@ import { FC } from 'react'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'dayjs/locale/es'
 import { useTranslation } from 'react-i18next'
-import { CalendarEvent } from '../../../../models/calendarEvent'
-import DateUtilities from '../../../../utils/date'
-import { StatusRequest } from '../../../../models/statusRequest'
+import { CalendarEvent } from 'models/calendarEvent'
+import DateUtilities from 'utils/date'
+import { StatusRequest } from 'models/statusRequest'
 
 const dateUtilities = new DateUtilities()
 

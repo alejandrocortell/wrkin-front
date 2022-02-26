@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Cookie from '../utils/cookies'
+import Cookie from 'utils/cookies'
 
 const cookie = new Cookie()
 const apiUrl = import.meta.env.VITE_API_URL
