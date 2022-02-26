@@ -1,4 +1,10 @@
 .requests {
+    h2 {
+        margin-left: 15px;
+        font-size: 1.5rem;
+        @include bold;
+    }
+
     .line {
         margin-top: 15px;
         margin-bottom: 15px;
@@ -25,6 +31,12 @@
         }
 
         .message {
+        }
+
+        .times {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 20px;
         }
     }
 }

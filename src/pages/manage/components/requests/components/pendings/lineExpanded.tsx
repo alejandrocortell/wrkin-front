@@ -18,23 +18,29 @@ export const LineExpanded: FC<props> = (props) => {
     return (
         <div className='expanded line' onClick={props.changeExpanded}>
             <p className='user'>{`${props.user.firstName} ${props.user.lastName}`}</p>
-            <div>
-                <p className='title'>{t('FORM_DATE_START')}</p>
-                <p className='message'>
-                    {dateUtilities.format(
-                        new Date(props.request.start),
-                        'DD-MM-YYYY HH:mm'
-                    )}
-                </p>
+            <div className='times'>
+                <div>
+                    <p className='title'>{t('FORM_DATE_START')}</p>
+                    <p className='message'>
+                        {dateUtilities.format(
+                            new Date(props.request.start),
+                            'DD-MM-YYYY HH:mm'
+                        )}
+                    </p>
+                </div>
+                <div>
+                    <p className='title'>{t('FORM_DATE_END')}</p>
+                    <p className='message'>
+                        {dateUtilities.format(
+                            new Date(props.request.end),
+                            'DD-MM-YYYY HH:mm'
+                        )}
+                    </p>
+                </div>
             </div>
             <div>
-                <p className='title'>{t('FORM_DATE_END')}</p>
-                <p className='message'>
-                    {dateUtilities.format(
-                        new Date(props.request.end),
-                        'DD-MM-YYYY HH:mm'
-                    )}
-                </p>
+                <p className='title'>{t('MANAGE_TYPE_DAY_OFF')}</p>
+                <p className='message'>{props.request.dayOffTypeId}</p>
             </div>
             <div>
                 <p className='title'>{t('MANAGE_PENDINGS_MESSAGE')}</p>
