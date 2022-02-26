@@ -76,6 +76,10 @@
     "DAYOFF_TYPE_FORMATION": "Formation",
     "DAYOFF_TYPE_EXAM": "Official exam",
 
+    "REQUEST_STATUS_APPROVED": "Approved",
+    "REQUEST_STATUS_DENNIED": "Dennied",
+    "REQUEST_STATUS_WAITING": "Waiting",
+
     "CALENDAR_WORKED": "Worked",
     "CALENDAR_OTHER": "Other",
     "CALENDAR_DO_REQUEST": "Do request",
@@ -100,6 +104,7 @@
     "MANAGE_PENDINGS_EMPLOYEE": "Employee",
     "MANAGE_PENDINGS_MESSAGE": "Message",
     "MANAGE_TYPE_DAY_OFF": "Type day off",
+    "MANAGE_STATUS": "Status",
     "MANAGE_ACCEPT": "Accept",
     "MANAGE_REJECT": "Reject"
 }

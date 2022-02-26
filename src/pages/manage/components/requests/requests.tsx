@@ -25,11 +25,13 @@ export const Requests: FC<props> = (props) => {
 
     return (
         <div className='requests'>
-            <Pendings
-                pendings={filterPendings()}
-                users={props.users}
-                updateRequest={props.updateRequest}
-            />
+            {filterPendings().length > 0 && (
+                <Pendings
+                    pendings={filterPendings()}
+                    users={props.users}
+                    updateRequest={props.updateRequest}
+                />
+            )}
 
             <PaginatedDaysOff
                 replied={filterPast()}

@@ -5,6 +5,7 @@ import { DayOff } from 'models/dayOff'
 import { User } from 'models/user'
 import DateUtilities from 'utils/date'
 import arrow from 'assets/img/arrow.svg'
+import { useStatusRequest } from 'hooks/useStatusRequest'
 
 const dateUtilities = new DateUtilities()
 interface props {
@@ -16,6 +17,7 @@ interface props {
 export const LineExpanded: FC<props> = (props) => {
     const { t } = useTranslation()
     const dayOffType = useDayOffType(props.request.dayOffTypeId)
+    const status = useStatusRequest(props.request.statusRequestId)
 
     return (
         <div className='expanded line'>
@@ -48,6 +50,10 @@ export const LineExpanded: FC<props> = (props) => {
             <div>
                 <p className='title'>{t('MANAGE_TYPE_DAY_OFF')}</p>
                 <p className='message'>{dayOffType}</p>
+            </div>
+            <div>
+                <p className='title'>{t('MANAGE_STATUS')}</p>
+                <p className='message'>{status}</p>
             </div>
             <div>
                 <p className='title'>{t('MANAGE_PENDINGS_MESSAGE')}</p>
