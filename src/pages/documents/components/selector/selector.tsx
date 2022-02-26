@@ -2,16 +2,18 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../components/button/button'
 import { LinkButton } from '../../../../components/linkButton/linkButton'
+import { useAppSelector } from '../../../../context/hooks'
 import { DocumentType } from './../../../../models/documentType'
 
 interface props {
-    types: Array<DocumentType>
     selected: number
     onSelect: (newView: number) => void
 }
 
 export const SelectorDocuments: FC<props> = (props) => {
     const { t } = useTranslation()
+    const { documentsTypes } = useAppSelector((state) => state.organization)
+
     const selectorText = (id: number) => {
         if (id === 1) return t('DOCUMENTS_TYPE_PAYSLIP')
         if (id === 2) return t('DOCUMENTS_TYPE_SICK_LEAVE')
@@ -20,7 +22,7 @@ export const SelectorDocuments: FC<props> = (props) => {
     }
     return (
         <div className='selector-documents'>
-            {props.types.map((doc) => {
+            {documentsTypes.map((doc) => {
                 return (
                     <div
                         className={`container-link ${

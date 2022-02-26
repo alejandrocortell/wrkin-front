@@ -10,13 +10,13 @@ import Api from '../../../../services/api'
 const apiManager = new Api()
 
 interface props {
-    types: Array<DocumentType>
     getDocuments: () => void
 }
 
 export const UploadDocument: FC<props> = (props) => {
     const { t } = useTranslation()
     const { user } = useAppSelector((state) => state.user)
+    const { documentsTypes } = useAppSelector((state) => state.organization)
 
     const [disabled, setDisabled] = useState(true)
     const [loader, setLoader] = useState(false)
@@ -26,7 +26,7 @@ export const UploadDocument: FC<props> = (props) => {
     const [selectedFileError, setSelectedFileError] = useState(false)
     const [selectedFileErrorText, setSelectedFileErrorText] = useState('')
 
-    const [type, setType] = useState(props.types[0].name)
+    const [type, setType] = useState(documentsTypes[0].name)
     const [typeError, setTypeError] = useState(false)
     const [typeErrorText, setTypeErrorText] = useState('Error text')
 
@@ -43,7 +43,7 @@ export const UploadDocument: FC<props> = (props) => {
         setLoader(true)
         const userId = user.id
         const org = user.OrganizationId
-        const documentType = props.types.find((t) => {
+        const documentType = documentsTypes.find((t) => {
             return t.name === type.toLowerCase()
         })
         const idDocumentType = documentType ? documentType.id : 1
@@ -74,7 +74,7 @@ export const UploadDocument: FC<props> = (props) => {
                 }}
                 value={type}
                 label={'Type'}
-                list={props.types.map((t) => {
+                list={documentsTypes.map((t) => {
                     return { value: t.name }
                 })}
                 error={typeError}

@@ -10,7 +10,6 @@ import { useAppSelector } from '../../../../context/hooks'
 import { InputField } from '../../../../components/input/input'
 import { Button } from '../../../../components/button/button'
 import { Checkbox } from '../../../../components/checkbox/checkbox'
-import { DayOffType } from '../../../../models/typeDayOff'
 import { Dropdown } from '../../../../components/dropdown/dropdown'
 
 const val = new Validator()
@@ -18,7 +17,6 @@ const dateUtilities = new DateUtilities()
 const apiManager = new Api()
 
 interface props {
-    types: Array<DayOffType>
     onClose: () => void
     getDaysOff: () => void
 }
@@ -26,13 +24,14 @@ interface props {
 export const ModalRequest: FC<props> = (props) => {
     const { t } = useTranslation()
     const { user } = useAppSelector((state) => state.user)
+    const { dayOffTypes } = useAppSelector((state) => state.organization)
 
     const [loader, setLoader] = useState(false)
     const [disabled, setDisabled] = useState(true)
 
     const [allDay, setAllDay] = useState(false)
 
-    const [type, setType] = useState(props.types[0].dayOffType)
+    const [type, setType] = useState(dayOffTypes[0].dayOffType)
     const [typeError, setTypeError] = useState(false)
     const [typeErrorText, setTypeErrorText] = useState('Error text')
 
@@ -141,16 +140,15 @@ export const ModalRequest: FC<props> = (props) => {
         setLoader(true)
         const timeStartCalc = allDay ? '00:00' : timeStart
         const timeEndCalc = allDay ? '23:59' : timeEnd
-        const org = user.currentOrganization
         const start = new Date(`${dateStart} ${timeStartCalc}`)
         const end = new Date(`${dateEnd} ${timeEndCalc}`)
-        const dayOffType = props.types.find((t) => {
+        const dayOffType = dayOffTypes.find((t) => {
             return t.dayOffType === type.toLowerCase()
         })
         const idDayOffType = dayOffType ? dayOffType.id : 1
 
         apiManager
-            .createDayOff(org, start, end, idDayOffType, message)
+            .createDayOff(start, end, idDayOffType, message)
             .then((res) => {
                 props.onClose()
                 props.getDaysOff()
@@ -176,7 +174,7 @@ export const ModalRequest: FC<props> = (props) => {
                     }}
                     value={type}
                     label={'Type'}
-                    list={props.types.map((t) => {
+                    list={dayOffTypes.map((t) => {
                         return { value: t.dayOffType }
                     })}
                     error={typeError}

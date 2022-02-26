@@ -1,10 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { DocumentType } from '../models/documentType'
 import { initialOrganization, Organization } from '../models/organization'
 import { initialSettings, Settings } from '../models/settings'
+import { DayOffType } from '../models/typeDayOff'
 
 const initialState = {
     organization: initialOrganization,
     settings: initialSettings,
+    dayOffTypes: [] as Array<DayOffType>,
+    documentsTypes: [] as Array<DocumentType>,
 }
 
 export const organizationSlice = createSlice({
@@ -17,9 +21,23 @@ export const organizationSlice = createSlice({
         setSettings: (state, action: PayloadAction<Settings>) => {
             state.settings = action.payload
         },
+        setTypesDayOff: (state, action: PayloadAction<Array<DayOffType>>) => {
+            state.dayOffTypes = action.payload
+        },
+        setDocumentTypes: (
+            state,
+            action: PayloadAction<Array<DocumentType>>
+        ) => {
+            state.documentsTypes = action.payload
+        },
     },
 })
 
-export const { setOrganization, setSettings } = organizationSlice.actions
+export const {
+    setOrganization,
+    setSettings,
+    setTypesDayOff,
+    setDocumentTypes,
+} = organizationSlice.actions
 
 export default organizationSlice.reducer

@@ -159,14 +159,12 @@ export default class Api {
     }
 
     createDayOff = async (
-        organization: number,
         start: Date,
         end: Date,
         dayOffType: number,
         message: string
     ) => {
         const params = {
-            organization: organization,
             start: start,
             end: end,
             dayOffType: dayOffType,

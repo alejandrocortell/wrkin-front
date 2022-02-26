@@ -26,7 +26,6 @@ export const CalendarComponent: FC<props> = (props) => {
     const [events, setEvents] = useState<Array<CalendarEvent>>([])
     const [modalRequestIsOpen, setModalRequestIsOpen] = useState(false)
     const [modalEventIsOpen, setModalEventIsOpen] = useState(false)
-    const [typesDayOff, setTypesDayOff] = useState([])
     const [statusRequest, setStatusRequest] = useState([])
     const [eventModal, setEventModal] = useState<CalendarEvent>()
 
@@ -34,19 +33,6 @@ export const CalendarComponent: FC<props> = (props) => {
         const insert = [...props.punchIns, ...props.daysOff]
         setEvents(insert)
     }, [props.punchIns, props.daysOff])
-
-    useEffect(() => {
-        apiManager
-            .getDaysOffTypes()
-            .then((res: any) => {
-                if (res.status === 200) {
-                    setTypesDayOff(res.data)
-                } else {
-                    console.log(res)
-                }
-            })
-            .catch((err) => console.log(err))
-    }, [])
 
     useEffect(() => {
         apiManager
@@ -104,7 +90,6 @@ export const CalendarComponent: FC<props> = (props) => {
                     onClose={closeModalRequest}
                 />
                 <ModalRequest
-                    types={typesDayOff}
                     onClose={closeModalRequest}
                     getDaysOff={props.getDaysOff}
                 />

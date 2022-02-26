@@ -14,23 +14,9 @@ const apiManager = new Api()
 interface props {}
 
 export const Documents: FC<props> = (props) => {
-    const [documentTypes, setDocumentTypes] = useState<Array<DocumentType>>([])
     const [documentsUser, setDocumentsUser] = useState<Array<DocumentUser>>([])
     const { user } = useAppSelector((state) => state.user)
     const [view, setView] = useState(1)
-
-    useEffect(() => {
-        apiManager
-            .getDocumentsTypes()
-            .then((res: any) => {
-                if (res.status === 200) {
-                    setDocumentTypes(res.data)
-                } else {
-                    console.log(res)
-                }
-            })
-            .catch((err) => console.log(err))
-    }, [])
 
     useEffect(() => {
         getDocuments()
@@ -61,17 +47,13 @@ export const Documents: FC<props> = (props) => {
             <section className='documents container'>
                 <ContainerWhite>
                     <SelectorDocuments
-                        types={documentTypes}
                         selected={view}
                         onSelect={(newView) => setView(newView)}
                     />
                 </ContainerWhite>
                 <ContainerWhite>
                     {view === 5 ? (
-                        <UploadDocument
-                            types={documentTypes}
-                            getDocuments={getDocuments}
-                        />
+                        <UploadDocument getDocuments={getDocuments} />
                     ) : (
                         <DocumentsList documents={filterDocuments(view)} />
                     )}

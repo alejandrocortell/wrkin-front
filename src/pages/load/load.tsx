@@ -5,7 +5,12 @@ import { useAppDispatch, useAppSelector } from '../../context/hooks'
 import Api from '../../services/api'
 import { AxiosResponse } from 'axios'
 import { setUser } from '../../context/userSlice'
-import { setOrganization, setSettings } from '../../context/organizationSlice'
+import {
+    setDocumentTypes,
+    setOrganization,
+    setSettings,
+    setTypesDayOff,
+} from '../../context/organizationSlice'
 
 const apiManager = new Api()
 
@@ -15,7 +20,9 @@ export const Load: FC<props> = (props) => {
     const auth = useAppSelector((state) => state.auth)
     const [loading, setLoading] = useState(true)
     const { user } = useAppSelector((state) => state.user)
-    const { settings } = useAppSelector((state) => state.organization)
+    const { settings, dayOffTypes, documentsTypes } = useAppSelector(
+        (state) => state.organization
+    )
     const dispatch = useAppDispatch()
 
     const navigate = useNavigate()
@@ -23,10 +30,16 @@ export const Load: FC<props> = (props) => {
     useEffect(() => {
         if (!auth.logged) {
             navigate('/login')
-        } else if (!loading && user.user !== '' && settings.id !== 0) {
+        } else if (
+            !loading &&
+            user.user !== '' &&
+            settings.id !== 0 &&
+            dayOffTypes.length > 0 &&
+            documentsTypes.length > 0
+        ) {
             navigate('/')
         }
-    }, [auth, user, settings])
+    }, [auth, user, settings, dayOffTypes, documentsTypes])
 
     useEffect(() => {
         apiManager
@@ -35,6 +48,28 @@ export const Load: FC<props> = (props) => {
                 if (res.status === 200) {
                     setLoading(false)
                     dispatch(setUser({ ...res.data.user }))
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+        apiManager
+            .getDaysOffTypes()
+            .then((res: any) => {
+                if (res.status === 200) {
+                    dispatch(setTypesDayOff(res.data))
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+        apiManager
+            .getDocumentsTypes()
+            .then((res: any) => {
+                if (res.status === 200) {
+                    dispatch(setDocumentTypes(res.data))
                 }
             })
             .catch((err) => {
