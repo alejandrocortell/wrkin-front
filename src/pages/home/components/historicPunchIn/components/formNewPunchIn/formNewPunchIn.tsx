@@ -6,11 +6,11 @@ import { InputField } from '../../../../../../components/input/input'
 import { useDebounce } from '../../../../../../hooks/useDebounce'
 import Validator from '../../../../../../utils/validators'
 import { useAppSelector } from '../../../../../../context/hooks'
-import Api from '../../../../../../services/api'
+import PunchInService from '../../../../../../services/punchInService'
 
 const val = new Validator()
 const dateUtilities = new DateUtilities()
-const apiManager = new Api()
+const punchInService = new PunchInService()
 
 interface props {
     closeModal: () => void
@@ -108,7 +108,7 @@ export const FormNewPunchIn: FC<props> = (props) => {
         const start = new Date(`${dateStart} ${timeStart}`)
         const end = new Date(`${dateEnd} ${timeEnd}`)
 
-        apiManager
+        punchInService
             .createPunchIn(start, end)
             .then((res) => {
                 props.closeModal()

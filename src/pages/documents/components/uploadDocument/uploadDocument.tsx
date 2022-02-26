@@ -4,10 +4,9 @@ import { Button } from '../../../../components/button/button'
 import { Dropdown } from '../../../../components/dropdown/dropdown'
 import { InputFile } from '../../../../components/inputFile/inputFile'
 import { useAppSelector } from '../../../../context/hooks'
-import { DocumentType } from '../../../../models/documentType'
-import Api from '../../../../services/api'
+import DocumentsService from '../../../../services/documentsService'
 
-const apiManager = new Api()
+const documentsService = new DocumentsService()
 
 interface props {
     getDocuments: () => void
@@ -48,7 +47,7 @@ export const UploadDocument: FC<props> = (props) => {
         })
         const idDocumentType = documentType ? documentType.id : 1
 
-        apiManager
+        documentsService
             .uploadDocument(idDocumentType, userId, org, selectedFile)
             .then((res) => {
                 setSelectedFile(undefined)

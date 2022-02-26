@@ -4,12 +4,12 @@ import { ContainerWhite } from '../../components/containerWhite/containerWhite'
 import { DayPunchIn } from './components/dayPunchIn/dayPunchIn'
 import { HistoricPunchIn } from './components/historicPunchIn/historicPunchIn'
 import { useAppSelector } from '../../context/hooks'
-import Api from '../../services/api'
+import UserService from '../../services/userService'
 import { PunchIn } from '../../models/punchIn'
 import DateUtilities from '../../utils/date'
 
 const dateUtilities = new DateUtilities()
-const apiManager = new Api()
+const userService = new UserService()
 
 export const Home: FC = () => {
     const { user } = useAppSelector((state) => state.user)
@@ -28,7 +28,7 @@ export const Home: FC = () => {
     }, [punchIns])
 
     const getPunchIns = () => {
-        apiManager
+        userService
             .getUserPunchIns(user.id)
             .then((res: any) => {
                 console.log(res)

@@ -5,13 +5,13 @@ import DateUtilities from '../../../../../../utils/date'
 import { InputField } from '../../../../../../components/input/input'
 import { useDebounce } from '../../../../../../hooks/useDebounce'
 import Validator from '../../../../../../utils/validators'
-import Api from '../../../../../../services/api'
+import PunchInService from '../../../../../../services/punchInService'
 import { PunchIn } from '../../../../../../models/punchIn'
 import { useAppSelector } from '../../../../../../context/hooks'
 
 const val = new Validator()
 const dateUtilities = new DateUtilities()
-const apiManager = new Api()
+const punchInService = new PunchInService()
 
 interface props {
     punchIn: PunchIn
@@ -145,7 +145,7 @@ export const FormModifyPunchIn: FC<props> = (props) => {
         setLoader(true)
         const id = props.punchIn.id
 
-        apiManager
+        punchInService
             .deletePunchIn(id)
             .then((res) => {
                 props.closeModal()
@@ -162,7 +162,7 @@ export const FormModifyPunchIn: FC<props> = (props) => {
         const start = new Date(`${dateStart} ${timeStart}`)
         const end = new Date(`${dateEnd} ${timeEnd}`)
 
-        apiManager
+        punchInService
             .updatePunchIn(id, start, end)
             .then((res) => {
                 props.closeModal()

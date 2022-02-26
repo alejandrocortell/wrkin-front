@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../../../components/button/button'
 import { useAppSelector } from '../../../../../../context/hooks'
 import { PunchIn } from '../../../../../../models/punchIn'
-import Api from '../../../../../../services/api'
+import PunchInService from '../../../../../../services/punchInService'
 import DateUtilities from '../../../../../../utils/date'
 
 const dateUtilities = new DateUtilities()
-const apiManager = new Api()
+const punchInService = new PunchInService()
 
 interface props {
     currentPunchIn: PunchIn | null
@@ -41,19 +41,14 @@ export const StartStop: FC<props> = (props) => {
     const handleClick = () => {
         setLoader(true)
         if (props.currentPunchIn === null) {
-            apiManager
-                .createPunchIn(user.currentOrganization, new Date())
+            punchInService
+                .createPunchIn(new Date())
                 .then((res) => props.getPunchIns())
                 .catch((err) => console.log(err))
                 .finally(() => setLoader(false))
         } else {
-            apiManager
-                .updatePunchIn(
-                    user.currentOrganization,
-                    props.currentPunchIn.id,
-                    undefined,
-                    new Date()
-                )
+            punchInService
+                .updatePunchIn(props.currentPunchIn.id, undefined, new Date())
                 .then((res) => {
                     props.getPunchIns()
                     setTotal(0)

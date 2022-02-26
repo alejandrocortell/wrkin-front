@@ -2,14 +2,14 @@ import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LinkButton } from '../../../../components/linkButton/linkButton'
 import Validator from '../../../../utils/validators'
-import Api from '../../../../services/api'
+import UserService from '../../../../services/userService'
 import { useAppDispatch, useAppSelector } from '../../../../context/hooks'
 import { InputFile } from '../../../../components/inputFile/inputFile'
 import { setUser } from '../../../../context/userSlice'
 import accountImg from '../../../../assets/img/person.svg'
 
 const val = new Validator()
-const apiManager = new Api()
+const userService = new UserService()
 
 export const FormAvatar: FC = () => {
     const { t } = useTranslation()
@@ -21,7 +21,7 @@ export const FormAvatar: FC = () => {
 
     useEffect(() => {
         if (user.avatar !== null) {
-            apiManager.getAvatar(user.avatar).then((res: any) => {
+            userService.getAvatar(user.avatar).then((res: any) => {
                 setAvatar(res.request.responseURL)
             })
         }
@@ -29,7 +29,7 @@ export const FormAvatar: FC = () => {
 
     useEffect(() => {
         if (selectedFile && selectedFile.type.includes('image')) {
-            apiManager
+            userService
                 .uploadAvatar(user.id, selectedFile)
                 .then((res: any) => {
                     if (res.status === 200) {

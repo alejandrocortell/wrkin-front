@@ -2,14 +2,14 @@ import { FC, useEffect, useState } from 'react'
 import { ContainerWhite } from '../../components/containerWhite/containerWhite'
 import { Wrapper } from '../../components/wrapper/wrapper'
 import { DocumentType } from './../../models/documentType'
-import Api from '../../services/api'
+import UserService from '../../services/userService'
 import { useAppSelector } from '../../context/hooks'
 import { SelectorDocuments } from './components/selector/selector'
 import { UploadDocument } from './components/uploadDocument/uploadDocument'
 import { DocumentUser } from '../../models/documentUser'
 import { DocumentsList } from './components/documentsList/documentsList'
 
-const apiManager = new Api()
+const userService = new UserService()
 
 interface props {}
 
@@ -23,7 +23,7 @@ export const Documents: FC<props> = (props) => {
     }, [])
 
     const getDocuments = () => {
-        apiManager
+        userService
             .getDocumentsUser(user.id)
             .then((res: any) => {
                 if (res.status === 200) {

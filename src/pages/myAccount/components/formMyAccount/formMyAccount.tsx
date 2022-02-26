@@ -4,7 +4,7 @@ import { Button } from '../../../../components/button/button'
 import { InputField } from '../../../../components/input/input'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import Validator from '../../../../utils/validators'
-import Api from '../../../../services/api'
+import UserService from '../../../../services/userService'
 import { useAppDispatch, useAppSelector } from '../../../../context/hooks'
 import { useNavigate } from 'react-router-dom'
 import DateUtilities from '../../../../utils/date'
@@ -12,7 +12,7 @@ import { setUser } from '../../../../context/userSlice'
 
 const dateUtilities = new DateUtilities()
 const val = new Validator()
-const apiManager = new Api()
+const userService = new UserService()
 
 export const FormMyAccount: FC = () => {
     const { t } = useTranslation()
@@ -227,7 +227,7 @@ export const FormMyAccount: FC = () => {
         setButtonLoaderAccount(true)
         setAccountUpdated(false)
 
-        apiManager
+        userService
             .updateUser(
                 user.id,
                 userName,
@@ -257,7 +257,7 @@ export const FormMyAccount: FC = () => {
         setErrorPassword(false)
         setPasswordUpdated(false)
 
-        apiManager
+        userService
             .updatePass(user.id, pass)
             .then((res: any) => {
                 if (res.status !== 201) {

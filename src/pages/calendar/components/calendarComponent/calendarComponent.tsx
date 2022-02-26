@@ -10,10 +10,10 @@ import Modal from 'react-modal'
 import { HeaderModal } from '../../../../components/headerModal/headerModal'
 import { useTranslation } from 'react-i18next'
 import { ModalRequest } from '../modalRequest/modalRequest'
-import Api from '../../../../services/api'
+import DaysOffService from '../../../../services/daysOffService'
 import { ModalEvent } from '../modalEvent/modalEvent'
 
-const apiManager = new Api()
+const daysOffService = new DaysOffService()
 
 interface props {
     punchIns: Array<CalendarEvent>
@@ -35,7 +35,7 @@ export const CalendarComponent: FC<props> = (props) => {
     }, [props.punchIns, props.daysOff])
 
     useEffect(() => {
-        apiManager
+        daysOffService
             .getStatusRequestTypes()
             .then((res: any) => {
                 if (res.status === 200) {

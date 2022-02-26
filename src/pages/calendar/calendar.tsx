@@ -3,14 +3,14 @@ import { useAppDispatch, useAppSelector } from '../../context/hooks'
 import { useTranslation } from 'react-i18next'
 import { Wrapper } from '../../components/wrapper/wrapper'
 import { CalendarComponent } from './components/calendarComponent/calendarComponent'
-import Api from '../../services/api'
+import UserService from '../../services/userService'
 import { PunchIn } from '../../models/punchIn'
 import { CalendarEvent } from '../../models/calendarEvent'
 import DateUtilities from '../../utils/date'
 import { DayOff } from '../../models/dayOff'
 import { ContainerWhite } from '../../components/containerWhite/containerWhite'
 
-const apiManager = new Api()
+const userService = new UserService()
 const dateUtilities = new DateUtilities()
 
 interface InterfacePunchInsNotToday {
@@ -32,7 +32,7 @@ export const Calendar: FC = () => {
     }, [])
 
     const getPunchIns = async () => {
-        apiManager
+        userService
             .getUserPunchIns(user.id)
             .then((res: any) => {
                 if (res.status === 200 && res.data.punchIns !== undefined) {
@@ -69,7 +69,7 @@ export const Calendar: FC = () => {
     }
 
     const getDaysOff = async () => {
-        apiManager
+        userService
             .getDaysOff(user.id)
             .then((res: any) => {
                 if (res.status === 200) {

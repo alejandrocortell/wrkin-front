@@ -4,7 +4,7 @@ import 'dayjs/locale/es'
 import { useTranslation } from 'react-i18next'
 import Validator from '../../../../utils/validators'
 import DateUtilities from '../../../../utils/date'
-import Api from '../../../../services/api'
+import DaysOffService from '../../../../services/daysOffService'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import { useAppSelector } from '../../../../context/hooks'
 import { InputField } from '../../../../components/input/input'
@@ -14,7 +14,7 @@ import { Dropdown } from '../../../../components/dropdown/dropdown'
 
 const val = new Validator()
 const dateUtilities = new DateUtilities()
-const apiManager = new Api()
+const daysOffService = new DaysOffService()
 
 interface props {
     onClose: () => void
@@ -147,7 +147,7 @@ export const ModalRequest: FC<props> = (props) => {
         })
         const idDayOffType = dayOffType ? dayOffType.id : 1
 
-        apiManager
+        daysOffService
             .createDayOff(start, end, idDayOffType, message)
             .then((res) => {
                 props.onClose()

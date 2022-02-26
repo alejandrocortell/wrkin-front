@@ -6,13 +6,13 @@ import { InputField } from '../../../../components/input/input'
 import { LinkButton } from '../../../../components/linkButton/linkButton'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import Validator from '../../../../utils/validators'
-import Api from '../../../../services/api'
+import AuthService from '../../../../services/authService'
 import { useAppDispatch } from '../../../../context/hooks'
 import { login } from '../../../../context/authSlice'
 import { useNavigate } from 'react-router-dom'
 
 const val = new Validator()
-const apiManager = new Api()
+const authService = new AuthService()
 
 export const FormLogin: FC = () => {
     const { t } = useTranslation()
@@ -25,7 +25,7 @@ export const FormLogin: FC = () => {
 
     const [pass, setPass] = useState('123456aA?')
     const [passError, setPassError] = useState(false)
-    const [passErrorText, setPassErrorText] = useState(t('ERROR_STRING'))
+    const [passErrorText, setPassErrorText] = useState('')
 
     const [remember, setRemember] = useState(true)
     const [buttonLoader, setButtonLoader] = useState(false)
@@ -76,7 +76,7 @@ export const FormLogin: FC = () => {
         setErrorForm(false)
         setButtonLoader(true)
 
-        await apiManager
+        await authService
             .login(user, pass)
             .then((res: any) => {
                 setButtonLoader(false)

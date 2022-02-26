@@ -2,7 +2,10 @@ import { FC, useEffect, useState } from 'react'
 import { Location } from 'history'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../context/hooks'
-import Api from '../../services/api'
+import UserService from '../../services/userService'
+import OrganizationService from '../../services/organizationService'
+import DaysOffService from '../../services/daysOffService'
+import DocumentsService from '../../services/documentsService'
 import { AxiosResponse } from 'axios'
 import { setUser } from '../../context/userSlice'
 import {
@@ -12,7 +15,10 @@ import {
     setTypesDayOff,
 } from '../../context/organizationSlice'
 
-const apiManager = new Api()
+const userService = new UserService()
+const organizationService = new OrganizationService()
+const daysOffService = new DaysOffService()
+const documentsService = new DocumentsService()
 
 interface props {}
 
@@ -42,7 +48,7 @@ export const Load: FC<props> = (props) => {
     }, [auth, user, settings, dayOffTypes, documentsTypes])
 
     useEffect(() => {
-        apiManager
+        userService
             .getUserInfo()
             .then((res: any) => {
                 if (res.status === 200) {
@@ -54,7 +60,7 @@ export const Load: FC<props> = (props) => {
                 console.log(err)
             })
 
-        apiManager
+        daysOffService
             .getDaysOffTypes()
             .then((res: any) => {
                 if (res.status === 200) {
@@ -65,7 +71,7 @@ export const Load: FC<props> = (props) => {
                 console.log(err)
             })
 
-        apiManager
+        documentsService
             .getDocumentsTypes()
             .then((res: any) => {
                 if (res.status === 200) {
@@ -79,7 +85,7 @@ export const Load: FC<props> = (props) => {
 
     useEffect(() => {
         if (user.user !== '') {
-            apiManager
+            organizationService
                 .getOrganization(user.OrganizationId)
                 .then((res: any) => {
                     if (res.status === 200) {
@@ -90,7 +96,7 @@ export const Load: FC<props> = (props) => {
                 .catch((err) => {
                     console.log(err)
                 })
-            apiManager
+            organizationService
                 .getSettings(user.OrganizationId)
                 .then((res: any) => {
                     if (res.status === 200) {
