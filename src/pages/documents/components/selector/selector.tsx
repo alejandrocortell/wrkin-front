@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { Button } from 'components/button/button'
 import { LinkButton } from 'components/linkButton/linkButton'
 import { useAppSelector } from 'context/hooks'
-import { DocumentType } from './models/documentType'
 
 interface props {
     selected: number
