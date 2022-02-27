@@ -5,5 +5,11 @@
 
     .container-white {
         height: fit-content;
+
+        h2 {
+            margin-left: 15px;
+            font-size: 1.5rem;
+            @include bold;
+        }
     }
 }

@@ -1,0 +1,12 @@
+.paginated-days-off {
+    .container-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .input-field {
+            width: fit-content;
+            margin-bottom: 0;
+        }
+    }
+}

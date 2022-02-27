@@ -21,6 +21,7 @@ interface Props {
     disabled?: boolean
     min?: string
     max?: string
+    placeholder?: string
 }
 
 export const InputField: FC<Props> = (props) => {
@@ -81,6 +82,7 @@ export const InputField: FC<Props> = (props) => {
                 className={`${props.error && 'error'}`}
                 min={props.min}
                 max={props.max}
+                placeholder={props.placeholder}
             />
             <span className='error-text'>{props.error && props.errorText}</span>
         </div>
