@@ -17,6 +17,7 @@ export const ListDaysOff: FC<props> = (props) => {
             {props.replied.map((p) => {
                 return expanded === p.id ? (
                     <LineExpanded
+                        key={p.id}
                         request={p}
                         user={
                             props.users.find((u) => u.id === p.userId) ||
@@ -26,6 +27,7 @@ export const ListDaysOff: FC<props> = (props) => {
                     />
                 ) : (
                     <LineContracted
+                        key={p.id}
                         request={p}
                         user={
                             props.users.find((u) => u.id === p.userId) ||

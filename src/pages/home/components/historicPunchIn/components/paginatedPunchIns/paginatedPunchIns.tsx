@@ -31,9 +31,6 @@ export const PaginatedPunchIns: FC<props> = (props) => {
         const newOffset =
             (event.selected * props.itemsPerPage) %
             props.punchInsNotToday.length
-        console.log(
-            `User requested page number ${event.selected}, which is offset ${newOffset}`
-        )
         setItemOffset(newOffset)
     }
 

@@ -50,13 +50,13 @@ export const ManageRequests: FC<props> = (props) => {
                 <ContainerWhite>
                     <SelectorManage />
                 </ContainerWhite>
-                <ContainerWhite>
+                <>
                     <Requests
                         requests={requests}
                         users={users}
                         updateRequest={getAllDaysOff}
                     />
-                </ContainerWhite>
+                </>
             </section>
         </Wrapper>
     )

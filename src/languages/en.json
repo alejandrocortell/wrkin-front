@@ -58,6 +58,8 @@
     "COMMON_NEXT": "Next",
     "COMMON_SELECT": "Select",
     "COMMON_DAY": "Day",
+    "COMMON_TYPE": "Type",
+    "COMMON_USER": "User",
 
     "HOME_RESUME_DAY": "Resume of your day",
     "HOME_TOTAL_DAY": "Total day",
@@ -75,6 +77,7 @@
     "DAYOFF_TYPE_SICK": "Sick leave",
     "DAYOFF_TYPE_FORMATION": "Formation",
     "DAYOFF_TYPE_EXAM": "Official exam",
+    "DAYOFF_TYPE_OTHER": "Other",
 
     "REQUEST_STATUS_APPROVED": "Approved",
     "REQUEST_STATUS_DENNIED": "Dennied",
@@ -106,5 +109,9 @@
     "MANAGE_TYPE_DAY_OFF": "Type day off",
     "MANAGE_STATUS": "Status",
     "MANAGE_ACCEPT": "Accept",
-    "MANAGE_REJECT": "Reject"
+    "MANAGE_REJECT": "Reject",
+    "MANAGE_FILTER": "Filter",
+    "MANAGE_SET_FILTER": "Set filter",
+    "MANAGE_ALL_TYPES": "All types",
+    "MANAGE_ALL_USERS": "All users"
 }
