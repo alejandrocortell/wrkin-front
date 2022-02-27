@@ -25,6 +25,7 @@ export const SelectorDocuments: FC<props> = (props) => {
             {documentsTypes.map((doc) => {
                 return (
                     <div
+                        key={doc.id}
                         className={`container-link ${
                             props.selected === doc.id && 'selected'
                         }`}

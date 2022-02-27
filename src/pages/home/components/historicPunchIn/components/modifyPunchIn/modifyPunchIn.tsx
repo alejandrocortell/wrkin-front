@@ -37,6 +37,7 @@ export const ModifyPunchIn: FC<props> = (props) => {
                 {props.punchIns.map((p) => {
                     return (
                         <LinePunchInModify
+                            key={p.id}
                             punchIn={p}
                             selectPunchIn={() => setSelectedPunchIn(p)}
                             selectedPunchIn={selectedPunchIn}

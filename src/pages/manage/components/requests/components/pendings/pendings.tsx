@@ -21,6 +21,7 @@ export const Pendings: FC<props> = (props) => {
             {props.pendings.map((p) => {
                 return expanded === p.id ? (
                     <LineExpanded
+                        key={p.id}
                         request={p}
                         user={
                             props.users.find((u) => u.id === p.userId) ||
@@ -31,6 +32,7 @@ export const Pendings: FC<props> = (props) => {
                     />
                 ) : (
                     <LineContracted
+                        key={p.id}
                         request={p}
                         user={
                             props.users.find((u) => u.id === p.userId) ||
