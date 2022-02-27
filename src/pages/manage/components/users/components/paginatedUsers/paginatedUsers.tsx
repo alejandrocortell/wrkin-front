@@ -46,7 +46,7 @@ export const PaginatedUsers: FC<props> = (props) => {
 
             setFilteredItems(usersFilter)
         }
-    }, [filter])
+    }, [filter, props.users])
 
     const handleUser = (id: number) => {
         console.log(id)
@@ -69,7 +69,7 @@ export const PaginatedUsers: FC<props> = (props) => {
                 />
             </div>
             <ListUsers users={currentItems} handleUser={handleUser} />
-            {currentItems.length >= 10 && (
+            {filteredItems.length >= 10 && (
                 <ReactPaginate
                     breakLabel='...'
                     onPageChange={handlePageClick}

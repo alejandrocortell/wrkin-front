@@ -115,5 +115,6 @@
     "MANAGE_SET_FILTER": "Set filter",
     "MANAGE_ALL_TYPES": "All types",
     "MANAGE_ALL_USERS": "All users",
-    "MANAGE_FILTER_BY_NAME": "Filter by name"
+    "MANAGE_FILTER_BY_NAME": "Filter by name",
+    "MANAGE_VIEW_USER": "View user"
 }
