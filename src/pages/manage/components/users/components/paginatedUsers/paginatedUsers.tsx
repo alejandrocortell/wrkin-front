@@ -4,6 +4,7 @@ import ReactPaginate from 'react-paginate'
 import { User } from 'models/user'
 import { ListUsers } from '../listUsers/listUsers'
 import { InputField } from 'components/input/input'
+import { useNavigate } from 'react-router'
 
 interface props {
     users: Array<User>
@@ -16,6 +17,7 @@ export const PaginatedUsers: FC<props> = (props) => {
     const [pageCount, setPageCount] = useState(0)
     const [itemOffset, setItemOffset] = useState(0)
     const [filter, setFilter] = useState('')
+    const navigate = useNavigate()
 
     useEffect(() => {
         const endOffset = itemOffset + props.itemsPerPage
@@ -49,7 +51,7 @@ export const PaginatedUsers: FC<props> = (props) => {
     }, [filter, props.users])
 
     const handleUser = (id: number) => {
-        console.log(id)
+        navigate(`/manage/employees/${id}`)
     }
 
     return (

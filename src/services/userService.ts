@@ -125,4 +125,28 @@ export default class UserService {
                 .catch((err) => resolve(err))
         })
     }
+
+    getUserById = async (id: number) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users/${id}`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    getUserDaysOffById = async (id: number) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users/${id}/daysoff`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
+    getUserPunchInById = async (id: number) => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/users/${id}/punchins`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }
