@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
 export const useDayOffType = (type: number) => {
-    console.log(type)
     const { t } = useTranslation()
     if (type === 1) return t('DAYOFF_TYPE_HOLIDAYS')
     if (type === 2) return t('DAYOFF_TYPE_DAYOFF')

@@ -7,6 +7,7 @@ import UserService from 'services/userService'
 import { DayOff } from 'models/dayOff'
 import { useParams } from 'react-router-dom'
 import { PunchIn } from 'models/punchIn'
+import { InfoUser } from './components/singleUser/components/infoUser/infoUser'
 
 const userService = new UserService()
 
@@ -65,9 +66,7 @@ export const ManageSingleUser: FC<props> = (props) => {
                 <ContainerWhite>
                     <SelectorManage />
                 </ContainerWhite>
-                <ContainerWhite>
-                    <>{idUser}</>
-                </ContainerWhite>
+                <div>{user && <InfoUser user={user} />}</div>
             </section>
         </Wrapper>
     )

@@ -1,0 +1,41 @@
+.info-user {
+    .container-white {
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .container-info-user {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        grid-gap: 20px;
+
+        .column-avatar {
+            .avatar {
+                width: 100%;
+                border-radius: 10px;
+                box-shadow: 0px 3px 6px $box-shadow;
+            }
+
+            .non-avatar {
+                width: 100%;
+                border-radius: 10px;
+            }
+        }
+
+        .column-info {
+            h2 {
+                margin-left: 0;
+                margin-bottom: 20px;
+                font-size: 1.6rem;
+            }
+
+            p {
+                margin-bottom: 15px;
+
+                .title {
+                    @include semi-bold;
+                }
+            }
+        }
+    }
+}
