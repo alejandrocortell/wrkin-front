@@ -2,6 +2,11 @@
     .container-white {
         height: fit-content;
         width: fit-content;
+
+        h2 {
+            font-size: 1.5rem;
+            @include bold;
+        }
     }
 
     .container-info-user {

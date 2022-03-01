@@ -8,6 +8,7 @@ import { DayOff } from 'models/dayOff'
 import { useParams } from 'react-router-dom'
 import { PunchIn } from 'models/punchIn'
 import { InfoUser } from './components/singleUser/components/infoUser/infoUser'
+import { PunchInsManager } from './components/singleUser/components/punchInsManager/punchInsManager'
 
 const userService = new UserService()
 
@@ -66,7 +67,10 @@ export const ManageSingleUser: FC<props> = (props) => {
                 <ContainerWhite>
                     <SelectorManage />
                 </ContainerWhite>
-                <div>{user && <InfoUser user={user} />}</div>
+                <div>
+                    {user && <InfoUser user={user} />}
+                    <PunchInsManager punchIns={punchIns} />
+                </div>
             </section>
         </Wrapper>
     )

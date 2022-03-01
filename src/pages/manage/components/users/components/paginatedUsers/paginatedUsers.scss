@@ -4,6 +4,12 @@
         justify-content: space-between;
         align-items: center;
 
+        h2 {
+            margin-left: 15px;
+            font-size: 1.5rem;
+            @include bold;
+        }
+
         .input-field {
             width: fit-content;
             margin-bottom: 0;
