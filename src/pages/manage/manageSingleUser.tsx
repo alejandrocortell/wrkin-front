@@ -69,7 +69,9 @@ export const ManageSingleUser: FC<props> = (props) => {
                 </ContainerWhite>
                 <div>
                     {user && <InfoUser user={user} />}
-                    <PunchInsManager punchIns={punchIns} />
+                    {user && (
+                        <PunchInsManager punchIns={punchIns} user={user} />
+                    )}
                 </div>
             </section>
         </Wrapper>

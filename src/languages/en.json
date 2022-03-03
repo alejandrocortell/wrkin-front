@@ -126,5 +126,6 @@
     "MANAGE_ALL_USERS": "All users",
     "MANAGE_FILTER_BY_NAME": "Filter by name",
     "MANAGE_VIEW_USER": "View user",
-    "MANAGE_USER_INFO": "User info"
+    "MANAGE_USER_INFO": "User info",
+    "MANAGE_DOWNLOAD_REPORT": "Download report"
 }

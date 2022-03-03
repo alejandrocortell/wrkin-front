@@ -30,7 +30,6 @@ export const LinePunchIn: FC<props> = (props) => {
     return (
         <div className='card-punch-in'>
             <span className='data'>
-                {t('')}
                 {dateUtilities.format(
                     props.punchIn.punchIns[0].start,
                     'DD-MM-YY'
