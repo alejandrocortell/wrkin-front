@@ -61,6 +61,8 @@
     "COMMON_DAY": "Day",
     "COMMON_TYPE": "Type",
     "COMMON_USER": "User",
+    "COMMON_DATE": "Date",
+    "COMMON_WORKED": "Worked",
 
     "HOME_RESUME_DAY": "Resume of your day",
     "HOME_TOTAL_DAY": "Total day",
