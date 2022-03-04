@@ -1,16 +1,36 @@
 .card-day-off {
-    // padding: 5px 10px;
-    // display: grid;
-    // grid-template-rows: 1fr 1fr;
-    // align-items: center;
-    // border: 2px solid $blue;
-    // border-radius: 4px;
-    // transition: 0.2s;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    border: 2px solid $blue;
+    border-radius: 4px;
+    transition: 0.2s;
 
-    // &:hover {
-    //     box-shadow: 0px 3px 6px $box-shadow-hight;
-    //     transition: 0.2s;
-    // }
+    &:hover {
+        box-shadow: 0px 3px 6px $box-shadow-hight;
+        transition: 0.2s;
+    }
+
+    .cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .group-info {
+        margin-bottom: 15px;
+
+        .title {
+            font-size: 1.1rem;
+            @include semi-bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        &.group-message {
+            margin-bottom: 0px;
+        }
+    }
 
     // span {
     //     display: block;
