@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateUtilities from 'utils/date'
 import { ContainerWhite } from 'components/containerWhite/containerWhite'
@@ -6,6 +6,7 @@ import { PunchIn } from 'models/punchIn'
 import { PaginatedPunchIns } from './components/paginatedPunchIns/paginatedPunchIns'
 import { LinkButton } from 'components/linkButton/linkButton'
 import { User } from 'models/user'
+import { InputField } from 'components/input/input'
 
 const dateUtilities = new DateUtilities()
 
@@ -15,7 +16,7 @@ interface props {
 }
 
 export interface InterfacePunchInsByDate {
-    date: string
+    date: Date
     punchIns: Array<PunchIn>
 }
 
@@ -24,7 +25,12 @@ export const PunchInsManager: FC<props> = (props) => {
     const [punchInsByDate, setPunchInsByDate] = useState<
         Array<InterfacePunchInsByDate>
     >([])
-    const [newestFirst, setNewestFirst] = useState(true)
+    const [dateStart, setDateStart] = useState(
+        dateUtilities.format(new Date(1970), 'YYYY-MM-DD')
+    )
+    const [dateEnd, setDateEnd] = useState(
+        dateUtilities.format(new Date(), 'YYYY-MM-DD')
+    )
 
     useEffect(() => {
         const filter = props.punchIns.filter((p) => {
@@ -45,15 +51,30 @@ export const PunchInsManager: FC<props> = (props) => {
 
             if (daysInserted.indexOf(day) === -1) {
                 formattedPunchIns.push({
-                    date: day,
+                    date: new Date(sameDay[0].start),
                     punchIns: sameDay,
                 })
             }
             daysInserted.push(day)
         })
 
-        setPunchInsByDate(formattedPunchIns)
-    }, [props.punchIns])
+        const start = new Date(dateStart)
+        const end = new Date(dateEnd)
+
+        if (
+            start.getTime() === start.getTime() &&
+            end.getTime() === end.getTime()
+        ) {
+            const filtered = formattedPunchIns.filter((p) => {
+                return p.date > start && p.date < end
+            })
+
+            console.log(filtered)
+            setPunchInsByDate(filtered)
+        } else {
+            setPunchInsByDate(formattedPunchIns)
+        }
+    }, [props.punchIns, dateStart, dateEnd])
 
     const downloadReport = () => {
         let csv = `${'FORM_NAME'},${'COMMON_START'},${'COMMON_STOP'}\n`
@@ -87,6 +108,26 @@ export const PunchInsManager: FC<props> = (props) => {
                 <div className='header-punch-ins'>
                     <h2>{t('NAV_PUNCHINS')}</h2>
                     <div>
+                        <InputField
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                setDateStart(e.target.value)
+                            }}
+                            value={dateStart}
+                            label={t('FORM_DATE_START')}
+                            type={'date'}
+                            error={false}
+                            errorText={''}
+                        />
+                        <InputField
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                setDateEnd(e.target.value)
+                            }}
+                            value={dateEnd}
+                            label={t('FORM_DATE_END')}
+                            type={'date'}
+                            error={false}
+                            errorText={''}
+                        />
                         <LinkButton
                             label={t('MANAGE_DOWNLOAD_REPORT')}
                             onClick={downloadReport}
