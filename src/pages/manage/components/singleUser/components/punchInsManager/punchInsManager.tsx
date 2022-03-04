@@ -75,7 +75,7 @@ export const PunchInsManager: FC<props> = (props) => {
     }, [props.punchIns, dateStart, dateEnd])
 
     const downloadReport = () => {
-        let csv = `${'FORM_NAME'},${'COMMON_START'},${'COMMON_STOP'}\n`
+        let csv = `${t('FORM_NAME')},${t('COMMON_START')},${t('COMMON_STOP')}\n`
 
         props.punchIns.forEach((p) => {
             csv += `${props.user.firstName} ${props.user.lastName},`

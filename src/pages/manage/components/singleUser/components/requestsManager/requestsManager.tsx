@@ -8,6 +8,8 @@ import { LinkButton } from 'components/linkButton/linkButton'
 import { User } from 'models/user'
 import { InputField } from 'components/input/input'
 import { DayOff } from 'models/dayOff'
+import { useStatusRequest } from 'hooks/useStatusRequest'
+import { useDayOffType } from 'hooks/useDayOffType'
 
 const dateUtilities = new DateUtilities()
 
@@ -35,38 +37,46 @@ export const RequestsManager: FC<props> = (props) => {
             end.getTime() === end.getTime()
         ) {
             const filtered = props.daysOff.filter((d) => {
-                return (
-                    new Date(d.createdAt) > start && new Date(d.createdAt) < end
-                )
+                return new Date(d.start) > start && new Date(d.end) < end
             })
             setDaysOff(filtered)
+        } else {
+            setDaysOff(props.daysOff)
         }
     }, [props.daysOff, dateStart, dateEnd])
 
     const downloadReport = () => {
-        let csv = `${'FORM_NAME'},${'COMMON_START'},${'COMMON_STOP'}\n`
+        let csv = `${t('FORM_NAME')},${t('COMMON_START')},${t(
+            'COMMON_STOP'
+        )},${t('CALENDAR_STATUS_REQUEST')},${t('COMMON_TYPE')},${t(
+            'FORM_MESSAGE'
+        )}\n`
 
-        // props.daysOff.forEach((d) => {
-        //     csv += `${props.user.firstName} ${props.user.lastName},`
-        //     csv += `${dateUtilities.format(
-        //         new Date(d.start),
-        //         'hh:mm DD-MM-YYYY'
-        //     )},`
-        //     csv += `${
-        //         d.end
-        //             ? dateUtilities.format(new Date(p.end), 'hh:mm DD-MM-YYYY')
-        //             : ''
-        //     },\n`
-        // })
+        props.daysOff.forEach((d) => {
+            csv += `${props.user.firstName} ${props.user.lastName},`
+            csv += `${dateUtilities.format(
+                new Date(d.start),
+                'hh:mm DD-MM-YYYY'
+            )},`
+            csv += `${
+                d.end
+                    ? dateUtilities.format(new Date(d.end), 'hh:mm DD-MM-YYYY')
+                    : ''
+            },`
+            csv += `${useStatusRequest(d.statusRequestId)},`
+            csv += `${useDayOffType(d.dayOffTypeId)},`
+            csv += `${d.message}`
+            csv += '\n'
+        })
 
-        // let hiddenElement = document.createElement('a')
-        // hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv)
-        // hiddenElement.target = '_blank'
+        let hiddenElement = document.createElement('a')
+        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv)
+        hiddenElement.target = '_blank'
 
-        // hiddenElement.download = `${props.user.firstName} ${
-        //     props.user.lastName
-        // } ${t('NAV_PUNCHINS').toLowerCase()}.csv`
-        // hiddenElement.click()
+        hiddenElement.download = `${props.user.firstName} ${
+            props.user.lastName
+        } ${t('MANAGE_REQUESTS').toLowerCase()}.csv`
+        hiddenElement.click()
     }
 
     return (

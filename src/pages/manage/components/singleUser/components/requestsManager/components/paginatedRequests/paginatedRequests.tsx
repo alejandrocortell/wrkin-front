@@ -15,7 +15,6 @@ export const PaginatedRequests: FC<props> = (props) => {
     const [itemOffset, setItemOffset] = useState(0)
 
     useEffect(() => {
-        console.log(props.daysOff)
         const endOffset = itemOffset + props.itemsPerPage
         const newItems = props.daysOff.slice(itemOffset, endOffset)
         setCurrentItems(newItems)

@@ -18,7 +18,6 @@ export const PaginatedPunchIns: FC<props> = (props) => {
     const [itemOffset, setItemOffset] = useState(0)
 
     useEffect(() => {
-        console.log(props.punchIns)
         const endOffset = itemOffset + props.itemsPerPage
         const newItems = props.punchIns.slice(itemOffset, endOffset)
         setCurrentItems(newItems)
