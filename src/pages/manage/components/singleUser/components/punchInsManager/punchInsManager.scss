@@ -1,13 +1,23 @@
 .punchins-manager {
-    .header-punch-ins {
+    h2 {
+        font-size: 1.5rem;
+        @include bold;
+        margin-bottom: 20px;
+    }
+    .options-punch-ins {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
 
-        h2 {
-            font-size: 1.5rem;
-            @include bold;
+        .filter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            .input-field {
+                max-width: fit-content;
+            }
         }
     }
 }

@@ -68,8 +68,6 @@ export const PunchInsManager: FC<props> = (props) => {
             const filtered = formattedPunchIns.filter((p) => {
                 return p.date > start && p.date < end
             })
-
-            console.log(filtered)
             setPunchInsByDate(filtered)
         } else {
             setPunchInsByDate(formattedPunchIns)
@@ -107,7 +105,9 @@ export const PunchInsManager: FC<props> = (props) => {
             <div className='punchins-manager'>
                 <div className='header-punch-ins'>
                     <h2>{t('NAV_PUNCHINS')}</h2>
-                    <div>
+                </div>
+                <div className='options-punch-ins'>
+                    <div className='filter'>
                         <InputField
                             onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setDateStart(e.target.value)
@@ -128,11 +128,11 @@ export const PunchInsManager: FC<props> = (props) => {
                             error={false}
                             errorText={''}
                         />
-                        <LinkButton
-                            label={t('MANAGE_DOWNLOAD_REPORT')}
-                            onClick={downloadReport}
-                        />
                     </div>
+                    <LinkButton
+                        label={t('MANAGE_DOWNLOAD_REPORT')}
+                        onClick={downloadReport}
+                    />
                 </div>
                 <PaginatedPunchIns
                     punchIns={punchInsByDate}
