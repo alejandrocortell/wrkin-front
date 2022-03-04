@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { PunchIn } from 'models/punchIn'
 import { InfoUser } from './components/singleUser/components/infoUser/infoUser'
 import { PunchInsManager } from './components/singleUser/components/punchInsManager/punchInsManager'
+import { RequestsManager } from './components/singleUser/components/requestsManager/requestsManager'
 
 const userService = new UserService()
 
@@ -72,6 +73,7 @@ export const ManageSingleUser: FC<props> = (props) => {
                     {user && (
                         <PunchInsManager punchIns={punchIns} user={user} />
                     )}
+                    {user && <RequestsManager daysOff={daysOff} user={user} />}
                 </div>
             </section>
         </Wrapper>

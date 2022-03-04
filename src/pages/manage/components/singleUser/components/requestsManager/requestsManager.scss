@@ -1,0 +1,24 @@
+.requests-manager {
+    h2 {
+        font-size: 1.5rem;
+        @include bold;
+        margin-bottom: 20px;
+    }
+
+    .options-request {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .filter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            .input-field {
+                max-width: fit-content;
+            }
+        }
+    }
+}
