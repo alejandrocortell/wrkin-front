@@ -5,7 +5,6 @@ import { SelectorManage } from './components/selector/selector'
 import { User } from 'models/user'
 import UserService from 'services/userService'
 import DaysOffService from 'services/daysOffService'
-import { DayOff } from 'models/dayOff'
 import { PaginatedUsers } from './components/users/components/paginatedUsers/paginatedUsers'
 
 const daysOffService = new DaysOffService()

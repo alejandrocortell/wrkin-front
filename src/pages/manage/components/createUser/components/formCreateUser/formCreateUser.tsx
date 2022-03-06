@@ -1,6 +1,7 @@
 import { Button } from 'components/button/button'
 import { Dropdown } from 'components/dropdown/dropdown'
 import { InputField } from 'components/input/input'
+import { useAppSelector } from 'context/hooks'
 import { useDebounce } from 'hooks/useDebounce'
 import { t } from 'i18next'
 import { User } from 'models/user'
@@ -14,10 +15,22 @@ const dateUtilities = new DateUtilities()
 const userService = new UserService()
 
 const roles = [
-    t('ROLE_MANAGER'),
-    t('ROLE_RRHH'),
-    t('ROLE_COORDINATOR'),
-    t('ROLE_EMPLOYEE'),
+    {
+        id: 2,
+        value: t('ROLE_MANAGER'),
+    },
+    {
+        id: 3,
+        value: t('ROLE_RRHH'),
+    },
+    {
+        id: 4,
+        value: t('ROLE_COORDINATOR'),
+    },
+    {
+        id: 5,
+        value: t('ROLE_EMPLOYEE'),
+    },
 ]
 
 interface props {
@@ -25,6 +38,8 @@ interface props {
 }
 
 export const FormCreateUser: FC<props> = (props) => {
+    const { user } = useAppSelector((state) => state.user)
+
     const [disableCreate, setDisableCreate] = useState(true)
 
     const [userName, setUserName] = useState('')
@@ -35,7 +50,7 @@ export const FormCreateUser: FC<props> = (props) => {
     const [hoursToWorkError, setHoursToWorkError] = useState(false)
     const [hoursToWorkErrorText, setHoursToWorkErrorText] = useState('')
 
-    const [role, setRole] = useState('')
+    const [role, setRole] = useState(t('ROLE_EMPLOYEE') as string)
     const [roleError, setRoleError] = useState(false)
     const [roleErrorText, setRoleErrorText] = useState('')
 
@@ -67,11 +82,11 @@ export const FormCreateUser: FC<props> = (props) => {
     const [cityError, setCityError] = useState(false)
     const [cityErrorText, setCityErrorText] = useState('')
 
-    const [pass, setPass] = useState('123456aA?')
+    const [pass, setPass] = useState('')
     const [passError, setPassError] = useState(false)
     const [passErrorText, setPassErrorText] = useState('')
 
-    const [passConfirm, setPassConfirm] = useState('123456aA?')
+    const [passConfirm, setPassConfirm] = useState('')
     const [passConfirmError, setPassConfirmError] = useState(false)
     const [passConfirmErrorText, setPassConfirmErrorText] = useState('')
 
@@ -79,6 +94,14 @@ export const FormCreateUser: FC<props> = (props) => {
 
     const [accountCreated, setAccountCreated] = useState(false)
     const [errorCreate, setErrorCreate] = useState(false)
+
+    useEffect(() => {
+        const firstUser = props.users.filter((u: User) => {
+            return [2, 3, 4].includes(u.roleId)
+        })
+
+        setManager(`${firstUser[0].firstName} ${firstUser[0].lastName}`)
+    }, [])
 
     const debouncedUser = useDebounce(userName, 400)
     useEffect(() => {
@@ -177,6 +200,8 @@ export const FormCreateUser: FC<props> = (props) => {
         if (
             userName !== '' &&
             !userError &&
+            !isNaN(hoursToWork) &&
+            !hoursToWorkError &&
             firstName !== '' &&
             !firstNameError &&
             lastName !== '' &&
@@ -201,6 +226,8 @@ export const FormCreateUser: FC<props> = (props) => {
     }, [
         userName,
         userError,
+        hoursToWork,
+        hoursToWorkError,
         firstName,
         firstNameError,
         lastName,
@@ -221,19 +248,60 @@ export const FormCreateUser: FC<props> = (props) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        // userService
-        //     .createUser(
-        //         userName,
-        //         pass,
-        //         firstName,
-        //         lastName,
-        //         new Date(birthday),
-        //         address,
-        //         zipcode,
-        //         city
-        //     )
-        //     .then((res) => console.log(res))
-        //     .catch((err) => console.log(err))
+        const managerId = props.users.find((u) => {
+            return `${u.firstName} ${u.lastName}` === manager
+        })?.id
+
+        const roleId = roles.find((r) => {
+            return r.value === role
+        })?.id
+
+        const organizationId = user.OrganizationId
+
+        if (managerId === undefined || roleId === undefined) return
+
+        setButtonLoaderCreate(true)
+        setAccountCreated(false)
+        setErrorCreate(false)
+
+        userService
+            .createUser(
+                userName,
+                pass,
+                firstName,
+                lastName,
+                new Date(birthday),
+                address,
+                zipcode,
+                city,
+                roleId,
+                managerId,
+                organizationId,
+                hoursToWork
+            )
+            .then((res: any) => {
+                if (res.status === 201) {
+                    setAccountCreated(true)
+                    cleanForm()
+                } else {
+                    setErrorCreate(true)
+                }
+            })
+            .catch((err) => setErrorCreate(true))
+            .finally(() => setButtonLoaderCreate(true))
+    }
+
+    const cleanForm = () => {
+        setUserName('')
+        setHoursToWork(40)
+        setFirstName('')
+        setLastName('')
+        setBirthday('')
+        setAddress('')
+        setZipcode('')
+        setCity('')
+        setPass('')
+        setPassConfirm('')
     }
 
     return (
@@ -267,6 +335,18 @@ export const FormCreateUser: FC<props> = (props) => {
                     }}
                     value={role}
                     label={t('FORM_ROLE')}
+                    list={roles.map((role) => {
+                        return { value: role.value }
+                    })}
+                    error={roleError}
+                    errorText={roleErrorText}
+                />
+                <Dropdown
+                    onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+                        setManager(e.target.value)
+                    }}
+                    value={manager}
+                    label={t('FORM_MANAGER')}
                     list={props.users
                         .filter((u: User) => {
                             return [2, 3, 4].includes(u.roleId)
@@ -276,20 +356,8 @@ export const FormCreateUser: FC<props> = (props) => {
                                 value: `${user.firstName} ${user.lastName}`,
                             }
                         })}
-                    error={roleError}
-                    errorText={roleErrorText}
-                />
-                <Dropdown
-                    onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-                        setManager(e.target.value)
-                    }}
-                    value={manager}
-                    label={t('FORM_ROLE')}
-                    list={roles.map((role) => {
-                        return { value: role }
-                    })}
-                    error={roleError}
-                    errorText={roleErrorText}
+                    error={managerError}
+                    errorText={managerErrorText}
                 />
             </div>
             <div className='col-2'>
@@ -386,7 +454,7 @@ export const FormCreateUser: FC<props> = (props) => {
             <div className='container-button'>
                 {accountCreated && (
                     <div className='form-updated'>
-                        {t('FORM_ACCOUNT_UPDATED')}
+                        {t('FORM_ACCOUNT_CREATED')}
                     </div>
                 )}
                 {errorCreate && (
