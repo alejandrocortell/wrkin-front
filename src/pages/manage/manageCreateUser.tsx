@@ -7,13 +7,14 @@ import UserService from 'services/userService'
 import DaysOffService from 'services/daysOffService'
 import { DayOff } from 'models/dayOff'
 import { PaginatedUsers } from './components/users/components/paginatedUsers/paginatedUsers'
+import { CreateUser } from './components/createUser/createUser'
 
 const daysOffService = new DaysOffService()
 const userServide = new UserService()
 
 interface props {}
 
-export const ManageUsers: FC<props> = (props) => {
+export const ManageCreateUser: FC<props> = (props) => {
     const [users, setUsers] = useState<Array<User>>([])
 
     useEffect(() => {
@@ -38,7 +39,7 @@ export const ManageUsers: FC<props> = (props) => {
                     <SelectorManage />
                 </ContainerWhite>
                 <ContainerWhite>
-                    <PaginatedUsers users={users} itemsPerPage={10} />
+                    {users && <CreateUser users={users} />}
                 </ContainerWhite>
             </section>
         </Wrapper>

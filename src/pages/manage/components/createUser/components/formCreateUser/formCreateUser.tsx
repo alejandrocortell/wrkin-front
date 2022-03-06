@@ -1,83 +1,94 @@
-import { ChangeEvent, FC, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Button } from 'components/button/button'
+import { Dropdown } from 'components/dropdown/dropdown'
 import { InputField } from 'components/input/input'
 import { useDebounce } from 'hooks/useDebounce'
-import Validator from 'utils/validators'
-import UserService from 'services/userService'
-import { useAppDispatch, useAppSelector } from 'context/hooks'
+import { t } from 'i18next'
+import { User } from 'models/user'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
 import DateUtilities from 'utils/date'
-import { setUser } from 'context/userSlice'
+import Validator from 'utils/validators'
 
-const dateUtilities = new DateUtilities()
 const val = new Validator()
-const userService = new UserService()
+const dateUtilities = new DateUtilities()
 
-export const FormMyAccount: FC = () => {
-    const { t } = useTranslation()
-    const { user } = useAppSelector((state) => state.user)
-    const dispatch = useAppDispatch()
+const roles = [
+    t('ROLE_MANAGER'),
+    t('ROLE_RRHH'),
+    t('ROLE_COORDINATOR'),
+    t('ROLE_EMPLOYEE'),
+]
 
-    const [disableAccount, setDisableAccount] = useState(true)
-    const [disablePass, setDisablePass] = useState(true)
+interface props {
+    users: Array<User>
+}
 
-    const [userName, setUserName] = useState(user.user)
+export const FormCreateUser: FC<props> = (props) => {
+    const [disableCreate, setDisableCreate] = useState(true)
+
+    const [userName, setUserName] = useState('')
     const [userError, setUserError] = useState(false)
     const [userErrorText, setUserErrorText] = useState('')
 
-    const [firstName, setFirstName] = useState(user.firstName)
+    const [role, setRole] = useState('')
+    const [roleError, setRoleError] = useState(false)
+    const [roleErrorText, setRoleErrorText] = useState('')
+
+    const [manager, setManager] = useState('')
+    const [managerError, setManagerError] = useState(false)
+    const [managerErrorText, setManagerErrorText] = useState('')
+
+    const [firstName, setFirstName] = useState('')
     const [firstNameError, setFirstNameError] = useState(false)
     const [firstNameErrorText, setFirstNameErrorText] = useState('')
 
-    const [lastName, setLastName] = useState(user.lastName)
+    const [lastName, setLastName] = useState('')
     const [lastNameError, setLastNameError] = useState(false)
     const [lastNameErrorText, setLastNameErrorText] = useState('')
 
-    const [birthday, setBirthday] = useState(user.birthday)
+    const [birthday, setBirthday] = useState('')
     const [birthdayError, setBirthdayError] = useState(false)
     const [birthdayErrorText, setBirthdayErrorText] = useState('')
 
-    const [address, setAddress] = useState(user.address)
+    const [address, setAddress] = useState('')
     const [addressError, setAddressError] = useState(false)
     const [addressErrorText, setAddressErrorText] = useState('')
 
-    const [zipcode, setZipcode] = useState(user.zipcode)
+    const [zipcode, setZipcode] = useState('')
     const [zipcodeError, setZipcodeError] = useState(false)
     const [zipcodeErrorText, setZipcodeErrorText] = useState('')
 
-    const [city, setCity] = useState(user.city)
+    const [city, setCity] = useState('')
     const [cityError, setCityError] = useState(false)
     const [cityErrorText, setCityErrorText] = useState('')
 
-    const [pass, setPass] = useState('')
+    const [pass, setPass] = useState('123456aA?')
     const [passError, setPassError] = useState(false)
     const [passErrorText, setPassErrorText] = useState('')
 
-    const [passConfirm, setPassConfirm] = useState('')
+    const [passConfirm, setPassConfirm] = useState('123456aA?')
     const [passConfirmError, setPassConfirmError] = useState(false)
     const [passConfirmErrorText, setPassConfirmErrorText] = useState('')
 
-    const [buttonLoaderAccount, setButtonLoaderAccount] = useState(false)
-    const [buttonLoaderPass, setButtonLoaderPass] = useState(false)
+    const [buttonLoaderCreate, setButtonLoaderCreate] = useState(false)
 
-    const [accountUpdated, setAccountUpdated] = useState(false)
-    const [passwordUpdated, setPasswordUpdated] = useState(false)
-    const [errorAccount, setErrorAccount] = useState(false)
-    const [errorPassword, setErrorPassword] = useState(false)
-
-    useEffect(() => {
-        setFirstName(user.firstName)
-        setLastName(user.lastName)
-        setBirthday(user.birthday)
-        setAddress(user.address)
-        setZipcode(user.zipcode)
-        setCity(user.city)
-    }, [user])
+    const [accountCreated, setAccountCreated] = useState(false)
+    const [errorCreate, setErrorCreate] = useState(false)
 
     const debouncedUser = useDebounce(userName, 400)
     useEffect(() => {
         if (userName === '') return
         setUserError(false)
+
+        const sameUser = props.users.find((u) => {
+            return u.user === userName
+        })
+
+        if (sameUser !== undefined) {
+            setUserError(true)
+            setUserErrorText(t('MANAGE_USER_IN_USE'))
+            return
+        }
+
         const test = val.isString(userName)
         setUserError(test.error)
         setUserErrorText(test.errorText)
@@ -158,19 +169,6 @@ export const FormMyAccount: FC = () => {
 
     useEffect(() => {
         if (
-            userName === user.user &&
-            firstName === user.firstName &&
-            lastName === user.lastName &&
-            birthday === user.birthday &&
-            address === user.address &&
-            zipcode === user.zipcode &&
-            city === user.city
-        ) {
-            setDisableAccount(true)
-            return
-        }
-
-        if (
             userName !== '' &&
             !userError &&
             firstName !== '' &&
@@ -184,11 +182,15 @@ export const FormMyAccount: FC = () => {
             zipcode !== '' &&
             !zipcodeError &&
             city !== '' &&
-            !cityError
+            !cityError &&
+            pass !== '' &&
+            !passError &&
+            passConfirm !== '' &&
+            !passConfirmError
         ) {
-            setDisableAccount(false)
+            setDisableCreate(false)
         } else {
-            setDisableAccount(true)
+            setDisableCreate(true)
         }
     }, [
         userName,
@@ -205,75 +207,20 @@ export const FormMyAccount: FC = () => {
         zipcodeError,
         city,
         cityError,
+        pass,
+        passError,
+        passConfirm,
+        passConfirmError,
     ])
 
-    useEffect(() => {
-        if (
-            pass !== '' &&
-            !passError &&
-            passConfirm !== '' &&
-            !passConfirmError
-        ) {
-            setDisablePass(false)
-        } else {
-            setDisablePass(true)
-        }
-    }, [pass, passError, passConfirm, passConfirmError])
-
-    const handleUpdateAccount = (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault()
-        setErrorAccount(false)
-        setButtonLoaderAccount(true)
-        setAccountUpdated(false)
-
-        userService
-            .updateUser(
-                user.id,
-                userName,
-                firstName,
-                lastName,
-                new Date(birthday),
-                address,
-                zipcode,
-                city
-            )
-            .then((res: any) => {
-                if (res.status !== 201) {
-                    setErrorAccount(true)
-                    return
-                }
-                setDisableAccount(true)
-                setAccountUpdated(true)
-                dispatch(setUser(res.data.user))
-            })
-            .catch((err) => setErrorAccount(true))
-            .finally(() => setButtonLoaderAccount(false))
-    }
-
-    const handleUpdatePass = (e: any) => {
-        e.preventDefault()
-        setButtonLoaderPass(true)
-        setErrorPassword(false)
-        setPasswordUpdated(false)
-
-        userService
-            .updatePass(user.id, pass)
-            .then((res: any) => {
-                if (res.status !== 201) {
-                    setErrorPassword(true)
-                    return
-                }
-                setPasswordUpdated(true)
-                setPass('')
-                setPassConfirm('')
-            })
-            .catch((err) => setErrorPassword(true))
-            .finally(() => setButtonLoaderPass(false))
+        console.log('aa')
     }
 
     return (
-        <div>
-            <form className='form-my-account' onSubmit={handleUpdateAccount}>
+        <form className='form-create-user' onSubmit={handleSubmit}>
+            <div className='col-3'>
                 <InputField
                     value={userName}
                     label={t('FORM_USER')}
@@ -283,7 +230,36 @@ export const FormMyAccount: FC = () => {
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setUserName(e.target.value)
                     }
-                    disabled
+                />
+                <Dropdown
+                    onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+                        setRole(e.target.value)
+                    }}
+                    value={role}
+                    label={t('FORM_ROLE')}
+                    list={props.users
+                        .filter((u: User) => {
+                            return [2, 3, 4].includes(u.roleId)
+                        })
+                        .map((user) => {
+                            return {
+                                value: `${user.firstName} ${user.lastName}`,
+                            }
+                        })}
+                    error={roleError}
+                    errorText={roleErrorText}
+                />
+                <Dropdown
+                    onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+                        setManager(e.target.value)
+                    }}
+                    value={manager}
+                    label={t('ROLE_MANAGER')}
+                    list={roles.map((role) => {
+                        return { value: role }
+                    })}
+                    error={roleError}
+                    errorText={roleErrorText}
                 />
                 <InputField
                     value={firstName}
@@ -348,26 +324,8 @@ export const FormMyAccount: FC = () => {
                         setCity(e.target.value)
                     }
                 />
-                {accountUpdated && (
-                    <div className='form-updated'>
-                        {t('FORM_ACCOUNT_UPDATED')}
-                    </div>
-                )}
-                {errorAccount && (
-                    <div className='error-form'>{t('ERROR_FORM')}</div>
-                )}
-                <Button
-                    onClick={handleUpdateAccount}
-                    label={t('FORM_UPDATE_ACCOUNT')}
-                    style={'primary'}
-                    loading={buttonLoaderAccount}
-                    disabled={disableAccount}
-                />
-            </form>
-            <form
-                className='form-my-account form-pass'
-                onSubmit={handleUpdatePass}
-            >
+            </div>
+            <div className='col-2'>
                 <InputField
                     value={pass}
                     label={t('FORM_PASSWORD')}
@@ -388,20 +346,25 @@ export const FormMyAccount: FC = () => {
                         setPassConfirm(e.target.value)
                     }
                 />
-                {passwordUpdated && (
-                    <div className='form-updated'>{t('FORM_PASS_UPDATED')}</div>
+            </div>
+            <div className='container-button'>
+                {accountCreated && (
+                    <div className='form-updated'>
+                        {t('FORM_ACCOUNT_UPDATED')}
+                    </div>
                 )}
-                {errorPassword && (
+                {errorCreate && (
                     <div className='error-form'>{t('ERROR_FORM')}</div>
                 )}
+
                 <Button
-                    onClick={handleUpdatePass}
-                    label={t('FORM_UPDATE_PASSWORD')}
+                    onClick={handleSubmit}
+                    label={t('MANAGE_CREATE_ACCOUNT')}
                     style={'primary'}
-                    loading={buttonLoaderPass}
-                    disabled={disablePass}
+                    loading={buttonLoaderCreate}
+                    disabled={disableCreate}
                 />
-            </form>
-        </div>
+            </div>
+        </form>
     )
 }

@@ -1,0 +1,7 @@
+.create-user {
+    h2 {
+        font-size: 1.5rem;
+        @include bold;
+        margin-bottom: 20px;
+    }
+}

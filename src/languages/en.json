@@ -111,6 +111,8 @@
 
     "MANAGE_EMPLOYEES": "Employees",
     "MANAGE_REQUESTS": "Requests",
+    "MANAGE_CREATE_USER": "Create user",
+    "MANAGE_CREATE_ACCOUNT": "Create account",
     "MANAGE_PENDINGS": "Pendings",
     "MANAGE_REPLIED": "Replied",
     "MANAGE_USERS": "Users",
@@ -127,5 +129,6 @@
     "MANAGE_FILTER_BY_NAME": "Filter by name",
     "MANAGE_VIEW_USER": "View user",
     "MANAGE_USER_INFO": "User info",
-    "MANAGE_DOWNLOAD_REPORT": "Download report"
+    "MANAGE_DOWNLOAD_REPORT": "Download report",
+    "MANAGE_USER_IN_USE": "User in use"
 }

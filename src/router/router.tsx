@@ -14,6 +14,7 @@ import { MyAccount } from 'pages/myAccount/myAccount'
 import { ManageUsers } from 'pages/manage/manageUsers'
 import { ManageRequests } from 'pages/manage/manageRequests'
 import { ManageSingleUser } from 'pages/manage/manageSingleUser'
+import { ManageCreateUser } from 'pages/manage/manageCreateUser'
 
 const cookie = new Cookie()
 
@@ -41,6 +42,10 @@ export const App: FC = () => {
                 <Route
                     path='/manage/employees/:idUser'
                     element={<ManageSingleUser />}
+                />
+                <Route
+                    path='/manage/create-user'
+                    element={<ManageCreateUser />}
                 />
             </Route>
             <Route path='/loading' element={<Load />} />

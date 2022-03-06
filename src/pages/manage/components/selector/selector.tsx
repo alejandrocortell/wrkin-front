@@ -31,6 +31,16 @@ export const SelectorManage: FC<props> = (props) => {
                     path={'/manage/employees'}
                 />
             </div>
+            <div
+                className={`container-link ${
+                    location.pathname === '/manage/create-user' && 'selected'
+                }`}
+            >
+                <LinkButton
+                    label={t('MANAGE_CREATE_USER')}
+                    path={'/manage/create-user'}
+                />
+            </div>
         </div>
     )
 }

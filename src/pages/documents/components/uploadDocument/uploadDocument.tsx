@@ -72,7 +72,7 @@ export const UploadDocument: FC<props> = (props) => {
                     setType(e.target.value)
                 }}
                 value={type}
-                label={'Type'}
+                label={t('COMMON_TYPE')}
                 list={documentsTypes.map((t) => {
                     return { value: t.name }
                 })}
