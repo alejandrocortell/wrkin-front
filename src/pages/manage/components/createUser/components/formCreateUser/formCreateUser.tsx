@@ -5,11 +5,13 @@ import { useDebounce } from 'hooks/useDebounce'
 import { t } from 'i18next'
 import { User } from 'models/user'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
+import UserService from 'services/userService'
 import DateUtilities from 'utils/date'
 import Validator from 'utils/validators'
 
 const val = new Validator()
 const dateUtilities = new DateUtilities()
+const userService = new UserService()
 
 const roles = [
     t('ROLE_MANAGER'),
@@ -28,6 +30,10 @@ export const FormCreateUser: FC<props> = (props) => {
     const [userName, setUserName] = useState('')
     const [userError, setUserError] = useState(false)
     const [userErrorText, setUserErrorText] = useState('')
+
+    const [hoursToWork, setHoursToWork] = useState(40)
+    const [hoursToWorkError, setHoursToWorkError] = useState(false)
+    const [hoursToWorkErrorText, setHoursToWorkErrorText] = useState('')
 
     const [role, setRole] = useState('')
     const [roleError, setRoleError] = useState(false)
@@ -215,12 +221,24 @@ export const FormCreateUser: FC<props> = (props) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        console.log('aa')
+        // userService
+        //     .createUser(
+        //         userName,
+        //         pass,
+        //         firstName,
+        //         lastName,
+        //         new Date(birthday),
+        //         address,
+        //         zipcode,
+        //         city
+        //     )
+        //     .then((res) => console.log(res))
+        //     .catch((err) => console.log(err))
     }
 
     return (
         <form className='form-create-user' onSubmit={handleSubmit}>
-            <div className='col-3'>
+            <div className='col-2'>
                 <InputField
                     value={userName}
                     label={t('FORM_USER')}
@@ -231,6 +249,18 @@ export const FormCreateUser: FC<props> = (props) => {
                         setUserName(e.target.value)
                     }
                 />
+                <InputField
+                    value={hoursToWork}
+                    label={t('MANAGE_HOURS_TO_WORK')}
+                    type='number'
+                    error={hoursToWorkError}
+                    errorText={hoursToWorkErrorText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setHoursToWork(parseInt(e.target.value))
+                    }
+                />
+            </div>
+            <div className='col-2'>
                 <Dropdown
                     onChange={(e: ChangeEvent<HTMLSelectElement>) => {
                         setRole(e.target.value)
@@ -254,13 +284,15 @@ export const FormCreateUser: FC<props> = (props) => {
                         setManager(e.target.value)
                     }}
                     value={manager}
-                    label={t('ROLE_MANAGER')}
+                    label={t('FORM_ROLE')}
                     list={roles.map((role) => {
                         return { value: role }
                     })}
                     error={roleError}
                     errorText={roleErrorText}
                 />
+            </div>
+            <div className='col-2'>
                 <InputField
                     value={firstName}
                     label={t('FORM_FIRST_NAME')}
@@ -281,6 +313,8 @@ export const FormCreateUser: FC<props> = (props) => {
                         setLastName(e.target.value)
                     }
                 />
+            </div>
+            <div className='col-2'>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setBirthday(e.target.value)
@@ -294,16 +328,18 @@ export const FormCreateUser: FC<props> = (props) => {
                     error={birthdayError}
                     errorText={birthdayErrorText}
                 />
-                <InputField
-                    value={address}
-                    label={t('FORM_ADDRESS')}
-                    type='text'
-                    error={addressError}
-                    errorText={addressErrorText}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setAddress(e.target.value)
-                    }
-                />
+            </div>
+            <InputField
+                value={address}
+                label={t('FORM_ADDRESS')}
+                type='text'
+                error={addressError}
+                errorText={addressErrorText}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setAddress(e.target.value)
+                }
+            />
+            <div className='col-2'>
                 <InputField
                     value={zipcode}
                     label={t('FORM_ZIPCODE')}

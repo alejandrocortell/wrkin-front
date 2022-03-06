@@ -130,5 +130,6 @@
     "MANAGE_VIEW_USER": "View user",
     "MANAGE_USER_INFO": "User info",
     "MANAGE_DOWNLOAD_REPORT": "Download report",
-    "MANAGE_USER_IN_USE": "User in use"
+    "MANAGE_USER_IN_USE": "User in use",
+    "MANAGE_HOURS_TO_WORK": "Hours to work"
 }

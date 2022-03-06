@@ -89,6 +89,41 @@ export default class UserService {
         })
     }
 
+    createUser = async (
+        user: string,
+        password: string,
+        firstName: string,
+        lastName: string,
+        birthday: Date,
+        address: string,
+        zipcode: string,
+        city: string,
+        role: number,
+        manager: number,
+        organization: number,
+        hoursToWork: number
+    ) => {
+        const params = {
+            user: user,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            birthday: birthday,
+            address: address,
+            zipcode: zipcode,
+            city: city,
+            role: role,
+            manager: manager,
+            organization: organization,
+            hoursToWork: hoursToWork,
+        }
+        return new Promise((resolve) => {
+            api.post(`${apiUrl}/users`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
     updateUser = async (
         id: number,
         user: string,
