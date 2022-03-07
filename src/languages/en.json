@@ -133,5 +133,7 @@
     "MANAGE_DOWNLOAD_REPORT": "Download report",
     "MANAGE_USER_IN_USE": "User in use",
     "MANAGE_HOURS_TO_WORK": "Hours to work (weekly)",
-    "MANAGE_RANDOM_PASS": "Generate random password"
+    "MANAGE_RANDOM_PASS": "Generate random password",
+    "MANAGE_REMOVE_USER": "Remove user",
+    "MANAGE_REMOVE_USER_TEXT": "Are you sure you want to eliminate"
 }

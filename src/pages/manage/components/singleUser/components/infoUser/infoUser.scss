@@ -41,6 +41,15 @@
                     @include semi-bold;
                 }
             }
+
+            .button {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+                min-height: 12px;
+                max-width: fit-content;
+                border: 2px solid $red;
+                color: $red;
+            }
         }
     }
 }

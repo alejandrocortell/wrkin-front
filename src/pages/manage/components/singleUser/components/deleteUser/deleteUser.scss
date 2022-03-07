@@ -1,0 +1,17 @@
+.container-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .button {
+        align-self: flex-end;
+        margin-top: 20px;
+        max-width: fit-content;
+    }
+
+    .error-message {
+        margin-top: 10px;
+        @include semi-bold;
+    }
+}

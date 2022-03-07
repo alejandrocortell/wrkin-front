@@ -150,6 +150,14 @@ export default class UserService {
         })
     }
 
+    deleteUser = async (id: number) => {
+        return new Promise((resolve) => {
+            api.delete(`${apiUrl}/users/${id}`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
     updatePass = async (id: number, password: string) => {
         const params = {
             password: password,

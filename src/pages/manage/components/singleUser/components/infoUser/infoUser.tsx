@@ -6,6 +6,8 @@ import UserService from 'services/userService'
 import { useRoleType } from 'hooks/useRoleType'
 import accountImg from 'assets/img/person.svg'
 import { ContainerWhite } from 'components/containerWhite/containerWhite'
+import { Button } from 'components/button/button'
+import { DeleteUser } from '../deleteUser/deleteUser'
 
 const dateUtilities = new DateUtilities()
 const userService = new UserService()
@@ -19,6 +21,7 @@ export const InfoUser: FC<props> = (props) => {
     const role = useRoleType(props.user.roleId)
     const [manager, setManager] = useState('')
     const [avatar, setAvatar] = useState('')
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     useEffect(() => {
         userService
@@ -39,6 +42,11 @@ export const InfoUser: FC<props> = (props) => {
 
     return (
         <div className='info-user'>
+            <DeleteUser
+                user={props.user}
+                modalIsOpen={modalIsOpen}
+                closeModal={() => setModalIsOpen(!modalIsOpen)}
+            />
             <ContainerWhite>
                 <div className='container-info-user'>
                     <div className='column-avatar'>
@@ -79,6 +87,11 @@ export const InfoUser: FC<props> = (props) => {
                             <span className='title'>{t('FORM_MANAGER')}: </span>
                             {manager}
                         </p>
+                        <Button
+                            onClick={() => setModalIsOpen(!modalIsOpen)}
+                            label={t('MANAGE_REMOVE_USER')}
+                            style={'secondary'}
+                        />
                     </div>
                 </div>
             </ContainerWhite>
