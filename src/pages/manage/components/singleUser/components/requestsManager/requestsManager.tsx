@@ -85,35 +85,50 @@ export const RequestsManager: FC<props> = (props) => {
                 <div className='header-request'>
                     <h2>{t('MANAGE_REQUESTS')}</h2>
                 </div>
-                <div className='options-request'>
-                    <div className='filter'>
-                        <InputField
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                setDateStart(e.target.value)
-                            }}
-                            value={dateStart}
-                            label={t('FORM_DATE_START')}
-                            type={'date'}
-                            error={false}
-                            errorText={''}
-                        />
-                        <InputField
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                setDateEnd(e.target.value)
-                            }}
-                            value={dateEnd}
-                            label={t('FORM_DATE_END')}
-                            type={'date'}
-                            error={false}
-                            errorText={''}
-                        />
+                {props.daysOff.length === 0 ? (
+                    <div className='not-found'>
+                        {t('MANAGE_NO_REQUEST_FOUND')}
                     </div>
-                    <LinkButton
-                        label={t('MANAGE_DOWNLOAD_REPORT')}
-                        onClick={downloadReport}
-                    />
-                </div>
-                <PaginatedRequests daysOff={daysOff} itemsPerPage={20} />
+                ) : (
+                    <>
+                        <div className='options-request'>
+                            <div className='filter'>
+                                <InputField
+                                    onChange={(
+                                        e: ChangeEvent<HTMLInputElement>
+                                    ) => {
+                                        setDateStart(e.target.value)
+                                    }}
+                                    value={dateStart}
+                                    label={t('FORM_DATE_START')}
+                                    type={'date'}
+                                    error={false}
+                                    errorText={''}
+                                />
+                                <InputField
+                                    onChange={(
+                                        e: ChangeEvent<HTMLInputElement>
+                                    ) => {
+                                        setDateEnd(e.target.value)
+                                    }}
+                                    value={dateEnd}
+                                    label={t('FORM_DATE_END')}
+                                    type={'date'}
+                                    error={false}
+                                    errorText={''}
+                                />
+                            </div>
+                            <LinkButton
+                                label={t('MANAGE_DOWNLOAD_REPORT')}
+                                onClick={downloadReport}
+                            />
+                        </div>
+                        <PaginatedRequests
+                            daysOff={daysOff}
+                            itemsPerPage={20}
+                        />
+                    </>
+                )}
             </div>
         </ContainerWhite>
     )

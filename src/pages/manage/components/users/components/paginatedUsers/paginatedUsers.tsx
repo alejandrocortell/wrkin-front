@@ -70,28 +70,34 @@ export const PaginatedUsers: FC<props> = (props) => {
                     errorText={''}
                 />
             </div>
-            <ListUsers users={currentItems} handleUser={handleUser} />
-            {filteredItems.length >= 10 && (
-                <ReactPaginate
-                    breakLabel='...'
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={2}
-                    marginPagesDisplayed={2}
-                    pageCount={pageCount}
-                    nextLabel={`»`}
-                    previousLabel={`«`}
-                    renderOnZeroPageCount={undefined}
-                    pageClassName='page-item'
-                    pageLinkClassName='page-link'
-                    previousClassName='page-item'
-                    previousLinkClassName='page-link'
-                    nextClassName='page-item'
-                    nextLinkClassName='page-link'
-                    breakClassName='page-item'
-                    breakLinkClassName='page-link'
-                    containerClassName='pagination'
-                    activeClassName='active'
-                />
+            {currentItems.length === 0 ? (
+                <div className='not-found'>{t('MANAGE_NO_USERS_FOUND')}</div>
+            ) : (
+                <>
+                    <ListUsers users={currentItems} handleUser={handleUser} />
+                    {filteredItems.length > props.itemsPerPage && (
+                        <ReactPaginate
+                            breakLabel='...'
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={2}
+                            marginPagesDisplayed={2}
+                            pageCount={pageCount}
+                            nextLabel={`»`}
+                            previousLabel={`«`}
+                            renderOnZeroPageCount={undefined}
+                            pageClassName='page-item'
+                            pageLinkClassName='page-link'
+                            previousClassName='page-item'
+                            previousLinkClassName='page-link'
+                            nextClassName='page-item'
+                            nextLinkClassName='page-link'
+                            breakClassName='page-item'
+                            breakLinkClassName='page-link'
+                            containerClassName='pagination'
+                            activeClassName='active'
+                        />
+                    )}
+                </>
             )}
         </div>
     )

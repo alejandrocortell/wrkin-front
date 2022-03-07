@@ -135,5 +135,8 @@
     "MANAGE_HOURS_TO_WORK": "Hours to work (weekly)",
     "MANAGE_RANDOM_PASS": "Generate random password",
     "MANAGE_REMOVE_USER": "Remove user",
-    "MANAGE_REMOVE_USER_TEXT": "Are you sure you want to eliminate"
+    "MANAGE_REMOVE_USER_TEXT": "Are you sure you want to eliminate",
+    "MANAGE_NO_USERS_FOUND": "No users found",
+    "MANAGE_NO_REQUEST_FOUND": "No requests found",
+    "MANAGE_NO_PUNCHINS_FOUND": "No punch ins found"
 }

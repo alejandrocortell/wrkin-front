@@ -106,38 +106,50 @@ export const PunchInsManager: FC<props> = (props) => {
                 <div className='header-punch-ins'>
                     <h2>{t('NAV_PUNCHINS')}</h2>
                 </div>
-                <div className='options-punch-ins'>
-                    <div className='filter'>
-                        <InputField
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                setDateStart(e.target.value)
-                            }}
-                            value={dateStart}
-                            label={t('FORM_DATE_START')}
-                            type={'date'}
-                            error={false}
-                            errorText={''}
-                        />
-                        <InputField
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                setDateEnd(e.target.value)
-                            }}
-                            value={dateEnd}
-                            label={t('FORM_DATE_END')}
-                            type={'date'}
-                            error={false}
-                            errorText={''}
-                        />
+                {props.punchIns.length === 0 ? (
+                    <div className='not-found'>
+                        {t('MANAGE_NO_PUNCHINS_FOUND')}
                     </div>
-                    <LinkButton
-                        label={t('MANAGE_DOWNLOAD_REPORT')}
-                        onClick={downloadReport}
-                    />
-                </div>
-                <PaginatedPunchIns
-                    punchIns={punchInsByDate}
-                    itemsPerPage={20}
-                />
+                ) : (
+                    <>
+                        <div className='options-punch-ins'>
+                            <div className='filter'>
+                                <InputField
+                                    onChange={(
+                                        e: ChangeEvent<HTMLInputElement>
+                                    ) => {
+                                        setDateStart(e.target.value)
+                                    }}
+                                    value={dateStart}
+                                    label={t('FORM_DATE_START')}
+                                    type={'date'}
+                                    error={false}
+                                    errorText={''}
+                                />
+                                <InputField
+                                    onChange={(
+                                        e: ChangeEvent<HTMLInputElement>
+                                    ) => {
+                                        setDateEnd(e.target.value)
+                                    }}
+                                    value={dateEnd}
+                                    label={t('FORM_DATE_END')}
+                                    type={'date'}
+                                    error={false}
+                                    errorText={''}
+                                />
+                            </div>
+                            <LinkButton
+                                label={t('MANAGE_DOWNLOAD_REPORT')}
+                                onClick={downloadReport}
+                            />
+                        </div>
+                        <PaginatedPunchIns
+                            punchIns={punchInsByDate}
+                            itemsPerPage={20}
+                        />
+                    </>
+                )}
             </div>
         </ContainerWhite>
     )
