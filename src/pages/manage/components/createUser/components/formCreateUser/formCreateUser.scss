@@ -20,5 +20,15 @@
         .button {
             max-width: fit-content;
         }
+
+        &.container-password {
+            margin-bottom: 20px;
+
+            .button {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+                min-height: 12px;
+            }
+        }
     }
 }

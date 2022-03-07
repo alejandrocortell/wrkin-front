@@ -100,7 +100,9 @@ export const FormCreateUser: FC<props> = (props) => {
             return [2, 3, 4].includes(u.roleId)
         })
 
-        setManager(`${firstUser[0].firstName} ${firstUser[0].lastName}`)
+        if (firstUser[0]) {
+            setManager(`${firstUser[0].firstName} ${firstUser[0].lastName}`)
+        }
     }, [])
 
     const debouncedUser = useDebounce(userName, 400)
@@ -304,6 +306,26 @@ export const FormCreateUser: FC<props> = (props) => {
         setPassConfirm('')
     }
 
+    const randomPassword = () => {
+        const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        const lower = 'abcdefghijklmnopqrstuvwxyz'
+        const special = '~!@-#$+*?{}^'
+        const numbers = '1234567890'
+
+        let randomString = ''
+        for (let i = 0; i < 4; i++) {
+            const aRandom = Math.floor(Math.random() * upper.length)
+            randomString += upper.substring(aRandom, aRandom + 1)
+            const bRandom = Math.floor(Math.random() * lower.length)
+            randomString += lower.substring(bRandom, bRandom + 1)
+            const cRandom = Math.floor(Math.random() * special.length)
+            randomString += special.substring(cRandom, cRandom + 1)
+            const dRandom = Math.floor(Math.random() * numbers.length)
+            randomString += numbers.substring(dRandom, dRandom + 1)
+        }
+        setPass(randomString)
+    }
+
     return (
         <form className='form-create-user' onSubmit={handleSubmit}>
             <div className='col-2'>
@@ -433,7 +455,7 @@ export const FormCreateUser: FC<props> = (props) => {
                 <InputField
                     value={pass}
                     label={t('FORM_PASSWORD')}
-                    type='password'
+                    type='text'
                     error={passError}
                     errorText={passErrorText}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -443,12 +465,19 @@ export const FormCreateUser: FC<props> = (props) => {
                 <InputField
                     value={passConfirm}
                     label={t('FORM_CONFIRM_PASSWORD')}
-                    type='password'
+                    type='text'
                     error={passConfirmError}
                     errorText={passConfirmErrorText}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setPassConfirm(e.target.value)
                     }
+                />
+            </div>
+            <div className='container-button container-password'>
+                <Button
+                    onClick={randomPassword}
+                    label={t('MANAGE_RANDOM_PASS')}
+                    style={'secondary'}
                 />
             </div>
             <div className='container-button'>
