@@ -112,6 +112,7 @@
 
     "MANAGE_EMPLOYEES": "Employees",
     "MANAGE_REQUESTS": "Requests",
+    "MANAGE_DOCUMENTS": "Documents",
     "MANAGE_CREATE_USER": "Create user",
     "MANAGE_CREATE_ACCOUNT": "Create account",
     "MANAGE_PENDINGS": "Pendings",

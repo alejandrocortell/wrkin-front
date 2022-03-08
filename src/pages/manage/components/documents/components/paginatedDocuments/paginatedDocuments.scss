@@ -1,0 +1,17 @@
+.paginated-documents {
+    .container-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            margin-left: 15px;
+            font-size: 1.5rem;
+            @include bold;
+        }
+
+        .button {
+            width: fit-content;
+        }
+    }
+}

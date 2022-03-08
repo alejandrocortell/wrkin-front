@@ -10,8 +10,8 @@ export const SelectorManage: FC<props> = (props) => {
     const { t } = useTranslation()
 
     return (
-        <div className='selector-documents'>
-            <div
+        <ul className='selector-documents'>
+            <li
                 className={`container-link ${
                     location.pathname === '/manage/request' && 'selected'
                 }`}
@@ -20,8 +20,18 @@ export const SelectorManage: FC<props> = (props) => {
                     label={t('MANAGE_REQUESTS')}
                     path={'/manage/request'}
                 />
-            </div>
-            <div
+            </li>
+            <li
+                className={`container-link ${
+                    location.pathname === '/manage/documents' && 'selected'
+                }`}
+            >
+                <LinkButton
+                    label={t('MANAGE_DOCUMENTS')}
+                    path={'/manage/documents'}
+                />
+            </li>
+            <li
                 className={`container-link ${
                     location.pathname === '/manage/employees' && 'selected'
                 }`}
@@ -30,8 +40,8 @@ export const SelectorManage: FC<props> = (props) => {
                     label={t('MANAGE_EMPLOYEES')}
                     path={'/manage/employees'}
                 />
-            </div>
-            <div
+            </li>
+            <li
                 className={`container-link ${
                     location.pathname === '/manage/create-user' && 'selected'
                 }`}
@@ -40,7 +50,7 @@ export const SelectorManage: FC<props> = (props) => {
                     label={t('MANAGE_CREATE_USER')}
                     path={'/manage/create-user'}
                 />
-            </div>
-        </div>
+            </li>
+        </ul>
     )
 }

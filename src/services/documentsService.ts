@@ -55,4 +55,12 @@ export default class DocumentsService {
                 .catch((err) => resolve(err))
         })
     }
+
+    getAllDocuments = async () => {
+        return new Promise((resolve) => {
+            api.get(`${apiUrl}/documents`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }

@@ -15,6 +15,7 @@ import { ManageUsers } from 'pages/manage/manageUsers'
 import { ManageRequests } from 'pages/manage/manageRequests'
 import { ManageSingleUser } from 'pages/manage/manageSingleUser'
 import { ManageCreateUser } from 'pages/manage/manageCreateUser'
+import { ManageDocuments } from 'pages/manage/manageDocuments'
 
 const cookie = new Cookie()
 
@@ -39,6 +40,7 @@ export const App: FC = () => {
             <Route element={<RequireAuth roles={[4]} />}>
                 <Route path='/manage/employees' element={<ManageUsers />} />
                 <Route path='/manage/request' element={<ManageRequests />} />
+                <Route path='/manage/documents' element={<ManageDocuments />} />
                 <Route
                     path='/manage/employees/:idUser'
                     element={<ManageSingleUser />}
