@@ -5,6 +5,7 @@ import { User } from 'models/user'
 import { ListUsers } from '../listUsers/listUsers'
 import { InputField } from 'components/input/input'
 import { useNavigate } from 'react-router'
+import { useAppSelector } from 'context/hooks'
 
 interface props {
     users: Array<User>
@@ -12,6 +13,7 @@ interface props {
 }
 
 export const PaginatedUsers: FC<props> = (props) => {
+    const { user } = useAppSelector((state) => state.user)
     const [filteredItems, setFilteredItems] = useState(props.users)
     const [currentItems, setCurrentItems] = useState<Array<User>>([])
     const [pageCount, setPageCount] = useState(0)
@@ -35,7 +37,7 @@ export const PaginatedUsers: FC<props> = (props) => {
 
     useEffect(() => {
         if (filter === '') {
-            setFilteredItems(props.users)
+            setFilteredItems(props.users.filter((u) => u.id !== user.id))
         } else {
             const usersFilter = props.users.filter((user) => {
                 return (
@@ -46,7 +48,7 @@ export const PaginatedUsers: FC<props> = (props) => {
                 )
             })
 
-            setFilteredItems(usersFilter)
+            setFilteredItems(usersFilter.filter((u) => u.id !== user.id))
         }
     }, [filter, props.users])
 
