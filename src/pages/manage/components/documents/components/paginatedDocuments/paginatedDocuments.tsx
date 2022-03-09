@@ -112,26 +112,28 @@ export const PaginatedDocuments: FC<props> = (props) => {
                 />
             </div>
             <ListDocuments documents={currentItems} users={props.users} />
-            <ReactPaginate
-                breakLabel='...'
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={2}
-                marginPagesDisplayed={2}
-                pageCount={pageCount}
-                nextLabel={`»`}
-                previousLabel={`«`}
-                renderOnZeroPageCount={undefined}
-                pageClassName='page-item'
-                pageLinkClassName='page-link'
-                previousClassName='page-item'
-                previousLinkClassName='page-link'
-                nextClassName='page-item'
-                nextLinkClassName='page-link'
-                breakClassName='page-item'
-                breakLinkClassName='page-link'
-                containerClassName='pagination'
-                activeClassName='active'
-            />
+            {currentItems.length > props.itemsPerPage && (
+                <ReactPaginate
+                    breakLabel='...'
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={2}
+                    marginPagesDisplayed={2}
+                    pageCount={pageCount}
+                    nextLabel={`»`}
+                    previousLabel={`«`}
+                    renderOnZeroPageCount={undefined}
+                    pageClassName='page-item'
+                    pageLinkClassName='page-link'
+                    previousClassName='page-item'
+                    previousLinkClassName='page-link'
+                    nextClassName='page-item'
+                    nextLinkClassName='page-link'
+                    breakClassName='page-item'
+                    breakLinkClassName='page-link'
+                    containerClassName='pagination'
+                    activeClassName='active'
+                />
+            )}
         </div>
     )
 }
