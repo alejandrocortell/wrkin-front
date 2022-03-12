@@ -39,9 +39,9 @@ export const LineExpanded: FC<props> = (props) => {
                     deletedDocument={props.getDocuments}
                 />
             </Modal>
-            <div className='line-user'>
+            <div className='line-user' onClick={props.changeExpanded}>
                 <p className='user'>{props.document.name}</p>
-                <span onClick={props.changeExpanded}>
+                <span>
                     <img src={arrow} alt='Contract line' />
                 </span>
             </div>

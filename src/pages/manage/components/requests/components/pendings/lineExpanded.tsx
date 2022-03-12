@@ -45,9 +45,9 @@ export const LineExpanded: FC<props> = (props) => {
 
     return (
         <div className='expanded line'>
-            <div className='line-user'>
+            <div className='line-user' onClick={props.changeExpanded}>
                 <p className='user'>{`${props.user.firstName} ${props.user.lastName}`}</p>
-                <span onClick={props.changeExpanded}>
+                <span>
                     <img src={arrow} alt='Contract line' />
                 </span>
             </div>

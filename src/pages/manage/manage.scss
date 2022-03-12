@@ -52,12 +52,12 @@
         &.expanded {
             .line-user {
                 span {
-                    &:hover {
-                        cursor: pointer;
-                    }
                     img {
                         transform: rotate(180deg);
                     }
+                }
+                &:hover {
+                    cursor: pointer;
                 }
             }
         }
