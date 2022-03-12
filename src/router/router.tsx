@@ -37,7 +37,7 @@ export const App: FC = () => {
                 <Route path='/documents' element={<Documents />} />
                 <Route path='/my-account' element={<MyAccount />} />
             </Route>
-            <Route element={<RequireAuth roles={[4]} />}>
+            <Route element={<RequireAuth roles={[1, 2, 3, 4]} />}>
                 <Route path='/manage/employees' element={<ManageUsers />} />
                 <Route path='/manage/request' element={<ManageRequests />} />
                 <Route path='/manage/documents' element={<ManageDocuments />} />
@@ -45,6 +45,8 @@ export const App: FC = () => {
                     path='/manage/employees/:idUser'
                     element={<ManageSingleUser />}
                 />
+            </Route>
+            <Route element={<RequireAuth roles={[1, 2, 3]} />}>
                 <Route
                     path='/manage/create-user'
                     element={<ManageCreateUser />}

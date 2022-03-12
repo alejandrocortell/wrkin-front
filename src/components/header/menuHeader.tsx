@@ -35,7 +35,7 @@ export const MenuHeader: FC<Props> = (props) => {
                         path={'/documents'}
                     />
                 </li>
-                {user.roleId === 4 && (
+                {[1, 2, 3, 4].includes(user.roleId) && (
                     <li>
                         <LinkButton
                             label={t('NAV_MANAGE_ORG')}

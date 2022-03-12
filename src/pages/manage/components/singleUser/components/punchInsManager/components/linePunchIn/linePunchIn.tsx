@@ -28,7 +28,7 @@ export const LinePunchIn: FC<props> = (props) => {
     }
 
     return (
-        <div className='card-punch-in'>
+        <div className='card-punch-in' key={props.punchIn.punchIns[0].id}>
             <span className='data'>
                 {dateUtilities.format(
                     props.punchIn.punchIns[0].start,

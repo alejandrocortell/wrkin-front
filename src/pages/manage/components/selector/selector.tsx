@@ -2,12 +2,14 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 import { LinkButton } from 'components/linkButton/linkButton'
+import { useAppSelector } from 'context/hooks'
 
 interface props {}
 
 export const SelectorManage: FC<props> = (props) => {
     const location = useLocation()
     const { t } = useTranslation()
+    const { user } = useAppSelector((state) => state.user)
 
     return (
         <ul className='selector-documents'>
@@ -41,16 +43,19 @@ export const SelectorManage: FC<props> = (props) => {
                     path={'/manage/employees'}
                 />
             </li>
-            <li
-                className={`container-link ${
-                    location.pathname === '/manage/create-user' && 'selected'
-                }`}
-            >
-                <LinkButton
-                    label={t('MANAGE_CREATE_USER')}
-                    path={'/manage/create-user'}
-                />
-            </li>
+            {[1, 2, 3].includes(user.roleId) && (
+                <li
+                    className={`container-link ${
+                        location.pathname === '/manage/create-user' &&
+                        'selected'
+                    }`}
+                >
+                    <LinkButton
+                        label={t('MANAGE_CREATE_USER')}
+                        path={'/manage/create-user'}
+                    />
+                </li>
+            )}
         </ul>
     )
 }

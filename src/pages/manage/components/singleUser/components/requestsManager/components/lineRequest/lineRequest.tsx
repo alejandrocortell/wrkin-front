@@ -17,7 +17,7 @@ export const LineRequest: FC<props> = (props) => {
     const type = useDayOffType(props.dayOff.dayOffTypeId)
 
     return (
-        <div className='card-day-off'>
+        <div className='card-day-off' key={props.dayOff.id}>
             <div className='cols'>
                 <div className='group-info'>
                     <span className='title'>{t('COMMON_START')}</span>

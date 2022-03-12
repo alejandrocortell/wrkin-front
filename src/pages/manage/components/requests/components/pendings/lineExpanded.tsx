@@ -7,6 +7,7 @@ import DateUtilities from 'utils/date'
 import arrow from 'assets/img/arrow.svg'
 import { Button } from 'components/button/button'
 import DaysOffService from 'services/daysOffService'
+import { useAppSelector } from 'context/hooks'
 
 const dateUtilities = new DateUtilities()
 const daysOffService = new DaysOffService()
@@ -19,6 +20,7 @@ interface props {
 
 export const LineExpanded: FC<props> = (props) => {
     const { t } = useTranslation()
+    const { user } = useAppSelector((state) => state.user)
     const dayOffType = useDayOffType(props.request.dayOffTypeId)
     const [loadReject, setLoadReject] = useState(false)
     const [loadAccept, setLoadAccept] = useState(false)
@@ -79,20 +81,23 @@ export const LineExpanded: FC<props> = (props) => {
                 <p className='title'>{t('MANAGE_PENDINGS_MESSAGE')}</p>
                 <p className='message'>{props.request.message}</p>
             </div>
-            <div className='container-buttons'>
-                <Button
-                    onClick={reject}
-                    label={t('MANAGE_REJECT')}
-                    style={'delete'}
-                    loading={loadReject}
-                />
-                <Button
-                    onClick={accept}
-                    label={t('MANAGE_ACCEPT')}
-                    style={'accept'}
-                    loading={loadAccept}
-                />
-            </div>
+            {[1, 2, 4].includes(user.roleId) &&
+                props.user.managerId === user.id && (
+                    <div className='container-buttons'>
+                        <Button
+                            onClick={reject}
+                            label={t('MANAGE_REJECT')}
+                            style={'delete'}
+                            loading={loadReject}
+                        />
+                        <Button
+                            onClick={accept}
+                            label={t('MANAGE_ACCEPT')}
+                            style={'accept'}
+                            loading={loadAccept}
+                        />
+                    </div>
+                )}
         </div>
     )
 }
