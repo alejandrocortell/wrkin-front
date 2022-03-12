@@ -63,6 +63,7 @@
     "COMMON_TYPE": "Type",
     "COMMON_USER": "User",
     "COMMON_DATE": "Date",
+    "COMMON_DATE_CREATED": "Date created",
     "COMMON_WORKED": "Worked",
 
     "HOME_RESUME_DAY": "Resume of your day",
@@ -120,7 +121,8 @@
     "MANAGE_USERS": "Users",
     "MANAGE_PENDINGS_EMPLOYEE": "Employee",
     "MANAGE_PENDINGS_MESSAGE": "Message",
-    "MANAGE_TYPE_DAY_OFF": "Type day off",
+    "MANAGE_TYPE_DAY_OFF": "Day off type",
+    "MANAGE_TYPE_DOCUMENT": "Document type",
     "MANAGE_STATUS": "Status",
     "MANAGE_ACCEPT": "Accept",
     "MANAGE_REJECT": "Reject",
@@ -139,5 +141,6 @@
     "MANAGE_REMOVE_USER_TEXT": "Are you sure you want to eliminate",
     "MANAGE_NO_USERS_FOUND": "No users found",
     "MANAGE_NO_REQUEST_FOUND": "No requests found",
-    "MANAGE_NO_PUNCHINS_FOUND": "No punch ins found"
+    "MANAGE_NO_PUNCHINS_FOUND": "No punch ins found",
+    "MANAGE_REMOVE_DOCUMENT": "Remove document"
 }
