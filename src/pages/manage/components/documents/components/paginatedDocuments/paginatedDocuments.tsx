@@ -86,7 +86,6 @@ export const PaginatedDocuments: FC<props> = (props) => {
             }
         })
 
-        console.log('by date', byDate)
         setFilteredItems(byDate)
     }, [filter, props.documents])
 
