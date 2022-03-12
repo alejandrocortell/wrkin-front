@@ -10,8 +10,15 @@
             @include bold;
         }
 
-        .button {
-            width: fit-content;
+        .container-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            .button {
+                width: fit-content;
+            }
         }
     }
 }

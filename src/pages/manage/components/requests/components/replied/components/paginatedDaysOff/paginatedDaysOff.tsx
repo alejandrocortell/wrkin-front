@@ -111,7 +111,7 @@ export const PaginatedDaysOff: FC<props> = (props) => {
                 />
             </div>
             <ListDaysOff replied={currentItems} users={props.users} />
-            {currentItems.length > props.itemsPerPage && (
+            {filteredItems.length > props.itemsPerPage && (
                 <ReactPaginate
                     breakLabel='...'
                     onPageChange={handlePageClick}

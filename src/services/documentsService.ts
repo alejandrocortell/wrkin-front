@@ -32,13 +32,15 @@ export default class DocumentsService {
 
     uploadDocument = async (
         documentType: number,
-        user: number,
+        user: number | null,
         organization: number,
         file: File
     ) => {
         let bodyFormData = new FormData()
         bodyFormData.append('organization', organization.toString())
-        bodyFormData.append('user', user.toString())
+        if (user !== null) {
+            bodyFormData.append('user', user.toString())
+        }
         bodyFormData.append('documentType', documentType.toString())
         bodyFormData.append('file', file)
         return new Promise((resolve) => {

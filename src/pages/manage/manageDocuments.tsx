@@ -26,6 +26,7 @@ export const ManageDocuments: FC<props> = (props) => {
         documentsService
             .getAllDocuments()
             .then((res: any) => {
+                console.log(res)
                 if (res.status === 200) {
                     setDocuments(res.data)
                 }
@@ -55,6 +56,7 @@ export const ManageDocuments: FC<props> = (props) => {
                         users={users}
                         documents={documents}
                         itemsPerPage={10}
+                        getDocuments={getDocuments}
                     />
                 </ContainerWhite>
             </section>
