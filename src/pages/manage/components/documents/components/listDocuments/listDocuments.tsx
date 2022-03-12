@@ -7,6 +7,7 @@ import { DocumentUser } from 'models/documentUser'
 interface props {
     documents: Array<DocumentUser>
     users: Array<User>
+    getDocuments: () => void
 }
 
 export const ListDocuments: FC<props> = (props) => {
@@ -24,6 +25,7 @@ export const ListDocuments: FC<props> = (props) => {
                             initialUser
                         }
                         changeExpanded={() => setExpanded(0)}
+                        getDocuments={props.getDocuments}
                     />
                 ) : (
                     <LineContracted

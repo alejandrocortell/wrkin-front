@@ -65,4 +65,12 @@ export default class DocumentsService {
                 .catch((err) => resolve(err))
         })
     }
+
+    deleteDocument = async (id: number) => {
+        return new Promise((resolve) => {
+            api.delete(`${apiUrl}/documents/${id}`)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }

@@ -142,5 +142,6 @@
     "MANAGE_NO_USERS_FOUND": "No users found",
     "MANAGE_NO_REQUEST_FOUND": "No requests found",
     "MANAGE_NO_PUNCHINS_FOUND": "No punch ins found",
-    "MANAGE_REMOVE_DOCUMENT": "Remove document"
+    "MANAGE_REMOVE_DOCUMENT": "Delete document",
+    "MANAGE_REMOVE_DOCUMENT_TEXT": "Are you sure you want to eliminate"
 }

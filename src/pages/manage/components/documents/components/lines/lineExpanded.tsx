@@ -6,23 +6,39 @@ import arrow from 'assets/img/arrow.svg'
 import { DocumentUser } from 'models/documentUser'
 import { useDocumentType } from 'hooks/useDocumentType'
 import { Button } from 'components/button/button'
+import Modal from 'react-modal'
+import { HeaderModal } from 'components/headerModal/headerModal'
+import { ConfirmDeleteModal } from '../confirmDeleteModal/confirmDeleteModal'
 
 const dateUtilities = new DateUtilities()
 interface props {
     document: DocumentUser
     user: User
     changeExpanded: () => void
+    getDocuments: () => void
 }
 
 export const LineExpanded: FC<props> = (props) => {
     const { t } = useTranslation()
     const documentType = useDocumentType(props.document.documentTypeId)
-    const [loadRemove, setLoadRemove] = useState(false)
-
-    const remove = () => {}
+    const [modalDelteIsOpen, setModalDelteIsOpen] = useState(false)
 
     return (
         <div className='expanded line'>
+            <Modal
+                ariaHideApp={false}
+                isOpen={modalDelteIsOpen}
+                onRequestClose={() => setModalDelteIsOpen(false)}
+            >
+                <HeaderModal
+                    title={t('MANAGE_REMOVE_DOCUMENT')}
+                    onClose={() => setModalDelteIsOpen(false)}
+                />
+                <ConfirmDeleteModal
+                    document={props.document}
+                    deletedDocument={props.getDocuments}
+                />
+            </Modal>
             <div className='line-user'>
                 <p className='user'>{props.document.name}</p>
                 <span onClick={props.changeExpanded}>
@@ -52,10 +68,9 @@ export const LineExpanded: FC<props> = (props) => {
             </div>
             <div className='container-buttons'>
                 <Button
-                    onClick={remove}
+                    onClick={() => setModalDelteIsOpen(true)}
                     label={t('MANAGE_REMOVE_DOCUMENT')}
                     style={'delete'}
-                    loading={loadRemove}
                 />
             </div>
         </div>

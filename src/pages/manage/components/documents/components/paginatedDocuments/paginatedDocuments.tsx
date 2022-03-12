@@ -136,7 +136,11 @@ export const PaginatedDocuments: FC<props> = (props) => {
                     />
                 </div>
             </div>
-            <ListDocuments documents={currentItems} users={props.users} />
+            <ListDocuments
+                documents={currentItems}
+                users={props.users}
+                getDocuments={props.getDocuments}
+            />
             {filteredItems.length > props.itemsPerPage && (
                 <ReactPaginate
                     breakLabel='...'

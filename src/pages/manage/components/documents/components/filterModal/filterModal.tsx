@@ -6,7 +6,7 @@ import { t } from 'i18next'
 import { User } from 'models/user'
 import { ChangeEvent, FC, useState } from 'react'
 import DateUtilities from 'utils/date'
-import { Filter } from '../../documents'
+import { Filter } from '../paginatedDocuments/paginatedDocuments'
 
 const dateUtilities = new DateUtilities()
 
