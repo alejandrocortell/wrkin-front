@@ -12,10 +12,14 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState: initialState,
     reducers: {
-        login: (state, action: PayloadAction<string>) => {
-            cookie.setCookie('token', action.payload, 30)
+        login: (
+            state,
+            action: PayloadAction<{ token: string; remember: boolean }>
+        ) => {
+            const timeRemember = action.payload.remember ? 2700 : 1
+            cookie.setCookie('token', action.payload.token, timeRemember)
             state.logged = true
-            state.token = action.payload
+            state.token = action.payload.token
         },
         logout: (state) => {
             cookie.deleteCookie('token')

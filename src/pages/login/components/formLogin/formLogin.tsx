@@ -92,7 +92,7 @@ export const FormLogin: FC = () => {
                     return
                 }
 
-                dispatch(login(res.data.token))
+                dispatch(login({ token: res.data.token, remember: remember }))
             })
             .catch((err) => console.log(err))
     }
