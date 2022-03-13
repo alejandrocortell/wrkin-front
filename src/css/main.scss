@@ -9,6 +9,7 @@ html {
     padding-right: 10px;
     padding-left: 10px;
     width: 100%;
+    overflow-x: hidden;
 
     @include sm {
         max-width: 540px;
