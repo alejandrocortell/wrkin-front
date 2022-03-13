@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { Logo } from 'components/logo/logo'
-import { MenuHeader } from './menuHeader'
+import { MenuHeader } from './components/menuHeader/menuHeader'
+import { MenuHeaderMobile } from './components/menuHeaderMobile/menuHeaderMobile'
 
 interface Props {}
 
@@ -15,7 +16,12 @@ export const Header: FC<Props> = (props) => {
                             <Logo />
                         </Link>
                     </div>
-                    <MenuHeader />
+                    <div className='menu-desktop'>
+                        <MenuHeader />
+                    </div>
+                    <div className='menu-mobile'>
+                        <MenuHeaderMobile />
+                    </div>
                 </div>
             </div>
         </header>

@@ -21,7 +21,7 @@ export const MenuHeader: FC<Props> = (props) => {
     }
 
     return (
-        <nav className='nav-header'>
+        <nav className='menu-header'>
             <ul>
                 <li>
                     <LinkButton label={t('NAV_PUNCHINS')} path={'/'} />
