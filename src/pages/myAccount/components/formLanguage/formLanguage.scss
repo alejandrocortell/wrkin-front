@@ -1,0 +1,17 @@
+.form-language {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    *,
+    .link-button {
+        font-size: 0.9rem;
+        @include semi-bold;
+    }
+
+    .link-button {
+        margin-top: 10px;
+    }
+}

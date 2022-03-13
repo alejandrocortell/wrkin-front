@@ -18,6 +18,7 @@
 
     .link-button {
         font-size: 1rem;
+        @include semi-bold;
     }
 
     .file-name {

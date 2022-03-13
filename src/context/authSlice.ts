@@ -18,11 +18,18 @@ export const authSlice = createSlice({
         ) => {
             const timeRemember = action.payload.remember ? 2700 : 1
             cookie.setCookie('token', action.payload.token, timeRemember)
+            cookie.setCookie(
+                'remember',
+                action.payload.remember ? 'true' : 'false',
+                2700
+            )
             state.logged = true
             state.token = action.payload.token
         },
         logout: (state) => {
             cookie.deleteCookie('token')
+            cookie.deleteCookie('remember')
+            cookie.deleteCookie('language')
             state.logged = false
             state.token = ''
         },

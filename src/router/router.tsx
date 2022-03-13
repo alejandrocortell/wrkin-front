@@ -16,6 +16,7 @@ import { ManageRequests } from 'pages/manage/manageRequests'
 import { ManageSingleUser } from 'pages/manage/manageSingleUser'
 import { ManageCreateUser } from 'pages/manage/manageCreateUser'
 import { ManageDocuments } from 'pages/manage/manageDocuments'
+import i18next from 'i18next'
 
 const cookie = new Cookie()
 
@@ -24,8 +25,21 @@ export const App: FC = () => {
 
     useEffect(() => {
         const token = cookie.getCookie('token')
+        const remember = cookie.getCookie('remember')
+        const language = cookie.getCookie('language')
+
         if (token) {
-            dispatch(login(token))
+            dispatch(
+                login({
+                    token: token,
+                    remember: remember === 'true' ? true : false,
+                })
+            )
+        }
+
+        if (language) {
+            i18next.changeLanguage(language)
+            cookie.setCookie('language', language, 2700)
         }
     }, [])
 

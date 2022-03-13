@@ -38,6 +38,9 @@
     "FORM_ACCOUNT_UPDATED": "Account updated",
     "FORM_PASS_UPDATED": "Password updated",
     "FORM_ACCOUNT_CREATED": "Account created",
+    "FORM_CHANGE_LANGUAGE": "Change language",
+    "FORM_LANGUAGE_ES": "Spanish",
+    "FORM_LANGUAGE_EN": "English",
 
     "ERROR_FORM": "An error has ocurred, please try again",
     "ERROR_STRING": "Invalid text",
