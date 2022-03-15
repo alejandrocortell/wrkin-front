@@ -1,7 +1,14 @@
 .modal-request {
+    max-height: 90%;
+
     .all-day {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+
+        @include sm {
+            grid-template-columns: 1fr 1fr;
+        }
 
         .checkbox-field {
             font-size: 1.1rem;

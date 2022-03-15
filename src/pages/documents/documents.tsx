@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { ContainerWhite } from 'components/containerWhite/containerWhite'
 import { Wrapper } from 'components/wrapper/wrapper'
-import { DocumentType } from './models/documentType'
 import UserService from 'services/userService'
 import { useAppSelector } from 'context/hooks'
 import { SelectorDocuments } from './components/selector/selector'

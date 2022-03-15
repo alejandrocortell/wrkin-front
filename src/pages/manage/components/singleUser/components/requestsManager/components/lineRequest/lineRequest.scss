@@ -1,11 +1,15 @@
 .card-day-off {
     padding: 15px;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     align-items: center;
     border: 2px solid $blue;
     border-radius: 4px;
     transition: 0.2s;
+
+    @include md {
+        grid-template-rows: 1fr 1fr;
+    }
 
     &:hover {
         box-shadow: 0px 3px 6px $box-shadow-hight;
@@ -14,7 +18,11 @@
 
     .cols {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+
+        @include md {
+            grid-template-rows: 1fr 1fr;
+        }
     }
 
     .group-info {

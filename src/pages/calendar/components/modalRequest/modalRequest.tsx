@@ -162,7 +162,7 @@ export const ModalRequest: FC<props> = (props) => {
             className='form-new-punch-in modal-request'
             onSubmit={handleSubmit}
         >
-            <div className='line all-day'>
+            <div className='all-day'>
                 <Checkbox
                     onChange={() => setAllDay(!allDay)}
                     checked={allDay}
@@ -181,7 +181,7 @@ export const ModalRequest: FC<props> = (props) => {
                     errorText={typeErrorText}
                 />
             </div>
-            <div className='line'>
+            <div className='all-day'>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setDateStart(e.target.value)
@@ -205,7 +205,7 @@ export const ModalRequest: FC<props> = (props) => {
                     disabled={allDay}
                 />
             </div>
-            <div className='line'>
+            <div className='all-day'>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setDateEnd(e.target.value)
@@ -229,7 +229,7 @@ export const ModalRequest: FC<props> = (props) => {
                     disabled={allDay}
                 />
             </div>
-            <div className='line'>
+            <div>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setMessage(e.target.value)

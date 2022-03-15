@@ -6,9 +6,13 @@
 
         .container-forms {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr;
             gap: 20px;
             max-width: 820px;
+
+            @include md {
+                grid-template-columns: 1fr 2fr;
+            }
         }
     }
 }

@@ -5,7 +5,14 @@
     .rbc-toolbar {
         margin-bottom: 20px;
         display: grid;
-        grid-template-columns: 1fr auto 1fr;
+        grid-template-columns: 1fr;
+
+        @include sm {
+            grid-template-columns: 0px auto 1fr;
+        }
+        @include md {
+            grid-template-columns: 1fr auto 1fr;
+        }
 
         .rbc-toolbar-label {
             .link-button {
@@ -38,8 +45,14 @@
 
         .do-request {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
+            margin-top: 20px;
+
+            @include sm {
+                margin-top: 0px;
+                justify-content: flex-end;
+            }
 
             .button {
                 width: 50%;

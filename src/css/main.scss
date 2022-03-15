@@ -9,7 +9,6 @@ html {
     padding-right: 10px;
     padding-left: 10px;
     width: 100%;
-    overflow-x: hidden;
 
     @include sm {
         max-width: 540px;
@@ -54,7 +53,7 @@ html {
 }
 
 .ReactModal__Overlay {
-    z-index: 2;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,6 +68,19 @@ html {
 
     .ReactModal__Content {
         inset: auto !important;
-        min-width: 500px;
+        min-width: 0px;
+        width: 90%;
+        max-height: 90%;
+        overflow-y: scroll;
+
+        @include sm {
+            min-width: 300px;
+            width: 80%;
+        }
+
+        @include md {
+            min-width: 500px;
+            width: auto;
+        }
     }
 }

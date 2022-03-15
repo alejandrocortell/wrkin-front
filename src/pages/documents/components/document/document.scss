@@ -19,6 +19,9 @@
         p {
             @include semi-bold;
             margin-bottom: 3px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            word-wrap: anywhere;
         }
 
         span {

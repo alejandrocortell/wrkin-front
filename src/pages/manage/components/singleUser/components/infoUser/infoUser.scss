@@ -11,8 +11,12 @@
 
     .container-info-user {
         display: grid;
-        grid-template-columns: 200px 1fr;
+        grid-template-columns: 1fr;
         grid-gap: 20px;
+
+        @include md {
+            grid-template-columns: 200px 1fr;
+        }
 
         .column-avatar {
             .avatar {

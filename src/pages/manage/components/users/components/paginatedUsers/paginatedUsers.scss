@@ -3,16 +3,30 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-direction: column;
+
+        @include md {
+            flex-direction: row;
+        }
 
         h2 {
             margin-left: 15px;
             font-size: 1.5rem;
             @include bold;
+            margin-bottom: 20px;
+
+            @include md {
+                margin-bottom: 0px;
+            }
         }
 
         .input-field {
-            width: fit-content;
             margin-bottom: 0;
+            width: 100%;
+
+            @include md {
+                width: fit-content;
+            }
         }
     }
 }
