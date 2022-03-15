@@ -3,9 +3,24 @@
     height: 100%;
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
+
+    @include sm {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include md {
+        grid-template-columns: 2fr 1fr;
+    }
 
     .background {
-        background: transparent linear-gradient(130deg, #3cb9fc 0%, #8a2be2 100%) 0% 0% no-repeat padding-box;
+        display: none;
+        background: transparent
+            linear-gradient(130deg, #3cb9fc 0%, #8a2be2 100%) 0% 0% no-repeat
+            padding-box;
+
+        @include sm {
+            display: block;
+        }
     }
 }
