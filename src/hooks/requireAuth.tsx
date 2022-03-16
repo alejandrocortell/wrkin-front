@@ -7,13 +7,16 @@ interface props {
 }
 
 export const RequireAuth: FC<props> = (props) => {
+    const location = useLocation()
     const auth = useAppSelector((state) => state.auth)
     const { user } = useAppSelector((state) => state.user)
 
-    if (!auth.logged) {
+    if (user.user === '') {
+        const route = location.pathname === '/' ? '/' : location.pathname
+        const path = route.substring(1)
+        return <Navigate to={`/loading/${path.replaceAll('/', '-')}`} />
+    } else if (!auth.logged) {
         return <Navigate to='/login' />
-    } else if (user.user === '') {
-        return <Navigate to='/loading' />
     } else if (!props.roles.includes(user.roleId)) {
         return <Navigate to='/' />
     } else {

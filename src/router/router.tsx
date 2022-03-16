@@ -67,6 +67,7 @@ export const App: FC = () => {
                 />
             </Route>
             <Route path='/loading' element={<Load />} />
+            <Route path='/loading/:route' element={<Load />} />
             <Route path='/login' element={<Login />} />
             <Route path='*' element={<FourOFour />} />
         </Routes>

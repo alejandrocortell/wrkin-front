@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { Location } from 'history'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'context/hooks'
 import UserService from 'services/userService'
 import OrganizationService from 'services/organizationService'
@@ -23,6 +23,7 @@ const documentsService = new DocumentsService()
 interface props {}
 
 export const Load: FC<props> = (props) => {
+    const { route } = useParams()
     const auth = useAppSelector((state) => state.auth)
     const [loading, setLoading] = useState(true)
     const { user } = useAppSelector((state) => state.user)
@@ -30,8 +31,11 @@ export const Load: FC<props> = (props) => {
         (state) => state.organization
     )
     const dispatch = useAppDispatch()
-
     const navigate = useNavigate()
+
+    useEffect(() => {
+        console.log(route)
+    }, [])
 
     useEffect(() => {
         if (!auth.logged) {
@@ -43,7 +47,11 @@ export const Load: FC<props> = (props) => {
             dayOffTypes.length > 0 &&
             documentsTypes.length > 0
         ) {
-            navigate('/')
+            if (route === undefined) {
+                navigate('/')
+            } else {
+                navigate(`/${route?.replaceAll('-', '/')}`)
+            }
         }
     }, [auth, user, settings, dayOffTypes, documentsTypes])
 
