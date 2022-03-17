@@ -2,6 +2,22 @@ html {
     font-size: 16px;
     @include regular;
     color: $blue;
+
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    @include md {
+        -ms-overflow-style: initial; /* for Internet Explorer, Edge */
+        scrollbar-width: initial; /* for Firefox */
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: initial;
+        }
+    }
 }
 
 .container {

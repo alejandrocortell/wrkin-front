@@ -14,6 +14,7 @@ import {
     setSettings,
     setTypesDayOff,
 } from 'context/organizationSlice'
+import { Logo } from 'components/logo/logo'
 
 const userService = new UserService()
 const organizationService = new OrganizationService()
@@ -30,30 +31,35 @@ export const Load: FC<props> = (props) => {
     const { settings, dayOffTypes, documentsTypes } = useAppSelector(
         (state) => state.organization
     )
+    const [finishedLoader, setFinishedLoader] = useState(false)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(route)
+        setTimeout(() => {
+            setFinishedLoader(true)
+        }, 1500)
     }, [])
 
     useEffect(() => {
-        if (!auth.logged) {
-            navigate('/login')
-        } else if (
-            !loading &&
-            user.user !== '' &&
-            settings.id !== 0 &&
-            dayOffTypes.length > 0 &&
-            documentsTypes.length > 0
-        ) {
-            if (route === undefined) {
-                navigate('/')
-            } else {
-                navigate(`/${route?.replaceAll('-', '/')}`)
+        if (finishedLoader) {
+            if (!auth.logged) {
+                navigate('/login')
+            } else if (
+                !loading &&
+                user.user !== '' &&
+                settings.id !== 0 &&
+                dayOffTypes.length > 0 &&
+                documentsTypes.length > 0
+            ) {
+                if (route === undefined) {
+                    navigate('/')
+                } else {
+                    navigate(`/${route?.replaceAll('-', '/')}`)
+                }
             }
         }
-    }, [auth, user, settings, dayOffTypes, documentsTypes])
+    }, [auth, user, settings, dayOffTypes, documentsTypes, finishedLoader])
 
     useEffect(() => {
         userService
@@ -119,8 +125,11 @@ export const Load: FC<props> = (props) => {
     }, [user])
 
     return (
-        <aside>
-            <h2>Load page!</h2>
-        </aside>
+        <div className='load-page'>
+            <div className='container-logo'>
+                <Logo />
+                <div className='line-animated'></div>
+            </div>
+        </div>
     )
 }
