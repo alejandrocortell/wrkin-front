@@ -2,7 +2,32 @@
     margin-right: 20px;
     margin-bottom: 20px;
     display: grid;
-    grid-template-columns: 70px auto 70px 40px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 'b b b' 'a c d';
+    grid-gap: 10px;
+
+    @include sm {
+        grid-template-columns: 70px auto 70px 40px;
+        grid-template-rows: 1fr;
+        grid-template-areas: 'a b c d ';
+    }
+
+    .area-a {
+        grid-area: a;
+    }
+
+    .area-b {
+        grid-area: b;
+    }
+
+    .area-c {
+        grid-area: c;
+    }
+
+    .area-d {
+        grid-area: d;
+    }
 
     .total-time {
         justify-self: end;

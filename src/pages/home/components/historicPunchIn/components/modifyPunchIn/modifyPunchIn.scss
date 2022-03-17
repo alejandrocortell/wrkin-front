@@ -2,8 +2,14 @@
     .line-punch-in {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 10px;
+        flex-direction: column;
+
+        @include sm {
+            flex-direction: row;
+            align-items: center;
+        }
 
         &:hover {
             cursor: pointer;

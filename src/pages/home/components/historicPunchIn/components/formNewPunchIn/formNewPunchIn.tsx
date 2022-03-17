@@ -120,7 +120,7 @@ export const FormNewPunchIn: FC<props> = (props) => {
 
     return (
         <form className='form-new-punch-in' onSubmit={handleSubmit}>
-            <div className='line'>
+            <div className='line-form-punch-in'>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setDateStart(e.target.value)
@@ -143,7 +143,7 @@ export const FormNewPunchIn: FC<props> = (props) => {
                     errorText={timeStartErrorText}
                 />
             </div>
-            <div className='line'>
+            <div className='line-form-punch-in'>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setDateEnd(e.target.value)

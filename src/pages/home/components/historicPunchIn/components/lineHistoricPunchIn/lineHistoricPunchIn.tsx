@@ -38,22 +38,24 @@ export const LineHistoricPunchIn: FC<props> = (props) => {
 
     return (
         <div className='line-historic-punch-in'>
-            <span>
+            <span className='area-a'>
                 {dateUtilities.format(
                     props.punchInsNotToday.punchIns[0].start,
                     'DD-MM-YY'
                 )}
             </span>
-            <GraphPunchIn
-                totalDay={totalDay()}
-                targetDay={props.targetDay}
-                margin={props.margin}
-            />
-            <span className='total-time'>
+            <span className='area-b'>
+                <GraphPunchIn
+                    totalDay={totalDay()}
+                    targetDay={props.targetDay}
+                    margin={props.margin}
+                />
+            </span>
+            <span className='total-time area-c'>
                 {dateUtilities.parseMillisecondsToHHmm(totalDay())}h
             </span>
             {settings.allowModifyPunchIn && (
-                <>
+                <span className='area-d'>
                     <LinkButton
                         label={t('COMMON_EDIT')}
                         onClick={() => setModalIsOpen(true)}
@@ -64,7 +66,7 @@ export const LineHistoricPunchIn: FC<props> = (props) => {
                         punchIns={props.punchInsNotToday.punchIns}
                         getPunchIns={props.getPunchIns}
                     />
-                </>
+                </span>
             )}
         </div>
     )

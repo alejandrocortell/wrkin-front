@@ -1,8 +1,18 @@
 .form-new-punch-in {
-    .line {
+    .line-form-punch-in {
+        margin-bottom: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 10px;
+        flex-direction: column;
+
+        @include sm {
+            flex-direction: row;
+        }
+
+        .input-field {
+            margin-bottom: 10px;
+        }
     }
 }

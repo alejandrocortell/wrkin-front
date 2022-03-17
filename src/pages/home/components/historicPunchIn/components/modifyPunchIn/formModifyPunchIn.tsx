@@ -174,7 +174,7 @@ export const FormModifyPunchIn: FC<props> = (props) => {
 
     return (
         <form className='form-new-punch-in' onSubmit={handleSubmit}>
-            <div className='line'>
+            <div className='line-form-punch-in'>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setDateStart(e.target.value)
@@ -199,7 +199,7 @@ export const FormModifyPunchIn: FC<props> = (props) => {
                     disabled={props.disabledFields}
                 />
             </div>
-            <div className='line'>
+            <div className='line-form-punch-in'>
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setDateEnd(e.target.value)
