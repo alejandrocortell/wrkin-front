@@ -15,7 +15,10 @@ import {
     setTypesDayOff,
 } from 'context/organizationSlice'
 import { Logo } from 'components/logo/logo'
+import Cookie from 'utils/cookies'
+import { useExistsCookie } from 'hooks/useExistsCookie'
 
+const cookie = new Cookie()
 const userService = new UserService()
 const organizationService = new OrganizationService()
 const daysOffService = new DaysOffService()
@@ -26,6 +29,7 @@ interface props {}
 export const Load: FC<props> = (props) => {
     const { route } = useParams()
     const auth = useAppSelector((state) => state.auth)
+    const existsToken = useExistsCookie('token')
     const [loading, setLoading] = useState(true)
     const { user } = useAppSelector((state) => state.user)
     const { settings, dayOffTypes, documentsTypes } = useAppSelector(
@@ -62,6 +66,21 @@ export const Load: FC<props> = (props) => {
     }, [auth, user, settings, dayOffTypes, documentsTypes, finishedLoader])
 
     useEffect(() => {
+        if (existsToken) {
+            getUserInfo()
+            getDaysOffTypes()
+            getDocumentsTypes()
+        }
+    }, [existsToken])
+
+    useEffect(() => {
+        if (user.user !== '') {
+            getOrganization()
+            getSettings()
+        }
+    }, [user])
+
+    const getUserInfo = () => {
         userService
             .getUserInfo()
             .then((res: any) => {
@@ -73,7 +92,9 @@ export const Load: FC<props> = (props) => {
             .catch((err) => {
                 console.log(err)
             })
+    }
 
+    const getDaysOffTypes = () => {
         daysOffService
             .getDaysOffTypes()
             .then((res: any) => {
@@ -84,7 +105,9 @@ export const Load: FC<props> = (props) => {
             .catch((err) => {
                 console.log(err)
             })
+    }
 
+    const getDocumentsTypes = () => {
         documentsService
             .getDocumentsTypes()
             .then((res: any) => {
@@ -95,34 +118,35 @@ export const Load: FC<props> = (props) => {
             .catch((err) => {
                 console.log(err)
             })
-    }, [])
+    }
 
-    useEffect(() => {
-        if (user.user !== '') {
-            organizationService
-                .getOrganization(user.OrganizationId)
-                .then((res: any) => {
-                    if (res.status === 200) {
-                        setLoading(false)
-                        dispatch(setOrganization({ ...res.data.organization }))
-                    }
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-            organizationService
-                .getSettings(user.OrganizationId)
-                .then((res: any) => {
-                    if (res.status === 200) {
-                        setLoading(false)
-                        dispatch(setSettings({ ...res.data.settings }))
-                    }
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        }
-    }, [user])
+    const getOrganization = () => {
+        organizationService
+            .getOrganization(user.OrganizationId)
+            .then((res: any) => {
+                if (res.status === 200) {
+                    setLoading(false)
+                    dispatch(setOrganization({ ...res.data.organization }))
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const getSettings = () => {
+        organizationService
+            .getSettings(user.OrganizationId)
+            .then((res: any) => {
+                if (res.status === 200) {
+                    setLoading(false)
+                    dispatch(setSettings({ ...res.data.settings }))
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     return (
         <div className='load-page'>
