@@ -19,11 +19,11 @@ export const FormLogin: FC = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    const [user, setUser] = useState('alejandro')
+    const [user, setUser] = useState('')
     const [userError, setUserError] = useState(false)
     const [userErrorText, setUserErrorText] = useState('Error text')
 
-    const [pass, setPass] = useState('123456aA?')
+    const [pass, setPass] = useState('')
     const [passError, setPassError] = useState(false)
     const [passErrorText, setPassErrorText] = useState('')
 
@@ -106,6 +106,7 @@ export const FormLogin: FC = () => {
                 error={userError}
                 errorText={userErrorText}
                 required
+                testTag='user'
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setUser(e.target.value)
                 }
@@ -117,6 +118,7 @@ export const FormLogin: FC = () => {
                 error={passError}
                 errorText={passErrorText}
                 required
+                testTag='password'
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setPass(e.target.value)
                 }
@@ -134,6 +136,7 @@ export const FormLogin: FC = () => {
                 label={t('FORM_LOGIN')}
                 style={'primary'}
                 loading={buttonLoader}
+                testTag='login'
             />
             {errorForm && <div className='error-form'>{textErrorForm}</div>}
         </form>

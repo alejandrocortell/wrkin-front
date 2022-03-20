@@ -22,6 +22,7 @@ interface Props {
     min?: string
     max?: string
     placeholder?: string
+    testTag?: string
 }
 
 export const InputField: FC<Props> = (props) => {
@@ -83,6 +84,7 @@ export const InputField: FC<Props> = (props) => {
                 min={props.min}
                 max={props.max}
                 placeholder={props.placeholder}
+                data-cy={props.testTag ? props.testTag : null}
             />
             <span className='error-text'>{props.error && props.errorText}</span>
         </div>

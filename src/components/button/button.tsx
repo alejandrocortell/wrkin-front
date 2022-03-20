@@ -6,6 +6,7 @@ interface Props {
     style: 'primary' | 'secondary' | 'accept' | 'delete'
     disabled?: boolean
     loading?: boolean
+    testTag?: string
 }
 
 export const Button: FC<Props> = (props) => {
@@ -18,6 +19,7 @@ export const Button: FC<Props> = (props) => {
             className={`button ${props.style}`}
             onClick={handleClick}
             disabled={props.disabled}
+            data-cy={props.testTag ? props.testTag : null}
         >
             {props.loading ? (
                 <div className='loader-button'></div>

@@ -1,14 +1,18 @@
 import cypress from 'cypress'
 
 describe('Open site', () => {
-    it('Frontpage can be opened', () => {
+    before(() => {
         cy.visit('localhost:3000')
+    })
+
+    it('Frontpage can be opened', () => {
         cy.contains('User')
     })
 
     it('Do login', () => {
-        cy.visit('localhost:3000')
-        cy.get('.button.primary').click()
+        cy.get('[data-cy=user]').type('alejandro')
+        cy.get('[data-cy=password]').type('123456aA?')
+        cy.get('[data-cy=login]').click()
         cy.contains('My account')
     })
 })

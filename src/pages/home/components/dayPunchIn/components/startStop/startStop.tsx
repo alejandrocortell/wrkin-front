@@ -86,6 +86,7 @@ export const StartStop: FC<props> = (props) => {
                     }
                     style={'primary'}
                     loading={loader}
+                    testTag='start-stop'
                 />
             </div>
         </div>

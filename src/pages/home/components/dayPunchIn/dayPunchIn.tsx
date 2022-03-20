@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import i18next from 'i18next'
 import { PunchIn } from 'models/punchIn'
 import { LinePunchIn } from './components/linePunchIn/linePunchIn'
 import { TotalDay } from './components/totalDay/totalDay'

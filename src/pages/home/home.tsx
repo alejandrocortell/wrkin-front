@@ -31,7 +31,6 @@ export const Home: FC = () => {
         userService
             .getUserPunchIns(user.id)
             .then((res: any) => {
-                console.log(res)
                 if (res.status === 200 && res.data.punchIns !== undefined) {
                     const data = res.data.punchIns.map((punchIn: PunchIn) => {
                         return {
