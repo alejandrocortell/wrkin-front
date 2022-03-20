@@ -8,7 +8,7 @@
     grid-gap: 10px;
 
     @include sm {
-        grid-template-columns: 70px auto 70px 40px;
+        grid-template-columns: 80px auto 70px 40px;
         grid-template-rows: 1fr;
         grid-template-areas: 'a b c d ';
     }

@@ -16,6 +16,7 @@ html {
         overflow-y: scroll;
         &::-webkit-scrollbar {
             display: initial;
+            width: 4px;
         }
     }
 }
@@ -55,7 +56,7 @@ html {
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-    width: 12px;
+    width: 4px;
 }
 
 *::-webkit-scrollbar-track {

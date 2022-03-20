@@ -1,7 +1,11 @@
 .info-user {
     .container-white {
         height: fit-content;
-        width: fit-content;
+        width: 100%;
+
+        @include md {
+            width: fit-content;
+        }
 
         h2 {
             font-size: 1.5rem;

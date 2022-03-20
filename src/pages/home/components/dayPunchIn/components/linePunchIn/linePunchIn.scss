@@ -1,9 +1,26 @@
 .line-punchIn {
     @include medium;
-    display: grid;
-    grid-template-columns: 0.8fr auto 0.8fr 1fr;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
     gap: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+
+    @include sm {
+        display: grid;
+        grid-template-columns: 0.8fr auto 0.8fr 1fr;
+        grid-template-rows: 1fr;
+        margin-bottom: 10px;
+    }
+
+    > span {
+        display: none;
+
+        @include sm {
+            display: inline;
+        }
+    }
 
     div {
         display: inline;

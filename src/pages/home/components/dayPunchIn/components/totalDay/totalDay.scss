@@ -1,4 +1,8 @@
 .total-day {
     @include bold;
-    text-align: end;
+    text-align: start;
+
+    @include sm {
+        text-align: end;
+    }
 }
