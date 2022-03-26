@@ -18,6 +18,14 @@ describe('Test if is string: ', () => {
         })
     })
 
+    test('Non string', () => {
+        // @ts-ignore
+        expect(validator.isString(undefined)).toStrictEqual({
+            error: true,
+            errorText: t('ERROR_STRING'),
+        })
+    })
+
     test('Only whitespaces', () => {
         expect(validator.isString('    ')).toStrictEqual({
             error: false,

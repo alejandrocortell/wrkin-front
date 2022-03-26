@@ -52,6 +52,7 @@ export const InputField: FC<Props> = (props) => {
                     required={props.required}
                     disabled={props.disabled}
                     className={`${props.error && 'error'}`}
+                    data-cy={props.testTag ? props.testTag : null}
                 />
             </div>
         )
