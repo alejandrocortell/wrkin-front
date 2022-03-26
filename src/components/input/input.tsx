@@ -59,7 +59,7 @@ export const InputField: FC<Props> = (props) => {
     }
     return (
         <div className='input-field'>
-            <label>
+            <label data-testid='label'>
                 {props.label}
                 {props.required && '*'}
             </label>

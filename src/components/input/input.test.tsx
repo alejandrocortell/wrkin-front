@@ -100,4 +100,52 @@ describe('Input', async () => {
         const textarea = component.container.querySelector('.false')
         expect(textarea).toContainHTML('textarea')
     })
+
+    it('Should render the input and change the content', () => {
+        const { getByDisplayValue } = render(
+            <InputField
+                onChange={() => console.log('click')}
+                value={'Value test'}
+                label={'Label test'}
+                type={'email'}
+                error={false}
+                errorText={'Error message'}
+                testTag='test-input'
+            />
+        )
+        const input = getByDisplayValue('Value test')
+        fireEvent.change(input, { target: { value: 'New value' } })
+    })
+
+    it('Should render the textarea and change the content', () => {
+        const { getByDisplayValue } = render(
+            <InputField
+                onChange={() => console.log('click')}
+                value={'Value test'}
+                label={'Label test'}
+                type={'textarea'}
+                error={false}
+                errorText={'Error message'}
+                testTag='test-input'
+            />
+        )
+        const input = getByDisplayValue('Value test')
+        fireEvent.change(input, { target: { value: 'New value' } })
+    })
+
+    it('Should render the input required', () => {
+        const { getByDisplayValue } = render(
+            <InputField
+                onChange={() => console.log('click')}
+                value={'Value test'}
+                label={'Label test'}
+                type={'text'}
+                error={false}
+                errorText={'Error message'}
+                testTag='test-input'
+                required
+            />
+        )
+        expect(screen.getByTestId('label')).toHaveTextContent('*')
+    })
 })

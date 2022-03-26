@@ -17,14 +17,6 @@ describe('Button', async () => {
     })
 
     it('Should render change the checkbox', () => {
-        // render(
-        //     <Checkbox
-        //         onChange={() => {}}
-        //         checked={true}
-        //         label={'Label checkbox'}
-        //     />
-        // )
-        // expect(screen.getByRole('checkbox')).toBeChecked()
         const { getByRole } = render(
             <Checkbox
                 onChange={() => {}}
