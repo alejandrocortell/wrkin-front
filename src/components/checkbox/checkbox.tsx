@@ -15,6 +15,7 @@ export const Checkbox: FC<Props> = (props) => {
         <label className='checkbox-field'>
             <input
                 type='checkbox'
+                aria-label='checkbox'
                 checked={props.checked}
                 onChange={handleChange}
             />
