@@ -20,7 +20,7 @@ export const Dropdown: FC<Props> = (props) => {
 
     return (
         <div className='dropdown input-field'>
-            <label>
+            <label data-testid='label'>
                 {props.label}
                 {props.required && '*'}
             </label>
@@ -37,7 +37,9 @@ export const Dropdown: FC<Props> = (props) => {
                     )
                 })}
             </select>
-            <span className='error-text'>{props.error && props.errorText}</span>
+            {props.error && (
+                <span className='error-text'>{props.errorText}</span>
+            )}
         </div>
     )
 }
