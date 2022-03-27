@@ -69,7 +69,6 @@ export const FormLogin: FC = () => {
         }
 
         doLogin()
-        navigate('/')
     }
 
     const doLogin = async () => {
@@ -80,19 +79,19 @@ export const FormLogin: FC = () => {
             .login(user, pass)
             .then((res: any) => {
                 setButtonLoader(false)
-                if (res.status !== 200) {
+
+                if (res.status === 204) {
+                    setErrorForm(true)
+                    setTextErrorForm(t('ERROR_USER_NOT_FOUND'))
+                    return
+                } else if (res.status !== 200) {
                     setErrorForm(true)
                     setTextErrorForm(t('ERROR_FORM'))
                     return
                 }
 
-                if (res.data.status === 204) {
-                    setErrorForm(true)
-                    setTextErrorForm(t('ERROR_USER_NOT_FOUND'))
-                    return
-                }
-
                 dispatch(login({ token: res.data.token, remember: remember }))
+                navigate('/')
             })
             .catch((err) => console.log(err))
     }

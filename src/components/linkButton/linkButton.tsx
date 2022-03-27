@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface Props {
     label: string
@@ -8,18 +8,17 @@ interface Props {
 }
 
 export const LinkButton: FC<Props> = (props) => {
-    const navigate = useNavigate()
-    const handleClick = () => {
-        if (props.path) {
-            navigate(props.path)
-        } else if (props.onClick) {
-            props.onClick()
-        }
+    if (props.path) {
+        return (
+            <Link to={props.path} className='link-button'>
+                {props.label}
+            </Link>
+        )
+    } else {
+        return (
+            <a onClick={props.onClick} className='link-button'>
+                {props.label}
+            </a>
+        )
     }
-
-    return (
-        <a onClick={handleClick} className='link-button'>
-            {props.label}
-        </a>
-    )
 }
