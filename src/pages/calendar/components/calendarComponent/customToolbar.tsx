@@ -155,6 +155,7 @@ export const RBCToolbar: FC<props> = (props) => {
                         onClick={props.openModalRequest}
                         label={t('CALENDAR_DO_REQUEST')}
                         style={'secondary'}
+                        testTag='do-request'
                     />
                 </span>
             </div>

@@ -247,6 +247,7 @@ export const ModalRequest: FC<props> = (props) => {
                 style={'primary'}
                 disabled={disabled}
                 loading={loader}
+                testTag='send-request'
             />
         </form>
     )
