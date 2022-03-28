@@ -294,6 +294,7 @@ export const FormMyAccount: FC = () => {
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setFirstName(e.target.value)
                     }
+                    testTag='firstname'
                 />
                 <InputField
                     value={lastName}
@@ -304,6 +305,7 @@ export const FormMyAccount: FC = () => {
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         setLastName(e.target.value)
                     }
+                    testTag='lastname'
                 />
                 <InputField
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -362,6 +364,7 @@ export const FormMyAccount: FC = () => {
                     style={'primary'}
                     loading={buttonLoaderAccount}
                     disabled={disableAccount}
+                    testTag='update-account'
                 />
             </form>
             <form
