@@ -59,7 +59,7 @@ export default class DaysOffService {
 
     getDaysOffTypes = async () => {
         return new Promise((resolve) => {
-            api.get(`${apiUrl}/days-off`)
+            api.get(`${apiUrl}/days-off-types`)
                 .then((res) => resolve(res))
                 .catch((err) => resolve(err))
         })

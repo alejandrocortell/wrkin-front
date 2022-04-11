@@ -8,12 +8,14 @@ import accountImg from 'assets/img/person.svg'
 import { ContainerWhite } from 'components/containerWhite/containerWhite'
 import { Button } from 'components/button/button'
 import { DeleteUser } from '../deleteUser/deleteUser'
+import { EditUser } from '../editUser/editUser'
 
 const dateUtilities = new DateUtilities()
 const userService = new UserService()
 
 interface props {
     user: User
+    updatedUser: () => void
 }
 
 export const InfoUser: FC<props> = (props) => {
@@ -21,7 +23,8 @@ export const InfoUser: FC<props> = (props) => {
     const role = useRoleType(props.user.roleId)
     const [manager, setManager] = useState('')
     const [avatar, setAvatar] = useState('')
-    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [modalEditIsOpen, setModalEditIsOpen] = useState(false)
+    const [modalDeleteIsOpen, setModalDeleteIsOpen] = useState(false)
 
     useEffect(() => {
         userService
@@ -38,15 +41,25 @@ export const InfoUser: FC<props> = (props) => {
                 setAvatar(res.request.responseURL)
             })
         }
-    }, [])
+    }, [props.user])
 
     return (
         <div className='info-user'>
-            <DeleteUser
-                user={props.user}
-                modalIsOpen={modalIsOpen}
-                closeModal={() => setModalIsOpen(!modalIsOpen)}
-            />
+            {modalDeleteIsOpen && (
+                <DeleteUser
+                    user={props.user}
+                    modalIsOpen={modalDeleteIsOpen}
+                    closeModal={() => setModalDeleteIsOpen(!modalDeleteIsOpen)}
+                />
+            )}
+            {modalEditIsOpen && (
+                <EditUser
+                    user={props.user}
+                    modalIsOpen={modalEditIsOpen}
+                    closeModal={() => setModalEditIsOpen(!modalEditIsOpen)}
+                    updatedUser={props.updatedUser}
+                />
+            )}
             <ContainerWhite>
                 <div className='container-info-user'>
                     <div className='column-avatar'>
@@ -87,11 +100,22 @@ export const InfoUser: FC<props> = (props) => {
                             <span className='title'>{t('FORM_MANAGER')}: </span>
                             {manager}
                         </p>
-                        <Button
-                            onClick={() => setModalIsOpen(!modalIsOpen)}
-                            label={t('MANAGE_REMOVE_USER')}
-                            style={'secondary'}
-                        />
+                        <div className='container-buttons'>
+                            <Button
+                                onClick={() =>
+                                    setModalEditIsOpen(!modalEditIsOpen)
+                                }
+                                label={t('COMMON_EDIT')}
+                                style={'secondary'}
+                            />
+                            <Button
+                                onClick={() =>
+                                    setModalDeleteIsOpen(!modalDeleteIsOpen)
+                                }
+                                label={t('MANAGE_REMOVE_USER')}
+                                style={'secondary'}
+                            />
+                        </div>
                     </div>
                 </div>
             </ContainerWhite>

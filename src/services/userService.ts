@@ -150,6 +150,22 @@ export default class UserService {
         })
     }
 
+    updateManagerAndRole = async (
+        id: number,
+        roleId: number,
+        managerId: number
+    ) => {
+        const params = {
+            role: roleId,
+            manager: managerId,
+        }
+        return new Promise((resolve) => {
+            api.put(`${apiUrl}/users/${id}`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
+
     deleteUser = async (id: number) => {
         return new Promise((resolve) => {
             api.delete(`${apiUrl}/users/${id}`)

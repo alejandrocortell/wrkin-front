@@ -7,8 +7,7 @@ import UserService from 'services/userService'
 import DaysOffService from 'services/daysOffService'
 import { PaginatedUsers } from './components/users/components/paginatedUsers/paginatedUsers'
 
-const daysOffService = new DaysOffService()
-const userServide = new UserService()
+const userService = new UserService()
 
 interface props {}
 
@@ -20,7 +19,7 @@ export const ManageUsers: FC<props> = (props) => {
     }, [])
 
     const getAllUsers = () => {
-        userServide
+        userService
             .getAllUsers()
             .then((res: any) => {
                 if (res.status === 200) {

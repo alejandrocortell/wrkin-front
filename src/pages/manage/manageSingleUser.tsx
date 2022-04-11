@@ -69,7 +69,12 @@ export const ManageSingleUser: FC<props> = (props) => {
                     <SelectorManage />
                 </ContainerWhite>
                 <div>
-                    {user && <InfoUser user={user} />}
+                    {user && (
+                        <InfoUser
+                            user={user}
+                            updatedUser={() => idUser && getUser(+idUser)}
+                        />
+                    )}
                     {user && (
                         <PunchInsManager punchIns={punchIns} user={user} />
                     )}

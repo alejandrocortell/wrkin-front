@@ -17,3 +17,5 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById('root')
 )
+
+// TODO: In login page explanation of the project
