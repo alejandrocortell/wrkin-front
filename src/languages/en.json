@@ -152,5 +152,8 @@
     "MANAGE_NO_PUNCHINS_FOUND": "No punch ins found",
     "MANAGE_REMOVE_DOCUMENT": "Delete document",
     "MANAGE_REMOVE_DOCUMENT_TEXT": "Are you sure you want to eliminate",
-    "MANAGE_MODIFY_SETTINGS": "Modify settings"
+    "MANAGE_MODIFY_SETTINGS": "Modify settings",
+
+    "404_TEXT": "Not found",
+    "404_RETURN": "Return to home"
 }

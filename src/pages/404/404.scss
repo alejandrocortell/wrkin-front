@@ -1,0 +1,49 @@
+.fourOfour {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.background {
+        background: transparent
+            linear-gradient(130deg, #3cb9fc 0%, #8a2be2 100%) 0% 0% no-repeat
+            padding-box;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @include sm {
+            align-items: flex-end;
+        }
+
+        .code {
+            color: $white;
+            @include bold;
+
+            font-size: 10rem;
+        }
+
+        .text {
+            color: $white;
+            font-size: 3rem;
+        }
+
+        .container-button {
+            margin-top: 30px;
+
+            a {
+                font-size: 1rem;
+                color: $white;
+
+                &::after {
+                    background-color: $white;
+                }
+            }
+        }
+    }
+}
