@@ -117,22 +117,6 @@ describe('Input', async () => {
         fireEvent.change(input, { target: { value: 'New value' } })
     })
 
-    it('Should render the textarea and change the content', () => {
-        const { getByDisplayValue } = render(
-            <InputField
-                onChange={() => console.log('click')}
-                value={'Value test'}
-                label={'Label test'}
-                type={'textarea'}
-                error={false}
-                errorText={'Error message'}
-                testTag='test-input'
-            />
-        )
-        const input = getByDisplayValue('Value test')
-        fireEvent.change(input, { target: { value: 'New value' } })
-    })
-
     it('Should render the input required', () => {
         const { getByDisplayValue } = render(
             <InputField

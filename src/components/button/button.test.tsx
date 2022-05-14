@@ -27,7 +27,7 @@ describe('Button', async () => {
         expect(screen.getByText('Test button')).toHaveClass('secondary')
     })
 
-    it('Should render the button primary', () => {
+    it('Should render the button accept', () => {
         render(
             <Button
                 onClick={() => console.log('click')}
@@ -38,7 +38,7 @@ describe('Button', async () => {
         expect(screen.getByText('Test button')).toHaveClass('accept')
     })
 
-    it('Should render the button primary', () => {
+    it('Should render the button delete', () => {
         render(
             <Button
                 onClick={() => console.log('click')}
