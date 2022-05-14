@@ -82,7 +82,8 @@ export const LineExpanded: FC<props> = (props) => {
                 <p className='message'>{props.request.message}</p>
             </div>
             {[1, 2, 4].includes(user.roleId) &&
-                props.user.managerId === user.id && (
+                (props.user.managerId === user.id ||
+                    [1, 2].includes(user.roleId)) && (
                     <div className='container-buttons'>
                         <Button
                             onClick={reject}

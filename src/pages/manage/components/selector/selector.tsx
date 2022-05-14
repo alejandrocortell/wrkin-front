@@ -56,6 +56,19 @@ export const SelectorManage: FC<props> = (props) => {
                     />
                 </li>
             )}
+            {[1, 2].includes(user.roleId) && (
+                <li
+                    className={`container-link ${
+                        location.pathname === '/manage/organization' &&
+                        'selected'
+                    }`}
+                >
+                    <LinkButton
+                        label={t('MANAGE_ORGANIZATION')}
+                        path={'/manage/organization'}
+                    />
+                </li>
+            )}
         </ul>
     )
 }

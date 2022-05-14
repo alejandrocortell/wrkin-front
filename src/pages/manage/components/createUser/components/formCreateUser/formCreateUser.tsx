@@ -290,7 +290,7 @@ export const FormCreateUser: FC<props> = (props) => {
                 }
             })
             .catch((err) => setErrorCreate(true))
-            .finally(() => setButtonLoaderCreate(true))
+            .finally(() => setButtonLoaderCreate(false))
     }
 
     const cleanForm = () => {

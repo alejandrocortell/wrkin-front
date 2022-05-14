@@ -17,6 +17,7 @@ import { ManageSingleUser } from 'pages/manage/manageSingleUser'
 import { ManageCreateUser } from 'pages/manage/manageCreateUser'
 import { ManageDocuments } from 'pages/manage/manageDocuments'
 import i18next from 'i18next'
+import { ManageOrganization } from 'pages/manage/manageOrganization'
 
 const cookie = new Cookie()
 
@@ -64,6 +65,12 @@ export const App: FC = () => {
                 <Route
                     path='/manage/create-user'
                     element={<ManageCreateUser />}
+                />
+            </Route>
+            <Route element={<RequireAuth roles={[1, 2]} />}>
+                <Route
+                    path='/manage/organization'
+                    element={<ManageOrganization />}
                 />
             </Route>
             <Route path='/loading' element={<Load />} />

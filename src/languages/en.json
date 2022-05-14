@@ -41,6 +41,10 @@
     "FORM_CHANGE_LANGUAGE": "Change language",
     "FORM_LANGUAGE_ES": "Spanish",
     "FORM_LANGUAGE_EN": "English",
+    "FORM_MARGIN_HOURS": "Margin hours",
+    "FORM_ALLOW_MODIFY_PUNCH_IN": "Allow modify punch in",
+    "FORM_ALLOW_INSERT_PUNCH_IN": "Allow insert punch in",
+    "FORM_SETTINGS_UPDATED": "Settings updated",
 
     "ERROR_FORM": "An error has ocurred, please try again",
     "ERROR_STRING": "Invalid text",
@@ -119,6 +123,7 @@
     "MANAGE_DOCUMENTS": "Documents",
     "MANAGE_CREATE_USER": "Create user",
     "MANAGE_CREATE_ACCOUNT": "Create account",
+    "MANAGE_ORGANIZATION": "Organization",
     "MANAGE_PENDINGS": "Pendings",
     "MANAGE_REPLIED": "Replied",
     "MANAGE_USERS": "Users",
@@ -146,5 +151,6 @@
     "MANAGE_NO_REQUEST_FOUND": "No requests found",
     "MANAGE_NO_PUNCHINS_FOUND": "No punch ins found",
     "MANAGE_REMOVE_DOCUMENT": "Delete document",
-    "MANAGE_REMOVE_DOCUMENT_TEXT": "Are you sure you want to eliminate"
+    "MANAGE_REMOVE_DOCUMENT_TEXT": "Are you sure you want to eliminate",
+    "MANAGE_MODIFY_SETTINGS": "Modify settings"
 }

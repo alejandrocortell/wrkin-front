@@ -45,4 +45,22 @@ export default class OrganizationService {
                 .catch((err) => resolve(err))
         })
     }
+
+    updateSettings = async (
+        id: number,
+        marginHours: number,
+        allowModifyPunchIn: boolean,
+        allowInsertPastPunchIn: boolean
+    ) => {
+        const params = {
+            marginHours: marginHours,
+            allowModifyPunchIn: allowModifyPunchIn,
+            allowInsertPastPunchIn: allowInsertPastPunchIn,
+        }
+        return new Promise((resolve) => {
+            api.put(`${apiUrl}/settings/${id}`, params)
+                .then((res) => resolve(res))
+                .catch((err) => resolve(err))
+        })
+    }
 }
