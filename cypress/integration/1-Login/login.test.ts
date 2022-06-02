@@ -16,7 +16,7 @@ describe('Login invalid', () => {
 describe('Login fine', () => {
     it('Login should not be fine', () => {
         cy.visit('localhost:3000')
-        cy.get('[data-cy=user]').type('alejandro')
+        cy.get('[data-cy=user]').type('alejandroRRHH')
         cy.get('[data-cy=password]').type('123456aA?')
         cy.get('[data-cy=login]').click()
         cy.contains('alejandro')

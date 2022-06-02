@@ -3,7 +3,7 @@ import cypress from 'cypress'
 describe('Menu manage org not exists', () => {
     before(() => {
         cy.visit('localhost:3000')
-        cy.get('[data-cy=user]').type('alejandro')
+        cy.get('[data-cy=user]').type('alejandroRRHH')
         cy.get('[data-cy=password]').type('123456aA?')
         cy.get('[data-cy=login]').click()
     })
@@ -20,7 +20,7 @@ describe('Menu manage org not exists', () => {
 describe('Menu manage org exists', () => {
     before(() => {
         cy.visit('localhost:3000')
-        cy.get('[data-cy=user]').type('alejandro')
+        cy.get('[data-cy=user]').type('alejandroRRHH')
         cy.get('[data-cy=password]').type('123456aA?')
         cy.get('[data-cy=login]').click()
     })
