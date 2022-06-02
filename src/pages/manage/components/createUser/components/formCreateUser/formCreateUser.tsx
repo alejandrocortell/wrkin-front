@@ -103,7 +103,7 @@ export const FormCreateUser: FC<props> = (props) => {
         if (firstUser[0]) {
             setManager(`${firstUser[0].firstName} ${firstUser[0].lastName}`)
         }
-    }, [])
+    }, [props.users])
 
     const debouncedUser = useDebounce(userName, 400)
     useEffect(() => {
@@ -306,7 +306,8 @@ export const FormCreateUser: FC<props> = (props) => {
         setPassConfirm('')
     }
 
-    const randomPassword = () => {
+    const randomPassword = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        e.preventDefault()
         const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         const lower = 'abcdefghijklmnopqrstuvwxyz'
         const special = '~!@-#$+*?{}^'
@@ -475,7 +476,9 @@ export const FormCreateUser: FC<props> = (props) => {
             </div>
             <div className='container-button container-password'>
                 <Button
-                    onClick={randomPassword}
+                    onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
+                        randomPassword(e)
+                    }
                     label={t('MANAGE_RANDOM_PASS')}
                     style={'secondary'}
                 />

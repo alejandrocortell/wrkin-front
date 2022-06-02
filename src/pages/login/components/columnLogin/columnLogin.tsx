@@ -15,7 +15,6 @@ export const ColumnLogin: FC = () => {
                 </div>
                 <FormLogin />
             </div>
-            <div className='container-links'>Liinks</div>
         </div>
     )
 }

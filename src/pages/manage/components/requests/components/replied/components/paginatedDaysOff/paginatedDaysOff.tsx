@@ -87,6 +87,7 @@ export const PaginatedDaysOff: FC<props> = (props) => {
         })
 
         setFilteredItems(byDate)
+        setItemOffset(0)
     }, [filter, props.replied])
 
     return (

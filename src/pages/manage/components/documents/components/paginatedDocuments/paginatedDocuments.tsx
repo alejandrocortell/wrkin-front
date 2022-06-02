@@ -78,7 +78,8 @@ export const PaginatedDocuments: FC<props> = (props) => {
         const byDate = byUser.filter((item) => {
             if (
                 filter.start.getTime() <= new Date(item.createdAt).getTime() &&
-                filter.end.getTime() >= new Date(item.createdAt).getTime() + 10
+                filter.end.getTime() >=
+                    new Date(item.createdAt).getTime() - 86400000
             ) {
                 return true
             } else {
@@ -86,6 +87,8 @@ export const PaginatedDocuments: FC<props> = (props) => {
             }
         })
 
+        console.log(byDate)
+        setItemOffset(0)
         setFilteredItems(byDate)
     }, [filter, props.documents])
 
