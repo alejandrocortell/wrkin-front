@@ -136,8 +136,9 @@ export const Calendar: FC = () => {
     const dayType = (id: number) => {
         if (id === 1) return t('DAYOFF_TYPE_HOLIDAYS')
         if (id === 2) return t('DAYOFF_TYPE_DAYOFF')
-        if (id === 3) return t('DAYOFF_TYPE_SICK')
-        if (id === 4) return t('DAYOFF_TYPE_FORMATION')
+        if (id === 3) return t('DAYOFF_TYPE_FORMATION')
+        if (id === 4) return t('DAYOFF_TYPE_EXAM')
+        if (id === 5) return t('DAYOFF_TYPE_SICK')
         if (id === 5) return t('DAYOFF_TYPE_EXAM')
         return t('CALENDAR_OTHER')
     }

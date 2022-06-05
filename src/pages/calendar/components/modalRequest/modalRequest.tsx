@@ -68,6 +68,10 @@ export const ModalRequest: FC<props> = (props) => {
         const test = val.isDate(dateStart)
         setDateStartError(test.error)
         setDateStartErrorText(test.errorText)
+
+        if (new Date(dateEnd).getTime() < new Date(dateStart).getTime()) {
+            setDateEnd(dateStart)
+        }
     }, [debouncedDateStart])
 
     const debouncedDateEnd = useDebounce(dateEnd, 400)
