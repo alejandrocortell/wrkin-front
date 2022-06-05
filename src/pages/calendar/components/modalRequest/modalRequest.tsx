@@ -143,7 +143,7 @@ export const ModalRequest: FC<props> = (props) => {
         const start = new Date(`${dateStart} ${timeStartCalc}`)
         const end = new Date(`${dateEnd} ${timeEndCalc}`)
         const dayOffType = dayOffTypes.find((t) => {
-            return t.dayOffType === type.toLowerCase()
+            return t.dayOffType.toLowerCase() === type.toLowerCase()
         })
         const idDayOffType = dayOffType ? dayOffType.id : 1
 
@@ -170,7 +170,7 @@ export const ModalRequest: FC<props> = (props) => {
                 />
                 <Dropdown
                     onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-                        setType(e.target.value.toLowerCase)
+                        setType(e.target.value)
                     }}
                     value={type}
                     label={'Type'}
